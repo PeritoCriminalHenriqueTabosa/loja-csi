@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loja CSI — Camisas, Livros e Acessórios de Perícia Criminal | Checkout na página</title>
+<meta name="description" content="Loja CSI: a loja oficial de quem ama perícia criminal. Camisas, livros e acessórios com pagamento seguro Hotmart (Pix e cartão) sem sair da página. Envio para todo o Brasil.">
+<meta property="og:title" content="Loja CSI — Vista a Perícia">
+<meta property="og:description" content="Camisas, livros e acessórios de perícia criminal. Pague com Pix ou cartão sem sair da página.">
+
+<!-- ============ Meta Pixel (mesmo ID do site principal) ============ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','984093961206190');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=984093961206190&ev=PageView&noscript=1"/></noscript>
+
+<!-- ============ HOTMART CHECKOUT WIDGET (FASE 1) ============
+     O script abaixo transforma qualquer <a class="hotmart-fb hotmart__button-checkout">
+     em um checkout POPUP que abre POR CIMA desta página (sem redirecionar).
+     O parâmetro ?checkoutMode=2 no link pay.hotmart.com ativa o modo popup. -->
+<link rel="stylesheet" type="text/css" href="https://static.hotmart.com/css/hotmart-fb.min.css">
+<script type="text/javascript" src="https://static.hotmart.com/checkout/widget.min.js" defer></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800;900&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   LOJA CSI — Dark theme alto contraste, amarelo + preto
+   ===================================================== */
+:root{
+  --amarelo:#FFD400;
+  --amarelo2:#ffdf3d;
+  --preto:#0a0a0a;
+  --bg:#0d0d0d;
+  --bg2:#121212;
+  --card:#161616;
+  --line:#262626;
+  --txt:#f5f5f2;
+  --mut:#a3a39b;
+  --verde:#35c26f;
+  --rad:14px;
+  /* faixa hazard reutilizável */
+  --hazard:repeating-linear-gradient(-45deg,var(--amarelo),var(--amarelo) 16px,var(--preto) 16px,var(--preto) 32px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+h1,h2,h3,.display{font-family:'Archivo Black',sans-serif;font-weight:400;letter-spacing:.4px;text-transform:uppercase;line-height:1.02}
+.mono{font-family:'Special Elite',monospace}
+
+/* ---------- faixa hazard topo ---------- */
+.hazard-bar{height:12px;background:var(--hazard)}
+.urgency{background:var(--amarelo);color:var(--preto);text-align:center;padding:8px 14px;font-weight:800;font-size:.8rem;letter-spacing:.4px}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.94);backdrop-filter:blur(10px);border-bottom:2px solid var(--amarelo)}
+.nav{display:flex;align-items:center;gap:20px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand .mark{position:relative;width:38px;height:38px;background:var(--amarelo);border-radius:9px;display:grid;place-items:center;font-family:'Archivo Black';color:var(--preto);font-size:.85rem;letter-spacing:.5px;box-shadow:0 4px 14px -4px rgba(255,212,0,.5)}
+.brand .mark::after{content:"";position:absolute;left:6px;right:6px;bottom:4px;height:4px;border-radius:2px;background:repeating-linear-gradient(-45deg,var(--preto),var(--preto) 5px,var(--amarelo) 5px,var(--amarelo) 10px)}
+.brand .t1{font-family:'Archivo Black';font-size:1.15rem;letter-spacing:1px}
+.brand .t1 em{font-style:normal;color:var(--amarelo)}
+.brand .t2{font-family:'Special Elite';font-size:.58rem;color:var(--amarelo);letter-spacing:3px;display:block}
+.nav a.link{color:var(--mut);font-weight:700;font-size:.88rem;transition:.2s}
+.nav a.link:hover{color:var(--amarelo)}
+.nav .cta-top{background:var(--amarelo);color:var(--preto);padding:9px 18px;border-radius:40px;font-weight:900;font-size:.85rem}
+@media(max-width:820px){.nav a.link{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:64px 0 52px;background:
+  radial-gradient(900px 400px at 80% -10%,rgba(255,212,0,.14),transparent 60%),
+  radial-gradient(600px 320px at 0% 110%,rgba(255,212,0,.07),transparent 60%),var(--bg)}
+.hero .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.kick{display:inline-flex;align-items:center;gap:8px;background:#191919;border:1px solid var(--line);color:var(--amarelo);font-family:'Special Elite';font-size:.72rem;letter-spacing:2px;padding:7px 14px;border-radius:40px;text-transform:uppercase}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);margin:18px 0 14px}
+.hero h1 em{font-style:normal;color:var(--amarelo)}
+.hero p.sub{color:var(--mut);font-size:1.06rem;max-width:520px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:900;border-radius:12px;padding:15px 26px;cursor:pointer;border:none;font-size:1rem;transition:transform .12s,box-shadow .2s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--amarelo);color:var(--preto);box-shadow:0 10px 28px -10px rgba(255,212,0,.55)}
+.btn-primary:hover{background:var(--amarelo2);box-shadow:0 14px 32px -8px rgba(255,212,0,.7)}
+.btn-ghost{background:#191919;color:var(--txt);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--amarelo);color:var(--amarelo)}
+
+/* cartão hero: mosaico de produtos reais */
+.hero-card{position:relative;background:#141414;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:0 30px 60px -30px #000;overflow:hidden}
+.hero-strip{height:8px;border-radius:6px 6px 0 0;background:var(--hazard);margin-bottom:10px}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mosaic a{display:block;border-radius:10px;overflow:hidden;border:1px solid #232323}
+.mosaic img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .35s}
+.mosaic a:hover img{transform:scale(1.05)}
+.hero-caption{margin-top:10px;text-align:center;font-size:.72rem;letter-spacing:2px;color:var(--mut);font-weight:700}
+.hero-caption span{color:var(--amarelo)}
+.stats{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap}
+.stats div b{font-family:'Archivo Black';font-size:1.5rem;color:var(--amarelo);display:block;line-height:1}
+.stats div span{font-size:.75rem;color:var(--mut)}
+@media(max-width:820px){.hero .grid{grid-template-columns:1fr}.hero-card{order:-1;max-width:420px;margin:0 auto}}
+
+/* ---------- trust strip ---------- */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.trust .row{display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;padding:15px 0}
+.trust .it{display:flex;align-items:center;gap:10px;color:var(--mut);font-size:.85rem;font-weight:600}
+.trust .it b{color:var(--txt)}
+.trust .ic{width:34px;height:34px;border-radius:9px;background:#1d1d1d;border:1px solid var(--line);display:grid;place-items:center;font-size:1.05rem}
+
+/* ---------- seções de categoria ---------- */
+section.cat{padding:52px 0 8px}
+.cat-head{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;padding-bottom:14px}
+.cat-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--hazard);opacity:.9;border-radius:3px}
+.cat-head h2{font-size:clamp(1.6rem,4vw,2.4rem)}
+.cat-head .tag{font-family:'Special Elite';color:var(--amarelo);font-size:.72rem;letter-spacing:3px}
+.cat-head .count{color:var(--mut);font-size:.85rem;white-space:nowrap}
+
+.grid-prod{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:1000px){.grid-prod{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:740px){.grid-prod{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:410px){.grid-prod{grid-template-columns:1fr}}
+
+.prod{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,border-color .2s,box-shadow .2s;position:relative}
+.prod:hover{transform:translateY(-5px);border-color:var(--amarelo);box-shadow:0 20px 40px -22px rgba(255,212,0,.25)}
+.prod .imgbox{aspect-ratio:1/1;position:relative;background:#101010;overflow:hidden}
+.prod .imgbox img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.prod:hover .imgbox img{transform:scale(1.06)}
+.prod .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;
+  background:repeating-linear-gradient(135deg,#171717,#171717 14px,#121212 14px,#121212 28px)}
+.prod .ph span{font-family:'Archivo Black';font-size:1rem;color:#4d4d45;letter-spacing:1px}
+.badge{position:absolute;top:10px;left:10px;z-index:2;font-weight:900;font-size:.64rem;letter-spacing:.5px;text-transform:uppercase;padding:5px 10px;border-radius:4px}
+.badge.hot{background:var(--amarelo);color:var(--preto)}
+.badge.new{background:#fff;color:var(--preto)}
+.badge.limitada{background:var(--preto);color:var(--amarelo);border:1px solid var(--amarelo)}
+.stockbar{height:6px;border-radius:6px;background:#262626;overflow:hidden;margin-top:4px}
+.stockbar i{display:block;height:100%;background:linear-gradient(90deg,#e0705f,var(--amarelo))}
+.stocktx{font-size:.72rem;color:var(--amarelo);font-weight:800;display:flex;align-items:center;gap:5px;margin-top:3px}
+.prod .body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.prod .nm{font-weight:800;font-size:.95rem;line-height:1.25}
+.sizes{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 0}
+.sizes .lbl{font-size:.68rem;color:var(--mut);width:100%;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
+.sz{font-size:.72rem;font-weight:800;border:1px solid #333;border-radius:6px;padding:3px 9px;color:var(--txt);background:#1c1c1c}
+.priceline{display:flex;align-items:baseline;gap:8px;margin-top:2px}
+.priceline .por{font-family:'Archivo Black';font-size:1.4rem;color:var(--amarelo)}
+.parcela{font-size:.74rem;color:var(--mut)}
+
+/* preço De/Por */
+.de-line{font-size:.8rem;color:var(--mut);margin-top:2px}
+.de-line s{color:#e0705f;text-decoration:line-through;font-weight:700}
+/* aviso babylook */
+.bl-tag{font-size:.72rem;color:var(--amarelo);background:#1d1a10;border:1px dashed #3d3517;border-radius:8px;padding:6px 9px;line-height:1.35}
+.bl-tag b{text-transform:uppercase}
+/* carrossel de fotos do produto */
+.carrossel{position:relative;width:100%;height:100%}
+.carrossel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s}
+.carrossel img.ativa{opacity:1}
+.c-seta{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:30px;height:30px;border-radius:50%;border:none;background:rgba(10,10,10,.65);color:var(--amarelo);font-size:1.15rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.2s}
+.c-seta:hover{background:var(--amarelo);color:var(--preto)}
+.c-prev{left:8px}.c-next{right:8px}
+.c-dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:5px;z-index:3}
+.c-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35)}
+.c-dots i.on{background:var(--amarelo)}
+
+/* Botão comprar — dispara o POPUP Hotmart na própria página */
+.buy{margin-top:auto;background:var(--amarelo);border:none;color:var(--preto);font-weight:900;padding:13px;border-radius:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s;font-size:.92rem}
+.buy:hover{background:var(--amarelo2);transform:translateY(-1px)}
+.buy.soon{background:#1c1c1c;color:var(--mut);border:1px dashed #333;pointer-events:none}
+.buy small{font-weight:700;font-size:.68rem;opacity:.75}
+
+/* ---------- bloco frete ---------- */
+.frete{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:52px}
+.frete .inner{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding:36px 0}
+@media(max-width:740px){.frete .inner{grid-template-columns:1fr}}
+.frete h3{font-size:1.4rem;margin-bottom:6px}
+.frete p{color:var(--mut);font-size:.92rem}
+.frete-form{display:flex;gap:10px;flex-wrap:wrap}
+.frete-form input{flex:1;min-width:150px;background:#101010;border:1px solid #333;border-radius:11px;padding:14px;color:var(--txt);font-size:1rem;font-weight:700;letter-spacing:1px}
+.frete-form input:focus{outline:none;border-color:var(--amarelo)}
+.frete-result{width:100%;font-size:.9rem;color:var(--amarelo);font-weight:700;min-height:1.3em}
+.frete-result.err{color:#ff7b6b}
+
+/* ---------- acesso total ---------- */
+.acesso-total{position:relative;border-color:var(--amarelo);margin-bottom:8px}
+.at-badge{position:absolute;top:-13px;left:24px;background:var(--amarelo);color:var(--preto);font-weight:900;font-size:.7rem;letter-spacing:1px;padding:6px 12px;border-radius:30px;z-index:2}
+.acesso-total h3 em{font-style:normal;color:var(--amarelo)}
+.at-capa{border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.at-capa img{width:100%;display:block}
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:520px){.planos{grid-template-columns:1fr}}
+.plano{display:flex;flex-direction:column;gap:3px;border-radius:13px;padding:14px 16px;border:1px solid var(--line);background:#101010;transition:.2s;cursor:pointer}
+.plano:hover{transform:translateY(-2px)}
+.plano .p-nome{font-size:.72rem;font-weight:900;letter-spacing:1.5px}
+.plano .p-preco{font-family:'Archivo Black';font-size:1.7rem;line-height:1}
+.plano .p-preco small{font-size:.9rem}
+.plano .p-sub{font-size:.72rem;opacity:.8;font-weight:600}
+.plano.destaque{background:var(--amarelo);color:var(--preto);border-color:var(--amarelo);box-shadow:0 12px 30px -12px rgba(255,212,0,.55)}
+.plano.destaque:hover{background:var(--amarelo2)}
+.plano:not(.destaque){color:var(--txt)}
+.plano:not(.destaque):hover{border-color:var(--amarelo);color:var(--amarelo)}
+.sub-head{margin:34px 0 16px}
+.sub-head .tag{font-family:'Special Elite';color:var(--amarelo);font-size:.72rem;letter-spacing:3px}
+.sub-titulo{font-size:1.25rem;margin-top:2px}
+
+/* ---------- aulas das lives ---------- */
+.grid-aulas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:1000px){.grid-aulas{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid-aulas{grid-template-columns:1fr}}
+.aula{background:var(--card);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,border-color .2s,box-shadow .2s;position:relative}
+.aula:hover{transform:translateY(-5px);border-color:var(--amarelo);box-shadow:0 20px 40px -22px rgba(255,212,0,.25)}
+.aula .capa{position:relative;aspect-ratio:16/9;background:#101010;overflow:hidden}
+.aula .capa img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.aula:hover .capa img{transform:scale(1.05)}
+.aula .num{position:absolute;top:10px;left:10px;z-index:2;background:var(--amarelo);color:var(--preto);font-family:'Archivo Black';font-size:.72rem;padding:5px 10px;border-radius:4px;letter-spacing:.5px}
+.aula .body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:7px;flex:1}
+.aula .caso{font-weight:800;font-size:.98rem;line-height:1.28}
+.aula .tema{font-size:.8rem;color:var(--mut);line-height:1.35}
+.aula .cert{font-size:.72rem;color:var(--amarelo);font-weight:700;letter-spacing:.3px}
+
+/* ---------- CTA cursos ---------- */
+.digital{padding:56px 0}
+.digi-card{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;overflow:hidden}
+.digi-card::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--hazard)}
+.digi-card h3{font-size:1.7rem;margin-bottom:8px}
+.digi-card h3 em{font-style:normal;color:var(--amarelo)}
+.digi-card ul{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:9px}
+.digi-card li{display:flex;gap:10px;color:var(--mut);font-size:.92rem}
+.digi-card li b{color:var(--txt)}
+.digi-right{background:repeating-linear-gradient(135deg,#171717,#171717 14px,#121212 14px,#121212 28px);border-radius:14px;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;border:1px solid var(--line)}
+.digi-right .big{font-family:'Archivo Black';font-size:2.4rem;color:var(--amarelo)}
+@media(max-width:740px){.digi-card{grid-template-columns:1fr}}
+
+/* ---------- prova social ---------- */
+.proof{padding:10px 0 56px}
+.proof h2{font-size:clamp(1.5rem,4vw,2.2rem);text-align:center;margin-bottom:8px}
+.proof .c{text-align:center;color:var(--mut);margin-bottom:30px}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:740px){.reviews{grid-template-columns:1fr}}
+.rev{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amarelo);border-radius:12px;padding:20px}
+.rev .stars{color:var(--amarelo);margin-bottom:8px}
+.rev p{font-size:.92rem}
+.rev .who{margin-top:12px;font-size:.8rem;color:var(--mut);font-weight:600}
+
+/* ---------- faq ---------- */
+.faq{padding:10px 0 60px}
+.faq h2{font-size:1.7rem;text-align:center;margin-bottom:22px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+details[open]{border-color:var(--amarelo)}
+details summary{cursor:pointer;font-weight:800;list-style:none}
+details summary::-webkit-details-marker{display:none}
+details p{color:var(--mut);margin-top:10px;font-size:.92rem}
+
+/* ---------- footer ---------- */
+.hazard-bar.foot{height:10px}
+footer{background:#080808;padding:40px 0 92px;color:var(--mut);font-size:.85rem}
+.footgrid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+footer b{color:var(--txt)}
+footer a:hover{color:var(--amarelo)}
+.fineprint{border-top:1px solid var(--line);padding-top:16px;font-size:.75rem;text-align:center}
+
+/* ---------- sticky mobile CTA ---------- */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--amarelo);color:var(--preto);display:none;align-items:center;justify-content:center;gap:10px;padding:14px;font-weight:900;font-size:.95rem;box-shadow:0 -8px 30px rgba(0,0,0,.6)}
+.sticky-cta::before,.sticky-cta::after{content:"";position:absolute;top:-8px;left:0;right:0;height:8px;background:var(--hazard)}
+.sticky-cta::after{display:none}
+@media(max-width:740px){.sticky-cta{display:flex}}
+.whats{position:fixed;right:14px;bottom:76px;z-index:60;background:#25d366;color:#0a3d24;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:1.5rem;box-shadow:0 10px 24px -8px rgba(37,211,102,.7)}
+@media(min-width:741px){.whats{bottom:18px}}
+</style>
+</head>
+<body>
+
+<!-- FAIXA HAZARD + URGÊNCIA -->
+<div class="hazard-bar" aria-hidden="true"></div>
+<div class="urgency" id="urgency">⚠️ EDIÇÕES LIMITADAS · ENVIO PARA TODO O BRASIL · PIX OU ATÉ 12X SEM SAIR DA PÁGINA<span id="promo-count"></span></div>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand">
+      <span class="mark">CSI</span>
+      <span><span class="t1">LOJA <em>CSI</em></span><span class="t2">PERÍCIA CRIMINAL REAL</span></span>
+    </a>
+    <a href="#camisas" class="link">Camisas</a>
+    <a href="#livros" class="link">Livros</a>
+    <a href="#acessorios" class="link">Acessórios</a>
+    <a href="#aulas" class="link">Aulas</a>
+    <a href="#camisas" class="cta-top">🛒 Comprar</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap grid">
+    <div>
+      <span class="kick">🔎 A loja de quem ama investigação</span>
+      <h1>Vista a <em>perícia.</em><br>Cruze a <em>faixa.</em></h1>
+      <p class="sub">Camisas, livros e acessórios oficiais de perícia criminal — criados pelo Perito Henrique Tabosa, com 17 anos de cena de crime real. Checkout direto na página: escolha, pague e pronto.</p>
+      <div class="cta-row">
+        <a href="#camisas" class="btn btn-primary">Ver produtos →</a>
+        <a href="#frete" class="btn btn-ghost">Calcular frete</a>
+      </div>
+      <div class="stats">
+        <div><b>+450</b><span>na comunidade</span></div>
+        <div><b>17 anos</b><span>de perícia real</span></div>
+        <div><b>Pix ou 12x</b><span>pagamento Hotmart</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-strip" aria-hidden="true"></div>
+      <div class="mosaic">
+        <a href="#camisas"><img src="img/camisa-criminal-normal.webp" alt="Camisa Criminal"></a>
+        <a href="#camisas"><img src="img/camisa-pericia-babylook.webp" alt="Camisa Perícia babylook"></a>
+        <a href="#livros"><img src="img/livro-marchante-suicida.webp" alt="Livro O Caso do Marchante Suicida"></a>
+        <a href="#acessorios"><img src="img/estojo-evidencias.webp" alt="Estojo de Evidências"></a>
+      </div>
+      <div class="hero-caption"><span>PEÇAS OFICIAIS</span> · CAMISAS · LIVROS · ACESSÓRIOS</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust"><div class="wrap row">
+  <div class="it"><div class="ic">🔒</div><div>Pagamento <b>seguro via Hotmart</b></div></div>
+  <div class="it"><div class="ic">⚡</div><div>Checkout <b>sem sair da página</b></div></div>
+  <div class="it"><div class="ic">🚚</div><div>Envio para <b>todo o Brasil</b></div></div>
+  <div class="it"><div class="ic">↩️</div><div>Troca <b>em até 7 dias</b></div></div>
+</div></div>
+
+<!-- ============================ CAMISAS ============================ -->
+<section class="cat" id="camisas">
+  <div class="wrap">
+    <div class="cat-head">
+      <div><div class="tag">// VESTÍVEIS</div><h2>Camisas</h2></div>
+      <div class="count">11 produtos</div>
+    </div>
+    <div class="grid-prod" id="grid-camisas"></div>
+  </div>
+</section>
+
+<!-- ============================ LIVROS ============================ -->
+<section class="cat" id="livros">
+  <div class="wrap">
+    <div class="cat-head">
+      <div><div class="tag">// LEITURA INVESTIGATIVA</div><h2>Livros</h2></div>
+      <div class="count">2 produtos</div>
+    </div>
+    <div class="grid-prod" id="grid-livros"></div>
+  </div>
+</section>
+
+<!-- ============================ ACESSÓRIOS ============================ -->
+<section class="cat" id="acessorios">
+  <div class="wrap">
+    <div class="cat-head">
+      <div><div class="tag">// KIT DO PERITO</div><h2>Acessórios</h2></div>
+      <div class="count">8 produtos</div>
+    </div>
+    <div class="grid-prod" id="grid-acessorios"></div>
+  </div>
+</section>
+
+<!-- ============================ FRETE ============================ -->
+<div class="frete" id="frete">
+  <div class="wrap inner">
+    <div>
+      <h3>📦 Simule o frete antes de comprar</h3>
+      <p>Digite seu CEP para estimar prazo e valor de envio. O valor final é confirmado no checkout seguro da Hotmart.</p>
+    </div>
+    <div>
+      <form class="frete-form" id="frete-form" autocomplete="postal-code">
+        <input type="text" id="cep" inputmode="numeric" maxlength="9" placeholder="Seu CEP (ex.: 55200-000)" aria-label="CEP">
+        <button class="btn btn-primary" type="submit">Calcular</button>
+        <div class="frete-result" id="frete-result" role="status"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ AULAS DAS LIVES ============================ -->
+<section class="cat digital" id="aulas">
+  <div class="wrap">
+    <div class="cat-head">
+      <div><div class="tag">// APRENDA COM UM PERITO</div><h2>Aulas das Lives</h2></div>
+      <div class="count" id="count-aulas"></div>
+    </div>
+    <p style="color:var(--mut);max-width:640px;margin:-8px 0 22px;font-size:.95rem">
+      Cada aula analisa um <b style="color:var(--txt)">caso real brasileiro</b> com a técnica pericial
+      por trás dele. Acesso imediato à gravação completa (vídeo + slides + resumo) e
+      <b style="color:var(--txt)">certificado de 2 horas</b> incluso.
+    </p>
+    <!-- ===== CURSO COMPLETO: ACESSO TOTAL (destaque antes das aulas avulsas) ===== -->
+    <div class="digi-card acesso-total">
+      <span class="at-badge">⭐ MELHOR CUSTO-BENEFÍCIO</span>
+      <div>
+        <h3>Cena de Crime com o Tabosa<br><em>— Acesso Total —</em></h3>
+        <p style="color:var(--mut)">Todas as aulas do Live Semanal da Perícia num acesso só: as 10 já disponíveis abaixo + as novas de cada semana, com o Perito Henrique Tabosa.</p>
+        <ul>
+          <li>✅ <b>Todas as aulas</b> do semestre (caso real + técnica pericial)</li>
+          <li>✅ <b>Novas aulas toda semana</b>, já incluídas no plano</li>
+          <li>✅ <b>Certificado de 2h</b> por aula assistida</li>
+          <li>✅ Gravação completa: <b>vídeo + slides + resumo</b></li>
+        </ul>
+        <div class="planos">
+          <a class="plano destaque hotmart-fb hotmart__button-checkout"
+             href="https://pay.hotmart.com/G106657014T?off=ve0ehw8j&amp;src=1a1a3&amp;checkoutMode=2"
+             onclick="fbq&amp;&amp;fbq('track','InitiateCheckout',{content_name:'Acesso Total Anual'})">
+            <span class="p-nome">PLANO ANUAL</span>
+            <span class="p-preco">R$ 297<small>,00</small></span>
+            <span class="p-sub">sai por R$ 24,75/mês ⚡ na página</span>
+          </a>
+          <a class="plano hotmart-fb hotmart__button-checkout"
+             href="https://pay.hotmart.com/G106657014T?bid=1787751934344&amp;checkoutMode=2"
+             onclick="fbq&amp;&amp;fbq('track','InitiateCheckout',{content_name:'Acesso Total Semestral'})">
+            <span class="p-nome">PLANO SEMESTRAL</span>
+            <span class="p-preco">R$ 247<small>,00</small></span>
+            <span class="p-sub">1 semestre completo ⚡ na página</span>
+          </a>
+        </div>
+      </div>
+      <div class="at-capa">
+        <img src="img/curso-acesso-total.webp" alt="Cena de Crime com o Tabosa — Acesso Total">
+      </div>
+    </div>
+
+    <div class="sub-head"><span class="tag mono">// OU COMPRE AVULSA</span><h3 class="sub-titulo">Aulas avulsas — R$ 29,90 cada</h3></div>
+    <div class="grid-aulas" id="grid-aulas"></div>
+  </div>
+</section>
+
+<!-- ============================ PROVA SOCIAL ============================ -->
+<!-- ⚠️ Substitua pelos depoimentos REAIS da comunidade (prints do WhatsApp/Instagram viram texto aqui). -->
+<section class="proof"><div class="wrap">
+  <h2>Quem leva, recomenda</h2>
+  <p class="c">Avaliações da comunidade Cena de Crime</p>
+  <div class="reviews">
+    <div class="rev"><div class="stars">★★★★★</div><p>"Camisa de altíssima qualidade e o tema é sensacional. Todo mundo pergunta onde comprei!"</p><div class="who">— Aluna das Lives · PE</div></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>"Comprei os acessórios pra usar nas aulas de criminalística. Chegou rápido e bem embalado."</p><div class="who">— Estudante de Perícia · BA</div></div>
+    <div class="rev"><div class="stars">★★★★★</div><p>"Os livros do professor são viciantes. Conteúdo real de perícia, escrito de um jeito que prende."</p><div class="who">— Leitor · SP</div></div>
+  </div>
+</div></section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="faq"><div class="wrap" style="max-width:780px">
+  <h2>Perguntas frequentes</h2>
+  <details><summary>Como funciona o pagamento?</summary><p>Ao clicar em "Comprar agora", o checkout seguro da Hotmart abre aqui mesmo na página. Você paga com Pix, cartão (até 12x) ou boleto, sem ser redirecionado.</p></details>
+  <details><summary>Como funciona a entrega?</summary><p>Produtos físicos são enviados para todo o Brasil com código de rastreio. Os digitais liberam acesso na hora, direto no seu e-mail.</p></details>
+  <details><summary>Posso trocar se não servir?</summary><p>Sim. Você tem 7 dias para solicitar troca ou devolução, conforme o Código de Defesa do Consumidor.</p></details>
+  <details><summary>As edições são limitadas?</summary><p>Sim — várias peças são produzidas em lotes pequenos. Quando esgota, pode não voltar.</p></details>
+</div></section>
+
+<!-- FOOTER -->
+<div class="hazard-bar foot" aria-hidden="true"></div>
+<footer><div class="wrap">
+  <div class="footgrid">
+    <div style="max-width:300px">
+      <div class="brand" style="margin-bottom:10px"><span class="mark">CSI</span><span><span class="t1">LOJA <em>CSI</em></span><span class="t2">PERÍCIA CRIMINAL REAL</span></span></div>
+      <p>A loja oficial de quem ama investigação, ciência forense e perícia criminal.</p>
+    </div>
+    <div><b>Categorias</b><br><br><a href="#camisas">Camisas</a><br><a href="#livros">Livros</a><br><a href="#acessorios">Acessórios</a><br><a href="#aulas">Aulas das Lives</a></div>
+    <div><b>Atendimento</b><br><br><a href="https://wa.me/5581979026381" target="_blank" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/loja_csi" target="_blank" rel="noopener">@loja_csi</a><br><a href="https://lives.peritohenriquetabosa.com.br" target="_blank" rel="noopener">Lives semanais</a></div>
+  </div>
+  <div class="fineprint">© <span id="yr"></span> Loja CSI — Cena de Crime · CNPJ 30.605.812/0001-21 · Pagamentos processados pela Hotmart. Todos os direitos reservados.</div>
+</div></footer>
+
+<a class="whats" href="https://wa.me/5581979026381" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<a class="sticky-cta" href="#camisas">🛒 VER PRODUTOS — PIX OU 12X</a>
+
+<script>
+/* ===================================================================
+   CATÁLOGO LOJA CSI — fonte única de dados.
+   checkout: link real pay.hotmart.com (o código adiciona ?checkoutMode=2
+             para abrir o POPUP Hotmart em cima desta página).
+   img     : foto principal. imgs: ["a.webp","b.webp"] ativa o CARROSSEL
+             (setas + bolinhas + arrastar no celular) — a 1ª é a capa.
+   precoDe : preço "De" riscado acima do preço atual (deixe "" para ocultar).
+   Itens sem 'checkout' aparecem como "Em breve".
+   Preços atualizados em 26/08/2026 conforme o Henrique.
+   =================================================================== */
+const PRODUTOS = [
+  /* ------------- CAMISAS (11) — todas De 79,90 Por 59,90 ------------- */
+  {cat:"camisas", nome:"Camisa Criminal (babylook)",  precoDe:"79,90", preco:"59,90", badge:"hot", img:"img/camisa-criminal-babylook.webp", checkout:"https://pay.hotmart.com/N100131638T"},
+  {cat:"camisas", nome:"Camisa Criminal (normal)",    precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-criminal-normal.webp", checkout:"https://pay.hotmart.com/D100131643C"},
+  {cat:"camisas", nome:"Camisa Forense (babylook)",   precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-forense-babylook.webp", checkout:"https://pay.hotmart.com/A100131618K"},
+  {cat:"camisas", nome:"Camisa Forense (normal)",     precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-forense-normal.webp", checkout:"https://pay.hotmart.com/T100232782E"},
+  {cat:"camisas", nome:"Camisa Elementos (babylook)", precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-elementos-babylook.webp", checkout:"https://pay.hotmart.com/M100131589H"},
+  {cat:"camisas", nome:"Camisa Elementos (normal)",   precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-elementos-normal.webp", checkout:"https://pay.hotmart.com/Q100131648O"},
+  {cat:"camisas", nome:"Camisa Perícia& (babylook)",  precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-pericia-babylook.webp", checkout:"https://pay.hotmart.com/M100131605O"},
+  {cat:"camisas", nome:"Camisa Perícia& (normal)",    precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-pericia-normal.webp", checkout:"https://pay.hotmart.com/V100131770O"},
+  {cat:"camisas", nome:"Camisa Brasão (normal)",      precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-brasao-normal.webp", checkout:"https://pay.hotmart.com/U100131655I"},
+  {cat:"camisas", nome:"Camisa Crime Scene (normal)", precoDe:"79,90", preco:"59,90", badge:"limitada", img:"img/camisa-crime-scene-normal.webp", checkout:"https://pay.hotmart.com/H100131793V"},
+  {cat:"camisas", nome:"Camisa Vintage (normal)",     precoDe:"79,90", preco:"59,90", badge:"limitada",    img:"img/camisa-vintage-normal.webp", checkout:"https://pay.hotmart.com/V100131872J"},
+
+  /* ------------- LIVROS (2) ------------- */
+  {cat:"livros", nome:"O Caso dos Canibais de Pernambuco", precoDe:"99,90", preco:"64,90", badge:"hot", img:"img/livro-canibais-pernambuco.webp", checkout:"https://pay.hotmart.com/A98478536U"},
+  {cat:"livros", nome:"O Caso do Marchante Suicida",       precoDe:"89,90", preco:"59,90", badge:"",    img:"img/livro-marchante-suicida.webp", checkout:"https://pay.hotmart.com/R98459917C"},
+
+  /* ------------- ACESSÓRIOS (8) ------------- */
+  {cat:"acessorios", nome:"Calça CSI",                 precoDe:"79,90", preco:"59,90", badge:"",    img:"img/calca-csi.webp", checkout:"https://pay.hotmart.com/G100131782A"},
+  {cat:"acessorios", nome:"Carteira CSI — Faixas",     precoDe:"24,90", preco:"19,90", badge:"",    img:"img/carteira-csi-faixas.webp", checkout:"https://pay.hotmart.com/M100814965J"},
+  {cat:"acessorios", nome:"Carteira CSI — Sangue",     precoDe:"24,90", preco:"19,90", badge:"",    img:"img/carteira-csi-sangue.webp", checkout:"https://pay.hotmart.com/A100814990C"},
+  {cat:"acessorios", nome:"Estojo de Evidências",      precoDe:"37,90", preco:"29,90", badge:"hot", img:"img/estojo-evidencias.webp", checkout:"https://pay.hotmart.com/H100814875S"},
+  {cat:"acessorios", nome:"Cordão Perícia",            precoDe:"24,90", preco:"19,90", badge:"",    img:"img/cordao-pericia.webp", checkout:"https://pay.hotmart.com/P100815122S"},
+  {cat:"acessorios", nome:"Bottons Perícia Criminal",  precoDe:"9,90",  preco:"6,90",  badge:"new", img:"img/bottons-pericia-criminal.webp", checkout:"https://pay.hotmart.com/T100815045V"},
+  {cat:"acessorios", nome:"Brincos CSI",               precoDe:"36,70", preco:"26,90", badge:"",    img:"img/brincos-csi.webp", checkout:"https://pay.hotmart.com/T100814601J"},
+  {cat:"acessorios", nome:"Pulseira Perícia",          precoDe:"19,90", preco:"14,90", badge:"",    img:"img/pulseira-pericia.webp", checkout:"https://pay.hotmart.com/M100131610M"}
+];
+
+/* ===================================================================
+   AULAS DAS LIVES 2026.2 — mesmas regras do catálogo:
+   checkout: link pay.hotmart.com da aula (o código adiciona ?checkoutMode=2
+             para abrir o POPUP na página). Sem checkout => "Em breve".
+   preco   : preço da aula avulsa. img: capa 16:9 na pasta img/.
+   =================================================================== */
+const AULAS = [
+  {n:"01", caso:"O Caso do Apresentador Wallace Souza (AM)", tema:"Rotina de trabalho e isolamento de locais", img:"img/aula-01-wallace-souza.webp", preco:"29,90", checkout:"https://pay.hotmart.com/J102023251W"},
+  {n:"02", caso:"O Caso do Boxeador Arturo Gatti (PE)", tema:"Introdução à Medicina Legal e exame tanatoscópico", img:"img/aula-02-arturo-gatti.webp", preco:"29,90", checkout:"https://pay.hotmart.com/L106655464O"},
+  {n:"03", caso:"O Caso Isabella Nardoni (SP)", tema:"Fotografia forense e desenhos esquemáticos", img:"img/aula-03-isabella-nardoni.webp", preco:"29,90", checkout:"https://pay.hotmart.com/G101964005F"},
+  {n:"04", caso:"O Caso do Serial Killer de Curitiba (PR/SC)", tema:"Antropologia forense", img:"img/aula-04-serial-killer-curitiba.webp", preco:"29,90", checkout:"https://pay.hotmart.com/O102626457W"},
+  {n:"05", caso:"O Caso Eliza Samudio e Goleiro Bruno (RJ/MG)", tema:"Tipos de locais de crime", img:"img/aula-05-eliza-samudio.webp", preco:"29,90", checkout:"https://pay.hotmart.com/U101317609Y"},
+  {n:"06", caso:"O Caso da Boate Kiss (RS)", tema:"Tanatologia: fenômenos abióticos e consecutivos", img:"img/aula-06-boate-kiss.webp", preco:"29,90", checkout:"https://pay.hotmart.com/H101375280E"},
+  {n:"07", caso:"O Caso do Indígena Galdino Pataxó (DF)", tema:"Análise de vestimentas", img:"img/aula-07-galdino-pataxo.webp", preco:"29,90", checkout:"https://pay.hotmart.com/J101255808C"},
+  {n:"08", caso:"O Caso do Enfermeiro da Morte (RJ)", tema:"Tanatologia: fenômenos transformativos, destrutivos e conservadores", img:"img/aula-08-enfermeiro-da-morte.webp", preco:"29,90", checkout:"https://pay.hotmart.com/N101372440T"},
+  {n:"09", caso:"O Caso Elize Matsunaga (SP)", tema:"Como o lixo pode mudar o rumo da perícia criminal", img:"img/aula-09-elize-matsunaga.webp", preco:"29,90", checkout:"https://pay.hotmart.com/L102646659M"},
+  {n:"10", caso:"O Caso Marielle Franco (RJ)", tema:"Interpretação de avarias em vidros por PAF", img:"img/aula-10-marielle-franco.webp", preco:"29,90", checkout:"https://pay.hotmart.com/D101701502L"}
+];
+
+/* ---------- render dos cartões ---------- */
+function cardHTML(p){
+  const rot = {hot:'Mais vendido', new:'Novo', limitada:'⚡ Edição limitada'};
+  const badge = p.badge ? `<span class="badge ${p.badge}">${rot[p.badge]||p.badge}</span>` : '';
+  /* carrossel: usa p.imgs (várias fotos) ou p.img (uma só) */
+  const fotos = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
+  const imgEl = fotos.length
+    ? `<div class="carrossel">${fotos.map((f,i)=>`<img src="${f}" alt="${p.nome}" loading="lazy" class="${i===0?'ativa':''}">`).join('')}${fotos.length>1?`
+        <button class="c-seta c-prev" type="button" aria-label="Foto anterior" onclick="mudaFoto(this,-1)">‹</button>
+        <button class="c-seta c-next" type="button" aria-label="Próxima foto" onclick="mudaFoto(this,1)">›</button>
+        <div class="c-dots">${fotos.map((_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div>`:''}</div>`
+    : `<div class="ph"><span>${p.nome.toUpperCase()}</span></div>`;
+  const deLine = (p.preco && p.precoDe)
+    ? `<div class="de-line">De <s>R$ ${p.precoDe}</s> por</div>` : '';
+  const preco = p.preco ? `<span class="por">R$ ${p.preco}</span>` : `<span class="por" style="font-size:.95rem;color:var(--mut)">Em breve</span>`;
+  const parc  = p.preco ? `<div class="parcela">ou 12x de R$ ${(parseFloat(p.preco.replace('.','').replace(',','.'))/12).toFixed(2).replace('.',',')} no cartão · Pix à vista</div>` : '';
+  /* babylook: aviso informativo — a versão já está definida neste produto,
+     no checkout o cliente só escolhe o TAMANHO */
+  const babylook = /babylook/i.test(p.nome)
+    ? `<div class="bl-tag">✂️ Esta é a versão <b>babylook</b> (corte feminino) — no pagamento, escolha só o tamanho</div>` : '';
+  const sizes = p.cat==='camisas'
+    ? `<div class="sizes"><span class="lbl">Tamanhos no checkout</span><span class="sz">PP</span><span class="sz">P</span><span class="sz">M</span><span class="sz">G</span><span class="sz">GG</span></div>` : '';
+  /* Botão: classe hotmart-fb + hotmart__button-checkout => o widget.min.js
+     intercepta o clique e abre o checkout em POPUP nesta página. */
+  /* escassez REAL: preencha p.estoque com o número verdadeiro de unidades
+     (aparece barra + "Restam X"). Sem o campo, nada é exibido. */
+  let stock = '';
+  if (typeof p.estoque === 'number' && p.estoque > 0) {
+    const pct = Math.max(8, Math.min(100, p.estoque * 6));
+    stock = `<div class="stockbar"><i style="width:${pct}%"></i></div>
+             <div class="stocktx">🔥 Restam só ${p.estoque} unidade${p.estoque>1?'s':''}</div>`;
+  }
+  const btn = p.checkout
+    ? `<a class="buy hotmart-fb hotmart__button-checkout" href="${p.checkout}?checkoutMode=2"
+          onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'${p.nome.replace(/'/g,"")}'})">
+          Comprar agora ⚡ <small>na página</small></a>`
+    : `<button class="buy soon">Em breve</button>`;
+  return `<div class="prod">
+    <div class="imgbox">${badge}${imgEl}</div>
+    <div class="body">
+      <div class="nm">${p.nome}</div>
+      ${babylook}
+      ${sizes}
+      ${deLine}<div class="priceline">${preco}</div>${parc}
+      ${stock}
+      ${btn}
+    </div></div>`;
+}
+
+/* ---------- carrossel: setas, bolinhas e arrastar no celular ---------- */
+function mudaFoto(btn, dir){
+  const c = btn.closest('.carrossel');
+  const imgs = Array.from(c.querySelectorAll('img'));
+  const dots = Array.from(c.querySelectorAll('.c-dots i'));
+  let i = imgs.findIndex(im=>im.classList.contains('ativa'));
+  imgs[i].classList.remove('ativa'); if(dots[i]) dots[i].classList.remove('on');
+  i = (i + dir + imgs.length) % imgs.length;
+  imgs[i].classList.add('ativa'); if(dots[i]) dots[i].classList.add('on');
+}
+(function(){
+  let x0 = null;
+  document.addEventListener('touchstart', e=>{
+    const c = e.target.closest('.carrossel');
+    x0 = (c && c.querySelectorAll('img').length > 1) ? e.touches[0].clientX : null;
+  }, {passive:true});
+  document.addEventListener('touchend', e=>{
+    if(x0 === null) return;
+    const c = e.target.closest('.carrossel'); if(!c){ x0 = null; return; }
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if(Math.abs(dx) > 40) mudaFoto(c.querySelector('.c-seta'), dx < 0 ? 1 : -1);
+  }, {passive:true});
+})();
+
+['camisas','livros','acessorios'].forEach(cat=>{
+  const grid = document.getElementById('grid-'+cat);
+  grid.innerHTML = PRODUTOS.filter(p=>p.cat===cat).map(cardHTML).join('');
+});
+function cardAulaHTML(a){
+  const preco = a.preco ? `<span class="por">R$ ${a.preco}</span>` : `<span class="por" style="font-size:.95rem;color:var(--mut)">Em breve</span>`;
+  const parc  = a.preco ? `<div class="parcela">Pix à vista · acesso imediato</div>` : '';
+  const btn = a.checkout
+    ? `<a class="buy hotmart-fb hotmart__button-checkout" href="${a.checkout}?checkoutMode=2"
+        onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'Aula ${a.n}'})">Comprar aula ⚡ <small>na página</small></a>`
+    : `<button class="buy soon">Em breve</button>`;
+  return `<div class="aula">
+    <div class="capa"><span class="num">AULA ${a.n}</span><img src="${a.img}" alt="Aula ${a.n} — ${a.caso}" loading="lazy"></div>
+    <div class="body">
+      <div class="caso">${a.caso}</div>
+      <div class="tema">${a.tema}</div>
+      <div class="cert">🎓 Certificado de 2h incluso</div>
+      <div class="priceline">${preco}</div>${parc}
+      ${btn}
+    </div></div>`;
+}
+document.getElementById('grid-aulas').innerHTML = AULAS.map(cardAulaHTML).join('');
+document.getElementById('count-aulas').textContent = AULAS.length + ' aulas avulsas + Acesso Total';
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- contagem regressiva de promoção (opcional) ----------
+   Defina PROMO_FIM com a data/hora REAL do fim da promoção, ex.:
+   const PROMO_FIM = "2026-09-30T23:59:59-03:00";
+   Deixe "" para não exibir nada. Quando o prazo passa, some sozinha. */
+const PROMO_FIM = "";
+(function(){
+  if(!PROMO_FIM) return;
+  const alvo = new Date(PROMO_FIM).getTime();
+  const el = document.getElementById('promo-count');
+  function tick(){
+    const d = alvo - Date.now();
+    if(d <= 0){ el.textContent = ''; return; }
+    const dias = Math.floor(d/864e5), h = Math.floor(d%864e5/36e5), m = Math.floor(d%36e5/6e4);
+    el.textContent = ` · ⏳ PROMOÇÃO ACABA EM ${dias>0?dias+'d ':''}${h}h ${String(m).padStart(2,'0')}m`;
+    setTimeout(tick, 30000);
+  }
+  tick();
+})();
+
+/* ---------- simulador de frete por CEP (ViaCEP + tabela por região) ----------
+   Ajuste a TABELA_FRETE com os valores reais que vocês praticam.
+   O valor final cobrado é o configurado no produto dentro da Hotmart. */
+const TABELA_FRETE = {
+  "PE": {valor: 12.90, prazo: "2 a 4 dias úteis"},
+  "NE": {valor: 16.90, prazo: "3 a 6 dias úteis"},   // demais estados do Nordeste
+  "SE": {valor: 19.90, prazo: "4 a 7 dias úteis"},   // Sudeste
+  "S":  {valor: 21.90, prazo: "5 a 8 dias úteis"},   // Sul
+  "CO": {valor: 22.90, prazo: "5 a 9 dias úteis"},   // Centro-Oeste
+  "N":  {valor: 26.90, prazo: "6 a 12 dias úteis"}   // Norte
+};
+const REGIOES = {PE:"PE",AL:"NE",BA:"NE",CE:"NE",MA:"NE",PB:"NE",PI:"NE",RN:"NE",SE:"NE",
+  ES:"SE",MG:"SE",RJ:"SE",SP:"SE",PR:"S",RS:"S",SC:"S",DF:"CO",GO:"CO",MT:"CO",MS:"CO",
+  AC:"N",AP:"N",AM:"N",PA:"N",RO:"N",RR:"N",TO:"N"};
+
+const cepInput = document.getElementById('cep');
+cepInput.addEventListener('input', e=>{
+  let v = e.target.value.replace(/\D/g,'').slice(0,8);
+  if(v.length>5) v = v.slice(0,5)+'-'+v.slice(5);
+  e.target.value = v;
+});
+document.getElementById('frete-form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const out = document.getElementById('frete-result');
+  const cep = cepInput.value.replace(/\D/g,'');
+  if(cep.length!==8){ out.textContent='Digite um CEP válido com 8 números.'; out.classList.add('err'); return; }
+  out.classList.remove('err'); out.textContent='Consultando…';
+  try{
+    const r = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const d = await r.json();
+    if(d.erro){ out.textContent='CEP não encontrado. Confira e tente de novo.'; out.classList.add('err'); return; }
+    const reg = REGIOES[d.uf] || 'N';
+    const f = TABELA_FRETE[reg];
+    out.innerHTML = `📍 ${d.localidade}/${d.uf} — frete estimado <b>R$ ${f.valor.toFixed(2).replace('.',',')}</b> · entrega em ${f.prazo}`;
+    fbq && fbq('trackCustom','FreteSimulado',{uf:d.uf});
+  }catch(err){
+    out.textContent='Não foi possível consultar agora. Tente novamente.'; out.classList.add('err');
+  }
+});
+</script>
+</body>
+</html>
