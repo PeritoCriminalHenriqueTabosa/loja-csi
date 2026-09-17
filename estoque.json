@@ -1,0 +1,27 @@
+{
+  "_como_usar": "Edite só os números e salve. Camisas: quantidade por tamanho. Outros itens: número total (ex.: 12) ou null para não controlar. Mude _atualizado para a data de hoje (AAAA-MM-DD).",
+  "_atualizado": "2026-09-17",
+
+  "camisa-criminal-babylook":  {"PP":0, "P":0, "M":8, "G":1,  "GG":7},
+  "camisa-criminal-normal":    {"PP":0, "P":6, "M":0, "G":1,  "GG":0},
+  "camisa-forense-babylook":   {"PP":3, "P":0, "M":3, "G":14, "GG":4},
+  "camisa-forense-normal":     {"PP":2, "P":7, "M":0, "G":1,  "GG":0},
+  "camisa-elementos-babylook": {"PP":0, "P":3, "M":0, "G":3,  "GG":4},
+  "camisa-elementos-normal":   {"PP":1, "P":6, "M":0, "G":1,  "GG":0},
+  "camisa-pericia-babylook":   {"PP":2, "P":3, "M":0, "G":2,  "GG":0},
+  "camisa-pericia-normal":     {"PP":1, "P":1, "M":0, "G":1,  "GG":0},
+  "camisa-brasao-normal":      {"PP":0, "P":3, "M":2, "G":1,  "GG":4},
+  "camisa-crime-scene-normal": {"PP":0, "P":0, "M":0, "G":0,  "GG":0},
+  "camisa-vintage-normal":     {"PP":0, "P":0, "M":0, "G":0,  "GG":0},
+
+  "livro-canibais-pernambuco": null,
+  "livro-marchante-suicida":   null,
+  "calca-csi":                 null,
+  "carteira-csi-faixas":       null,
+  "carteira-csi-sangue":       null,
+  "estojo-evidencias":         null,
+  "cordao-pericia":            null,
+  "bottons-pericia-criminal":  null,
+  "brincos-csi":               null,
+  "pulseira-pericia":          null
+}

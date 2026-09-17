@@ -140,14 +140,36 @@ section.cat{padding:52px 0 8px}
 .badge.hot{background:var(--amarelo);color:var(--preto)}
 .badge.new{background:#fff;color:var(--preto)}
 .badge.limitada{background:var(--preto);color:var(--amarelo);border:1px solid var(--amarelo)}
+.badge.esgotado{background:#2a2a2a;color:#bdbdb5;border:1px solid #444}
 .stockbar{height:6px;border-radius:6px;background:#262626;overflow:hidden;margin-top:4px}
 .stockbar i{display:block;height:100%;background:linear-gradient(90deg,#e0705f,var(--amarelo))}
+.stockbar.crit i{background:linear-gradient(90deg,#ff4d3d,#ff8c3d)}
 .stocktx{font-size:.72rem;color:var(--amarelo);font-weight:800;display:flex;align-items:center;gap:5px;margin-top:3px}
+.stocktx.ok{color:#7fd48a}
+.stocktx.crit{color:#ff8c7a}
+/* produto ESGOTADO: foto apagada, botão vira "avise-me" */
+.prod.esgotado .imgbox img{filter:grayscale(1) brightness(.55)}
+.prod.esgotado:hover{transform:none;border-color:var(--line);box-shadow:none}
+.prod.esgotado .por{color:var(--mut)}
+.buy.off{background:#1c1c1c;color:var(--txt);border:1px solid #3a3a3a}
+.buy.off:hover{border-color:var(--amarelo);color:var(--amarelo);background:#1c1c1c}
+.stock-upd{font-size:.7rem;color:var(--mut);letter-spacing:.5px}
 .prod .body{padding:14px 14px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .prod .nm{font-weight:800;font-size:.95rem;line-height:1.25}
 .sizes{display:flex;gap:6px;flex-wrap:wrap;margin:2px 0 0}
 .sizes .lbl{font-size:.68rem;color:var(--mut);width:100%;margin-bottom:2px;text-transform:uppercase;letter-spacing:1px}
-.sz{font-size:.72rem;font-weight:800;border:1px solid #333;border-radius:6px;padding:3px 9px;color:var(--txt);background:#1c1c1c}
+.sz{font-size:.72rem;font-weight:800;border:1px solid #333;border-radius:6px;padding:3px 9px;color:var(--txt);background:#1c1c1c;display:inline-flex;align-items:center;gap:4px}
+.sz small{font-size:.6rem;color:#ff8c7a;font-weight:800}
+.sz.low{border-color:#6b3a2f}
+.sz.off{color:#4d4d45;border-style:dashed;border-color:#2a2a2a;text-decoration:line-through;background:transparent}
+/* "o que você recebe" — faixa de entregáveis por categoria */
+.entrega{display:flex;flex-wrap:wrap;gap:8px 18px;margin:-10px 0 22px;padding:12px 14px;background:var(--bg2);border:1px solid var(--line);border-radius:12px}
+.entrega span{font-size:.8rem;color:var(--mut);line-height:1.4}
+.entrega span b{color:var(--txt);font-weight:700}
+.entrega i{font-style:normal;color:var(--amarelo);margin-right:6px}
+.detalhes{list-style:none;display:flex;flex-direction:column;gap:3px;margin:0}
+.detalhes li{font-size:.76rem;color:var(--mut);display:flex;gap:6px;line-height:1.3}
+.detalhes li::before{content:"✔";color:var(--amarelo);font-weight:900;font-size:.7rem}
 .priceline{display:flex;align-items:baseline;gap:8px;margin-top:2px}
 .priceline .por{font-family:'Archivo Black';font-size:1.4rem;color:var(--amarelo)}
 .parcela{font-size:.74rem;color:var(--mut)}
@@ -338,8 +360,9 @@ footer a:hover{color:var(--amarelo)}
   <div class="wrap">
     <div class="cat-head">
       <div><div class="tag">// VESTÍVEIS</div><h2>Camisas</h2></div>
-      <div class="count">11 produtos</div>
+      <div class="count" id="count-camisas">11 produtos</div>
     </div>
+    <div class="entrega" id="entrega-camisas"></div>
     <div class="grid-prod" id="grid-camisas"></div>
   </div>
 </section>
@@ -349,8 +372,9 @@ footer a:hover{color:var(--amarelo)}
   <div class="wrap">
     <div class="cat-head">
       <div><div class="tag">// LEITURA INVESTIGATIVA</div><h2>Livros</h2></div>
-      <div class="count">2 produtos</div>
+      <div class="count" id="count-livros">2 produtos</div>
     </div>
+    <div class="entrega" id="entrega-livros"></div>
     <div class="grid-prod" id="grid-livros"></div>
   </div>
 </section>
@@ -360,8 +384,9 @@ footer a:hover{color:var(--amarelo)}
   <div class="wrap">
     <div class="cat-head">
       <div><div class="tag">// KIT DO PERITO</div><h2>Acessórios</h2></div>
-      <div class="count">8 produtos</div>
+      <div class="count" id="count-acessorios">8 produtos</div>
     </div>
+    <div class="entrega" id="entrega-acessorios"></div>
     <div class="grid-prod" id="grid-acessorios"></div>
   </div>
 </section>
@@ -435,15 +460,11 @@ footer a:hover{color:var(--amarelo)}
 </section>
 
 <!-- ============================ PROVA SOCIAL ============================ -->
-<!-- ⚠️ Substitua pelos depoimentos REAIS da comunidade (prints do WhatsApp/Instagram viram texto aqui). -->
-<section class="proof"><div class="wrap">
+<!-- A seção só aparece quando a lista DEPOIMENTOS (no script) tiver depoimentos REAIS. -->
+<section class="proof" id="proof" hidden><div class="wrap">
   <h2>Quem leva, recomenda</h2>
-  <p class="c">Avaliações da comunidade Cena de Crime</p>
-  <div class="reviews">
-    <div class="rev"><div class="stars">★★★★★</div><p>"Camisa de altíssima qualidade e o tema é sensacional. Todo mundo pergunta onde comprei!"</p><div class="who">— Aluna das Lives · PE</div></div>
-    <div class="rev"><div class="stars">★★★★★</div><p>"Comprei os acessórios pra usar nas aulas de criminalística. Chegou rápido e bem embalado."</p><div class="who">— Estudante de Perícia · BA</div></div>
-    <div class="rev"><div class="stars">★★★★★</div><p>"Os livros do professor são viciantes. Conteúdo real de perícia, escrito de um jeito que prende."</p><div class="who">— Leitor · SP</div></div>
-  </div>
+  <p class="c">Avaliações reais da comunidade Cena de Crime</p>
+  <div class="reviews" id="reviews"></div>
 </div></section>
 
 <!-- ============================ FAQ ============================ -->
@@ -453,6 +474,7 @@ footer a:hover{color:var(--amarelo)}
   <details><summary>Como funciona a entrega?</summary><p>Produtos físicos são enviados para todo o Brasil com código de rastreio. Os digitais liberam acesso na hora, direto no seu e-mail.</p></details>
   <details><summary>Posso trocar se não servir?</summary><p>Sim. Você tem 7 dias para solicitar troca ou devolução, conforme o Código de Defesa do Consumidor.</p></details>
   <details><summary>As edições são limitadas?</summary><p>Sim — várias peças são produzidas em lotes pequenos. Quando esgota, pode não voltar.</p></details>
+  <details><summary>O tamanho que eu quero está esgotado. E agora?</summary><p>Os tamanhos disponíveis aparecem em cada camisa (o riscado está esgotado). Se a peça inteira esgotou, clique em "Avise-me quando voltar" e fale direto com a gente no WhatsApp — você entra na lista de reposição.</p></details>
 </div></section>
 
 <!-- FOOTER -->
@@ -513,6 +535,82 @@ const PRODUTOS = [
 ];
 
 /* ===================================================================
+   ESTOQUE — fonte: arquivo estoque.json (mesma pasta do site).
+   >>> Para atualizar o estoque, edite SÓ o estoque.json no GitHub
+       (github.com/PeritoCriminalHenriqueTabosa/loja-csi) e salve.
+       O Vercel republica sozinho em ~1 minuto. <<<
+   O bloco abaixo é uma CÓPIA DE RESERVA usada só se o JSON não
+   carregar (ex.: abrir o index.html direto do computador).
+   Chave = nome do arquivo da foto (sem .webp).
+   Camisas: quantidade por tamanho. Outros itens: número total,
+   ou null = "não controlar" (não mostra nada no cartão).
+   =================================================================== */
+const ESTOQUE_PADRAO = {
+  "_atualizado": "2026-09-17",
+  "camisa-criminal-babylook":  {"PP":0,"P":0,"M":8,"G":1,"GG":7},
+  "camisa-criminal-normal":    {"PP":0,"P":6,"M":0,"G":1,"GG":0},
+  "camisa-forense-babylook":   {"PP":3,"P":0,"M":3,"G":14,"GG":4},
+  "camisa-forense-normal":     {"PP":2,"P":7,"M":0,"G":1,"GG":0},
+  "camisa-elementos-babylook": {"PP":0,"P":3,"M":0,"G":3,"GG":4},
+  "camisa-elementos-normal":   {"PP":1,"P":6,"M":0,"G":1,"GG":0},
+  "camisa-pericia-babylook":   {"PP":2,"P":3,"M":0,"G":2,"GG":0},
+  "camisa-pericia-normal":     {"PP":1,"P":1,"M":0,"G":1,"GG":0},
+  "camisa-brasao-normal":      {"PP":0,"P":3,"M":2,"G":1,"GG":4},
+  "camisa-crime-scene-normal": {"PP":0,"P":0,"M":0,"G":0,"GG":0},
+  "camisa-vintage-normal":     {"PP":0,"P":0,"M":0,"G":0,"GG":0},
+  "livro-canibais-pernambuco": null,
+  "livro-marchante-suicida":   null,
+  "calca-csi":                 null,
+  "carteira-csi-faixas":       null,
+  "carteira-csi-sangue":       null,
+  "estojo-evidencias":         null,
+  "cordao-pericia":            null,
+  "bottons-pericia-criminal":  null,
+  "brincos-csi":               null,
+  "pulseira-pericia":          null
+};
+let ESTOQUE = ESTOQUE_PADRAO;
+const TAMANHOS = ['PP','P','M','G','GG'];
+/* limite para "estoque baixo" (mostra barra + "restam X") */
+const ESTOQUE_BAIXO = 5;
+
+/* ===================================================================
+   O QUE VOCÊ RECEBE — faixa de entregáveis acima de cada categoria.
+   Só coloque aqui o que é VERDADE. Para acrescentar um item, copie
+   uma linha. Formato: "🔎 texto" (o emoji vira o ícone).
+   =================================================================== */
+const ENTREGAVEIS = {
+  camisas: [
+    "🎨 <b>Estampa exclusiva</b> criada pelo Perito Henrique Tabosa",
+    "✂️ Versão <b>normal</b> ou <b>babylook</b> (corte feminino)",
+    "📏 Tamanhos do <b>PP ao GG</b> — veja o que tem disponível em cada peça",
+    "📦 Envio para todo o Brasil <b>com código de rastreio</b>",
+    "↩️ <b>Troca em até 7 dias</b> se não servir"
+  ],
+  livros: [
+    "📖 <b>Livro físico</b> enviado com rastreio",
+    "🔎 <b>Ficção baseada em caso real</b> periciado",
+    "✍️ Escrito por um <b>perito criminal com 17 anos</b> de cena de crime",
+    "🧠 A técnica pericial explicada dentro da história"
+  ],
+  acessorios: [
+    "🧰 <b>Kit do perito</b>: itens temáticos para estudo, coleção e uso diário",
+    "🎓 Os mesmos itens que aparecem nas <b>lives e aulas</b>",
+    "📦 Envio para todo o Brasil <b>com código de rastreio</b>",
+    "↩️ <b>Troca em até 7 dias</b>"
+  ]
+};
+
+/* ===================================================================
+   DEPOIMENTOS REAIS — a seção "Quem leva, recomenda" só aparece
+   quando houver pelo menos 1 item aqui. Copie o texto do print do
+   WhatsApp/Instagram (com autorização de quem escreveu).
+   Ex.: {texto:"Camisa perfeita, chegou em 3 dias.", quem:"Maria S. · Recife/PE"}
+   =================================================================== */
+const DEPOIMENTOS = [
+];
+
+/* ===================================================================
    AULAS DAS LIVES 2026.2 — mesmas regras do catálogo:
    checkout: link pay.hotmart.com da aula (o código adiciona ?checkoutMode=2
              para abrir o POPUP na página). Sem checkout => "Em breve".
@@ -531,10 +629,27 @@ const AULAS = [
   {n:"10", caso:"O Caso Marielle Franco (RJ)", tema:"Interpretação de avarias em vidros por PAF", img:"img/aula-10-marielle-franco.webp", preco:"29,90", checkout:"https://pay.hotmart.com/D101701502L"}
 ];
 
+/* ---------- estoque: leitura por produto ---------- */
+function slugDe(p){ return p.slug || (p.img||'').split('/').pop().replace(/\.\w+$/,''); }
+/* devolve null (não controlado) ou {total, porTam|null} */
+function infoEstoque(p){
+  const e = ESTOQUE[slugDe(p)];
+  if(e === undefined || e === null) return null;
+  if(typeof e === 'number') return {total:Math.max(0,e), porTam:null};
+  const porTam = {}; let total = 0;
+  TAMANHOS.forEach(t=>{ porTam[t] = Math.max(0, Number(e[t])||0); total += porTam[t]; });
+  return {total, porTam};
+}
+function esgotado(p){ const e = infoEstoque(p); return !!(e && e.total <= 0); }
+
 /* ---------- render dos cartões ---------- */
 function cardHTML(p){
+  const est = infoEstoque(p);
+  const semEstoque = !!(est && est.total <= 0);
   const rot = {hot:'Mais vendido', new:'Novo', limitada:'⚡ Edição limitada'};
-  const badge = p.badge ? `<span class="badge ${p.badge}">${rot[p.badge]||p.badge}</span>` : '';
+  const badge = semEstoque
+    ? `<span class="badge esgotado">Esgotado</span>`
+    : (p.badge ? `<span class="badge ${p.badge}">${rot[p.badge]||p.badge}</span>` : '');
   /* carrossel: usa p.imgs (várias fotos) ou p.img (uma só) */
   const fotos = (p.imgs && p.imgs.length) ? p.imgs : (p.img ? [p.img] : []);
   const imgEl = fotos.length
@@ -543,7 +658,7 @@ function cardHTML(p){
         <button class="c-seta c-next" type="button" aria-label="Próxima foto" onclick="mudaFoto(this,1)">›</button>
         <div class="c-dots">${fotos.map((_,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div>`:''}</div>`
     : `<div class="ph"><span>${p.nome.toUpperCase()}</span></div>`;
-  const deLine = (p.preco && p.precoDe)
+  const deLine = (p.preco && p.precoDe && !semEstoque)
     ? `<div class="de-line">De <s>R$ ${p.precoDe}</s> por</div>` : '';
   const preco = p.preco ? `<span class="por">R$ ${p.preco}</span>` : `<span class="por" style="font-size:.95rem;color:var(--mut)">Em breve</span>`;
   const parc  = p.preco ? `<div class="parcela">ou 12x de R$ ${(parseFloat(p.preco.replace('.','').replace(',','.'))/12).toFixed(2).replace('.',',')} no cartão · Pix à vista</div>` : '';
@@ -551,29 +666,67 @@ function cardHTML(p){
      no checkout o cliente só escolhe o TAMANHO */
   const babylook = /babylook/i.test(p.nome)
     ? `<div class="bl-tag">✂️ Esta é a versão <b>babylook</b> (corte feminino) — no pagamento, escolha só o tamanho</div>` : '';
-  const sizes = p.cat==='camisas'
-    ? `<div class="sizes"><span class="lbl">Tamanhos no checkout</span><span class="sz">PP</span><span class="sz">P</span><span class="sz">M</span><span class="sz">G</span><span class="sz">GG</span></div>` : '';
-  /* Botão: classe hotmart-fb + hotmart__button-checkout => o widget.min.js
-     intercepta o clique e abre o checkout em POPUP nesta página. */
-  /* escassez REAL: preencha p.estoque com o número verdadeiro de unidades
-     (aparece barra + "Restam X"). Sem o campo, nada é exibido. */
-  let stock = '';
-  if (typeof p.estoque === 'number' && p.estoque > 0) {
-    const pct = Math.max(8, Math.min(100, p.estoque * 6));
-    stock = `<div class="stockbar"><i style="width:${pct}%"></i></div>
-             <div class="stocktx">🔥 Restam só ${p.estoque} unidade${p.estoque>1?'s':''}</div>`;
+  /* tamanhos: com estoque por tamanho => mostra só o que existe de verdade
+     (esgotado fica riscado; 1–2 peças ganha aviso "só N") */
+  let sizes = '';
+  if (p.cat === 'camisas') {
+    if (est && est.porTam && !semEstoque) {
+      sizes = `<div class="sizes"><span class="lbl">Tamanhos disponíveis</span>` +
+        TAMANHOS.map(t=>{
+          const q = est.porTam[t];
+          if (q <= 0) return `<span class="sz off" title="Esgotado no tamanho ${t}">${t}</span>`;
+          return `<span class="sz${q<=2?' low':''}">${t}${q<=2?`<small>só ${q}</small>`:''}</span>`;
+        }).join('') + `</div>`;
+    } else if (!semEstoque) {
+      sizes = `<div class="sizes"><span class="lbl">Tamanhos no checkout</span>${TAMANHOS.map(t=>`<span class="sz">${t}</span>`).join('')}</div>`;
+    }
   }
-  const btn = p.checkout
-    ? `<a class="buy hotmart-fb hotmart__button-checkout" href="${p.checkout}?checkoutMode=2"
-          onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'${p.nome.replace(/'/g,"")}'})">
-          Comprar agora ⚡ <small>na página</small></a>`
-    : `<button class="buy soon">Em breve</button>`;
-  return `<div class="prod">
+  /* escassez REAL, a partir do estoque.json:
+     total ≤ ESTOQUE_BAIXO => barra + "Restam só X"
+     tamanho com 1–2 peças => "Últimas no G"
+     acima disso           => "Pronta entrega" (sem número) */
+  let stock = '';
+  if (semEstoque) {
+    stock = `<div class="stocktx" style="color:var(--mut)">⛔ Esgotou nesta edição — entre na lista de reposição</div>`;
+  } else if (est) {
+    const t = est.total;
+    if (t <= ESTOQUE_BAIXO) {
+      const pct = Math.max(10, Math.round(t / ESTOQUE_BAIXO * 45));
+      stock = `<div class="stockbar crit"><i style="width:${pct}%"></i></div>
+               <div class="stocktx crit">🔥 Restam só ${t} unidade${t>1?'s':''} no total</div>`;
+    } else {
+      const ultimos = est.porTam ? TAMANHOS.filter(s=>est.porTam[s]>0 && est.porTam[s]<=2) : [];
+      stock = ultimos.length
+        ? `<div class="stocktx">⚡ Últimas peças no ${ultimos.join(', ')} · demais tamanhos à pronta entrega</div>`
+        : `<div class="stocktx ok">✅ Pronta entrega</div>`;
+    }
+  }
+  /* detalhes opcionais do produto (p.detalhes = ["...", "..."]) */
+  const det = (p.detalhes && p.detalhes.length)
+    ? `<ul class="detalhes">${p.detalhes.map(d=>`<li>${d}</li>`).join('')}</ul>` : '';
+  /* Botão: classe hotmart-fb + hotmart__button-checkout => o widget.min.js
+     intercepta o clique e abre o checkout em POPUP nesta página.
+     Esgotado => vira "Avise-me" pelo WhatsApp (não abre checkout). */
+  const nomeSeguro = p.nome.replace(/'/g,"");
+  let btn;
+  if (semEstoque) {
+    const msg = encodeURIComponent(`Oi! Quero ser avisado(a) quando a ${p.nome} voltar ao estoque.`);
+    btn = `<a class="buy off" href="https://wa.me/5581979026381?text=${msg}" target="_blank" rel="noopener"
+             onclick="fbq&&fbq('trackCustom','AviseMe',{content_name:'${nomeSeguro}'})">🔔 Avise-me quando voltar</a>`;
+  } else if (p.checkout) {
+    btn = `<a class="buy hotmart-fb hotmart__button-checkout" href="${p.checkout}?checkoutMode=2"
+          onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'${nomeSeguro}'})">
+          Comprar agora ⚡ <small>na página</small></a>`;
+  } else {
+    btn = `<button class="buy soon">Em breve</button>`;
+  }
+  return `<div class="prod${semEstoque?' esgotado':''}">
     <div class="imgbox">${badge}${imgEl}</div>
     <div class="body">
       <div class="nm">${p.nome}</div>
       ${babylook}
       ${sizes}
+      ${det}
       ${deLine}<div class="priceline">${preco}</div>${parc}
       ${stock}
       ${btn}
@@ -604,10 +757,38 @@ function mudaFoto(btn, dir){
   }, {passive:true});
 })();
 
-['camisas','livros','acessorios'].forEach(cat=>{
-  const grid = document.getElementById('grid-'+cat);
-  grid.innerHTML = PRODUTOS.filter(p=>p.cat===cat).map(cardHTML).join('');
-});
+function dataBR(iso){ const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(iso||''); return m ? `${m[3]}/${m[2]}` : ''; }
+function renderCatalogo(){
+  ['camisas','livros','acessorios'].forEach(cat=>{
+    const itens = PRODUTOS.filter(p=>p.cat===cat);
+    /* esgotados vão para o fim da grade */
+    const ordem = itens.slice().sort((a,b)=>Number(esgotado(a)) - Number(esgotado(b)));
+    document.getElementById('grid-'+cat).innerHTML = ordem.map(cardHTML).join('');
+    const nEsg = itens.filter(esgotado).length;
+    const nDisp = itens.length - nEsg;
+    const upd = (cat==='camisas' && ESTOQUE._atualizado) ? `<br><span class="stock-upd">estoque atualizado em ${dataBR(ESTOQUE._atualizado)}</span>` : '';
+    document.getElementById('count-'+cat).innerHTML =
+      (nEsg ? `${nDisp} disponíveis · ${nEsg} esgotado${nEsg>1?'s':''}` : `${itens.length} produtos`) + upd;
+    const ent = document.getElementById('entrega-'+cat);
+    if (ent) ent.innerHTML = (ENTREGAVEIS[cat]||[]).map(x=>{
+      const m = /^(\S+)\s+([\s\S]+)$/.exec(x); return m ? `<span><i>${m[1]}</i>${m[2]}</span>` : `<span>${x}</span>`;
+    }).join('');
+  });
+}
+renderCatalogo();
+
+/* estoque.json (na mesma pasta) sobrescreve a cópia de reserva e re-renderiza */
+fetch('estoque.json', {cache:'no-store'})
+  .then(r => r.ok ? r.json() : null)
+  .then(j => { if (j && typeof j === 'object') { ESTOQUE = j; renderCatalogo(); } })
+  .catch(()=>{});
+
+/* depoimentos reais (seção fica oculta enquanto a lista estiver vazia) */
+if (DEPOIMENTOS.length) {
+  document.getElementById('reviews').innerHTML = DEPOIMENTOS.map(d=>`
+    <div class="rev"><div class="stars">★★★★★</div><p>"${d.texto}"</p><div class="who">— ${d.quem}</div></div>`).join('');
+  document.getElementById('proof').hidden = false;
+}
 function cardAulaHTML(a){
   const preco = a.preco ? `<span class="por">R$ ${a.preco}</span>` : `<span class="por" style="font-size:.95rem;color:var(--mut)">Em breve</span>`;
   const parc  = a.preco ? `<div class="parcela">Pix à vista · acesso imediato</div>` : '';
