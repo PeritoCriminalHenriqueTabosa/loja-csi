@@ -141,6 +141,7 @@ section.cat{padding:52px 0 8px}
 .badge.new{background:#fff;color:var(--preto)}
 .badge.limitada{background:var(--preto);color:var(--amarelo);border:1px solid var(--amarelo)}
 .badge.esgotado{background:#2a2a2a;color:#bdbdb5;border:1px solid #444}
+.badge.kit{background:var(--amarelo);color:var(--preto);box-shadow:0 0 0 3px rgba(255,212,0,.25)}
 .stockbar{height:6px;border-radius:6px;background:#262626;overflow:hidden;margin-top:4px}
 .stockbar i{display:block;height:100%;background:linear-gradient(90deg,#e0705f,var(--amarelo))}
 .stockbar.crit i{background:linear-gradient(90deg,#ff4d3d,#ff8c3d)}
@@ -210,8 +211,8 @@ section.cat{padding:52px 0 8px}
 .frete-result.err{color:#ff7b6b}
 
 /* ---------- acesso total ---------- */
-.acesso-total{position:relative;border-color:var(--amarelo);margin-bottom:8px}
-.at-badge{position:absolute;top:-13px;left:24px;background:var(--amarelo);color:var(--preto);font-weight:900;font-size:.7rem;letter-spacing:1px;padding:6px 12px;border-radius:30px;z-index:2}
+.acesso-total{position:relative;border-color:var(--amarelo);margin-bottom:8px;padding-top:54px}
+.at-badge{position:absolute;top:18px;left:24px;background:var(--amarelo);color:var(--preto);font-weight:900;font-size:.7rem;letter-spacing:1px;padding:6px 12px;border-radius:30px;z-index:2}
 .acesso-total h3 em{font-style:normal;color:var(--amarelo)}
 .at-capa{border-radius:14px;overflow:hidden;border:1px solid var(--line)}
 .at-capa img{width:100%;display:block}
@@ -245,6 +246,7 @@ section.cat{padding:52px 0 8px}
 .aula .caso{font-weight:800;font-size:.98rem;line-height:1.28}
 .aula .tema{font-size:.8rem;color:var(--mut);line-height:1.35}
 .aula .cert{font-size:.72rem;color:var(--amarelo);font-weight:700;letter-spacing:.3px}
+.aula .horas-tag{position:absolute;top:10px;right:10px;z-index:2;background:var(--preto);color:var(--amarelo);border:1px solid var(--amarelo);font-family:'Archivo Black';font-size:.66rem;padding:5px 9px;border-radius:4px;letter-spacing:.5px}
 
 /* ---------- CTA cursos ---------- */
 .digital{padding:56px 0}
@@ -253,22 +255,79 @@ section.cat{padding:52px 0 8px}
 .digi-card h3{font-size:1.7rem;margin-bottom:8px}
 .digi-card h3 em{font-style:normal;color:var(--amarelo)}
 .digi-card ul{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:9px}
-.digi-card li{display:flex;gap:10px;color:var(--mut);font-size:.92rem}
+.digi-card li{display:block;color:var(--mut);font-size:.92rem;padding-left:26px;text-indent:-26px}
 .digi-card li b{color:var(--txt)}
 .digi-right{background:repeating-linear-gradient(135deg,#171717,#171717 14px,#121212 14px,#121212 28px);border-radius:14px;aspect-ratio:16/10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;border:1px solid var(--line)}
 .digi-right .big{font-family:'Archivo Black';font-size:2.4rem;color:var(--amarelo)}
 @media(max-width:740px){.digi-card{grid-template-columns:1fr}}
 
 /* ---------- prova social ---------- */
-.proof{padding:10px 0 56px}
-.proof h2{font-size:clamp(1.5rem,4vw,2.2rem);text-align:center;margin-bottom:8px}
-.proof .c{text-align:center;color:var(--mut);margin-bottom:30px}
+/* ---------- avaliações ---------- */
+[hidden]{display:none!important}
+.av-form .tag{font-family:'Special Elite';color:var(--amarelo);font-size:.72rem;letter-spacing:3px}
+.avaliacoes{padding:56px 0 20px}
+.av-resumo{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:-8px 0 22px}
+.av-resumo .nota{font-family:'Archivo Black';font-size:2.6rem;color:var(--amarelo);line-height:1}
+.av-resumo .stars{color:var(--amarelo);font-size:1.2rem;letter-spacing:2px}
+.av-resumo .qtd{color:var(--mut);font-size:.9rem}
+.av-resumo .selo{margin-left:auto;background:#191919;border:1px solid var(--line);border-radius:40px;padding:8px 14px;font-size:.78rem;color:var(--mut);font-weight:700}
 .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:740px){.reviews{grid-template-columns:1fr}}
-.rev{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amarelo);border-radius:12px;padding:20px}
-.rev .stars{color:var(--amarelo);margin-bottom:8px}
-.rev p{font-size:.92rem}
-.rev .who{margin-top:12px;font-size:.8rem;color:var(--mut);font-weight:600}
+@media(max-width:900px){.reviews{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.reviews{grid-template-columns:1fr}}
+.rev{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amarelo);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.rev .stars{color:var(--amarelo);letter-spacing:2px}
+.rev .stars s{color:#3a3a3a;text-decoration:none}
+.rev p{font-size:.92rem;flex:1}
+.rev .who{font-size:.8rem;color:var(--mut);font-weight:600}
+.rev .prd{font-size:.68rem;font-weight:800;letter-spacing:.5px;color:var(--amarelo);text-transform:uppercase}
+.rev .verif{font-size:.68rem;color:#35c26f;font-weight:700}
+.av-vazio{background:var(--card);border:1px dashed #3a3a3a;border-radius:12px;padding:22px;text-align:center;color:var(--mut);font-size:.92rem}
+.av-mais{display:block;margin:18px auto 0;background:#191919;color:var(--txt);border:1px solid var(--line);border-radius:40px;padding:10px 20px;font-weight:800;cursor:pointer}
+.av-mais:hover{border-color:var(--amarelo);color:var(--amarelo)}
+.av-form{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;overflow:hidden}
+.av-form::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--hazard)}
+.av-form h3{font-size:1.3rem;margin:6px 0 4px}
+.av-form .sub{color:var(--mut);font-size:.9rem;margin-bottom:16px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.f-grid{grid-template-columns:1fr}}
+.f-grid .full{grid-column:1/-1}
+.f-grid label{display:flex;flex-direction:column;gap:5px;font-size:.78rem;font-weight:800;color:var(--mut);letter-spacing:.3px}
+.f-grid input,.f-grid select,.f-grid textarea{background:#101010;border:1px solid #333;border-radius:11px;padding:13px 14px;color:var(--txt);font-size:.98rem;font-family:inherit;width:100%}
+.f-grid input:focus,.f-grid select:focus,.f-grid textarea:focus{outline:none;border-color:var(--amarelo)}
+.f-grid textarea{min-height:110px;resize:vertical}
+.estrelas{display:flex;gap:6px;direction:rtl;justify-content:flex-end}
+.estrelas input{display:none}
+.estrelas label{font-size:1.9rem;color:#3a3a3a;cursor:pointer;transition:.1s}
+.estrelas input:checked ~ label,.estrelas label:hover,.estrelas label:hover ~ label{color:var(--amarelo)}
+.f-grid label.consent{flex-direction:row;gap:10px;align-items:flex-start;font-size:.8rem;color:var(--mut);font-weight:500;line-height:1.4}
+.consent input{width:auto;margin-top:3px;accent-color:var(--amarelo)}
+.f-ok{background:#12301c;border:1px solid #35c26f;color:#bff3d2;border-radius:12px;padding:16px;font-weight:700}
+.f-err{color:#ff7b6b;font-size:.85rem;font-weight:700}
+
+/* ---------- horas complementares ---------- */
+.horas{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:linear-gradient(160deg,#1c1910,#161616);border:1px solid var(--amarelo);border-radius:16px;padding:18px 22px;margin:0 0 22px}
+.horas .big{font-family:'Archivo Black';font-size:2.4rem;color:var(--amarelo);line-height:1}
+.horas .big small{display:block;font-family:'Inter';font-size:.62rem;letter-spacing:2px;color:var(--mut);margin-top:4px}
+.horas h3{font-size:1.05rem;margin-bottom:4px}
+.horas p{color:var(--mut);font-size:.88rem}
+.horas .chip{background:var(--amarelo);color:var(--preto);font-weight:900;font-size:.72rem;letter-spacing:1px;padding:8px 12px;border-radius:30px;white-space:nowrap}
+@media(max-width:740px){.horas{grid-template-columns:1fr}.horas .chip{justify-self:start}}
+
+/* ---------- pop-up de saída ---------- */
+.xo{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:18px}
+.xo.on{display:flex}
+.xo .box{position:relative;width:100%;max-width:520px;background:var(--card);border:1px solid var(--amarelo);border-radius:18px;padding:30px 26px 26px;overflow:hidden;box-shadow:0 40px 80px -30px #000}
+.xo .box::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:var(--hazard)}
+.xo .fechar{position:absolute;top:14px;right:14px;background:#191919;border:1px solid var(--line);color:var(--mut);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+.xo .fechar:hover{color:var(--amarelo);border-color:var(--amarelo)}
+.xo .kick{margin-top:6px}
+.xo h3{font-size:clamp(1.5rem,5vw,2rem);margin:12px 0 6px}
+.xo h3 em{font-style:normal;color:var(--amarelo)}
+.xo .sub{color:var(--mut);font-size:.92rem;margin-bottom:16px}
+.xo .cupom{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#101010;border:2px dashed var(--amarelo);border-radius:12px;padding:14px 16px;margin:6px 0 14px}
+.xo .cupom b{font-family:'Archivo Black';font-size:1.5rem;color:var(--amarelo);letter-spacing:2px}
+.xo .cupom button{background:var(--amarelo);color:var(--preto);border:none;border-radius:10px;padding:10px 14px;font-weight:900;cursor:pointer}
+.xo .nao{display:block;margin:12px auto 0;background:none;border:none;color:var(--mut);font-size:.8rem;cursor:pointer;text-decoration:underline}
 
 /* ---------- faq ---------- */
 .faq{padding:10px 0 60px}
@@ -313,6 +372,7 @@ footer a:hover{color:var(--amarelo)}
     <a href="#livros" class="link">Livros</a>
     <a href="#acessorios" class="link">Acessórios</a>
     <a href="#aulas" class="link">Aulas</a>
+    <a href="#avaliacoes" class="link">Avaliações</a>
     <a href="#camisas" class="cta-top">🛒 Comprar</a>
   </div>
 </header>
@@ -420,6 +480,14 @@ footer a:hover{color:var(--amarelo)}
       por trás dele. Acesso imediato à gravação completa (vídeo + slides + resumo) e
       <b style="color:var(--txt)">certificado de 4 horas</b> incluso.
     </p>
+    <div class="horas">
+      <div class="big">4h<small>POR AULA</small></div>
+      <div>
+        <h3>🎓 Horas complementares para a sua graduação</h3>
+        <p>Cada aula gravada dá <b style="color:var(--txt)">certificado de 4 horas</b> (curso livre/extensão), com seu nome e CPF. A maioria das graduações aceita como atividade complementar — confira a regra da sua instituição. As 10 aulas do Bloco A somam <b style="color:var(--txt)">40 horas</b>.</p>
+      </div>
+      <span class="chip">10 AULAS = 40H</span>
+    </div>
     <!-- ===== CURSO COMPLETO: ACESSO TOTAL (destaque antes das aulas avulsas) ===== -->
     <div class="digi-card acesso-total">
       <span class="at-badge">⭐ MELHOR CUSTO-BENEFÍCIO</span>
@@ -429,7 +497,7 @@ footer a:hover{color:var(--amarelo)}
         <ul>
           <li>✅ <b>Todas as aulas</b> do semestre (caso real + técnica pericial)</li>
           <li>✅ <b>Novas aulas toda semana</b>, já incluídas no plano</li>
-          <li>✅ <b>Certificado de 4h</b> por aula assistida</li>
+          <li>✅ <b>Certificado de 4h</b> por aula — <b>até 40h de horas complementares</b> com o Bloco A</li>
           <li>✅ Gravação completa: <b>vídeo + slides + resumo</b></li>
         </ul>
         <div class="planos">
@@ -461,10 +529,42 @@ footer a:hover{color:var(--amarelo)}
 
 <!-- ============================ PROVA SOCIAL ============================ -->
 <!-- A seção só aparece quando a lista DEPOIMENTOS (no script) tiver depoimentos REAIS. -->
-<section class="proof" id="proof" hidden><div class="wrap">
-  <h2>Quem leva, recomenda</h2>
-  <p class="c">Avaliações reais da comunidade Cena de Crime</p>
+<section class="cat avaliacoes" id="avaliacoes"><div class="wrap">
+  <div class="cat-head">
+    <div><div class="tag">// QUEM LEVA, RECOMENDA</div><h2>Avaliações</h2></div>
+    <div class="count" id="count-av"></div>
+  </div>
+  <div class="av-resumo" id="av-resumo" hidden>
+    <div class="nota" id="av-nota">5,0</div>
+    <div><div class="stars" id="av-stars">★★★★★</div><div class="qtd" id="av-qtd"></div></div>
+    <span class="selo">✅ Só de quem comprou · publicadas depois de conferência</span>
+  </div>
   <div class="reviews" id="reviews"></div>
+  <div class="av-vazio" id="av-vazio" hidden>Ainda não temos avaliações publicadas aqui. Comprou alguma coisa? Conte como foi — a sua pode ser a primeira.</div>
+  <button class="av-mais" id="av-mais" hidden type="button">Ver mais avaliações</button>
+
+  <form class="av-form" id="av-form" novalidate>
+    <div class="tag">// COMPROU? CONTE COMO FOI</div>
+    <h3>Deixe sua avaliação</h3>
+    <p class="sub">Leva 1 minuto. Publicamos só o primeiro nome e a cidade. Cada avaliação passa por uma conferência rápida antes de aparecer.</p>
+    <div class="f-grid">
+      <label>Seu nome<input name="nome" required maxlength="60" placeholder="Ex.: Maria Silva"></label>
+      <label>Cidade / UF<input name="cidade" maxlength="60" placeholder="Ex.: Recife/PE"></label>
+      <label class="full">O que você comprou<select name="produto" id="av-produto" required><option value="">Escolha…</option></select></label>
+      <div class="full"><div style="font-size:.78rem;font-weight:800;color:var(--mut);margin-bottom:4px">Sua nota</div>
+        <div class="estrelas">
+          <input type="radio" name="nota" id="n5" value="5"><label for="n5" title="5 estrelas">★</label>
+          <input type="radio" name="nota" id="n4" value="4"><label for="n4" title="4 estrelas">★</label>
+          <input type="radio" name="nota" id="n3" value="3"><label for="n3" title="3 estrelas">★</label>
+          <input type="radio" name="nota" id="n2" value="2"><label for="n2" title="2 estrelas">★</label>
+          <input type="radio" name="nota" id="n1" value="1"><label for="n1" title="1 estrela">★</label>
+        </div></div>
+      <label class="full">Sua avaliação<textarea name="texto" required maxlength="600" placeholder="Como foi a compra, a entrega e o produto?"></textarea></label>
+      <label class="full consent"><input type="checkbox" name="consent" required><span>Autorizo a Loja CSI a publicar esta avaliação com meu primeiro nome e cidade. Não publicamos e-mail nem telefone.</span></label>
+      <div class="full" id="av-msg"></div>
+      <div class="full"><button class="btn btn-primary" type="submit" id="av-enviar">Enviar avaliação →</button></div>
+    </div>
+  </form>
 </div></section>
 
 <!-- ============================ FAQ ============================ -->
@@ -491,6 +591,35 @@ footer a:hover{color:var(--amarelo)}
   <div class="fineprint">© <span id="yr"></span> Loja CSI — Cena de Crime · CNPJ 30.605.812/0001-21 · Pagamentos processados pela Hotmart. Todos os direitos reservados.</div>
 </div></footer>
 
+<!-- ============================ POP-UP DE SAÍDA (10% OFF) ============================ -->
+<div class="xo" id="xo" role="dialog" aria-modal="true" aria-labelledby="xo-t">
+  <div class="box">
+    <button class="fechar" type="button" id="xo-x" aria-label="Fechar">✕</button>
+    <span class="kick">🎁 ANTES DE SAIR</span>
+    <div id="xo-p1">
+      <h3 id="xo-t">Espera! <em>10% off</em> no seu pedido.</h3>
+      <p class="sub">Deixe seu WhatsApp e e-mail e o cupom fica liberado na hora. Vale para camisas, livros e acessórios.</p>
+      <form id="xo-form" novalidate>
+        <div class="f-grid">
+          <label class="full">Nome<input name="nome" required maxlength="60" placeholder="Seu nome"></label>
+          <label>WhatsApp<input name="whatsapp" required inputmode="tel" maxlength="20" placeholder="(87) 9 9999-9999"></label>
+          <label>E-mail<input name="email" type="email" required maxlength="80" placeholder="voce@email.com"></label>
+          <label class="full consent"><input type="checkbox" name="consent" required><span>Concordo em receber novidades e ofertas da Loja CSI por WhatsApp e e-mail. Sem spam — dá para sair quando quiser.</span></label>
+          <div class="full" id="xo-msg"></div>
+          <div class="full"><button class="btn btn-primary" type="submit" style="width:100%">Quero meu cupom de 10% →</button></div>
+        </div>
+      </form>
+      <button class="nao" type="button" id="xo-nao">Não, obrigado — vou pagar o preço cheio</button>
+    </div>
+    <div id="xo-p2" hidden>
+      <h3>Pronto. <em>Seu cupom:</em></h3>
+      <div class="cupom"><b id="xo-cod">VOLTA10</b><button type="button" id="xo-copiar">Copiar</button></div>
+      <p class="sub">Já deixei o cupom aplicado nos botões de compra desta página. Se precisar, é só colar o código no campo "cupom" do checkout.</p>
+      <button class="btn btn-primary" type="button" id="xo-continuar" style="width:100%">Continuar comprando com 10% off →</button>
+    </div>
+  </div>
+</div>
+
 <a class="whats" href="https://wa.me/5587991016004" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
 <a class="sticky-cta" href="#camisas">🛒 VER PRODUTOS — PIX OU 12X</a>
 
@@ -505,6 +634,18 @@ footer a:hover{color:var(--amarelo)}
    Itens sem 'checkout' aparecem como "Em breve".
    Preços atualizados em 26/08/2026 conforme o Henrique.
    =================================================================== */
+/* ===================================================================
+   INTEGRAÇÕES — preencher aqui:
+   API_URL : URL do app da planilha Google (Apps Script) que recebe
+             avaliações e leads e devolve as avaliações aprovadas.
+             Vazio => avaliação vai pelo WhatsApp e o pop-up só mostra o cupom.
+   CUPOM   : código criado na Hotmart (10%). O site acrescenta ?coupon=
+             nos links de checkout depois que a pessoa deixa o contato.
+   =================================================================== */
+const API_URL = "https://script.google.com/macros/s/AKfycbxKKAkqC4vebcsBQZxjavpObA7xICFw57oI7h0aueuZmQW8Bh73dL0UpOl0UKdnAiF1Dw/exec";
+const CUPOM = {codigo:"VOLTA10", pct:10, ativo:false};  // ativo:true só depois de criar o cupom na Hotmart
+const KIT_LEITOR_CHECKOUT = "";  // link pay.hotmart.com do Kit Leitor (quando criado)
+
 const PRODUTOS = [
   /* ------------- CAMISAS (11) — todas De 79,90 Por 59,90 ------------- */
   {cat:"camisas", nome:"Camisa Criminal (babylook)",  precoDe:"79,90", preco:"59,90", badge:"hot", img:"img/camisa-criminal-babylook.webp", checkout:"https://pay.hotmart.com/N100131638T"},
@@ -522,6 +663,8 @@ const PRODUTOS = [
   /* ------------- LIVROS (2) ------------- */
   {cat:"livros", nome:"O Caso dos Canibais de Pernambuco", precoDe:"99,90", preco:"64,90", badge:"hot", img:"img/livro-canibais-pernambuco.webp", checkout:"https://pay.hotmart.com/A98478536U"},
   {cat:"livros", nome:"O Caso do Marchante Suicida",       precoDe:"89,90", preco:"59,90", badge:"",    img:"img/livro-marchante-suicida.webp", checkout:"https://pay.hotmart.com/R98459917C"},
+  {cat:"livros", nome:"Kit Leitor — os 2 livros", precoDe:"124,80", preco:"99,90", badge:"kit", slug:"kit-leitor", img:"img/kit-leitor.webp", checkout:KIT_LEITOR_CHECKOUT,
+   detalhes:["Canibais de Pernambuco + Marchante Suicida","Economia de R$ 24,90 em relação a comprar separado","Um envio só, com rastreio"]},
 
   /* ------------- ACESSÓRIOS (8) ------------- */
   {cat:"acessorios", nome:"Calça CSI",                 precoDe:"79,90", preco:"59,90", badge:"",    img:"img/calca-csi.webp", checkout:"https://pay.hotmart.com/G100131782A"},
@@ -646,7 +789,7 @@ function esgotado(p){ const e = infoEstoque(p); return !!(e && e.total <= 0); }
 function cardHTML(p){
   const est = infoEstoque(p);
   const semEstoque = !!(est && est.total <= 0);
-  const rot = {hot:'Mais vendido', new:'Novo', limitada:'⚡ Edição limitada'};
+  const rot = {hot:'Mais vendido', new:'Novo', limitada:'⚡ Edição limitada', kit:'🎁 Kit · economize'};
   const badge = semEstoque
     ? `<span class="badge esgotado">Esgotado</span>`
     : (p.badge ? `<span class="badge ${p.badge}">${rot[p.badge]||p.badge}</span>` : '');
@@ -714,7 +857,7 @@ function cardHTML(p){
     btn = `<a class="buy off" href="https://wa.me/5587991016004?text=${msg}" target="_blank" rel="noopener"
              onclick="fbq&&fbq('trackCustom','AviseMe',{content_name:'${nomeSeguro}'})">🔔 Avise-me quando voltar</a>`;
   } else if (p.checkout) {
-    btn = `<a class="buy hotmart-fb hotmart__button-checkout" href="${p.checkout}?checkoutMode=2"
+    btn = `<a class="buy hotmart-fb hotmart__button-checkout" href="${p.checkout}?checkoutMode=2${cupomQS()}"
           onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'${nomeSeguro}'})">
           Comprar agora ⚡ <small>na página</small></a>`;
   } else {
@@ -783,12 +926,151 @@ fetch('estoque.json', {cache:'no-store'})
   .then(j => { if (j && typeof j === 'object') { ESTOQUE = j; renderCatalogo(); } })
   .catch(()=>{});
 
-/* depoimentos reais (seção fica oculta enquanto a lista estiver vazia) */
-if (DEPOIMENTOS.length) {
-  document.getElementById('reviews').innerHTML = DEPOIMENTOS.map(d=>`
-    <div class="rev"><div class="stars">★★★★★</div><p>"${d.texto}"</p><div class="who">— ${d.quem}</div></div>`).join('');
-  document.getElementById('proof').hidden = false;
+/* ===================================================================
+   AVALIAÇÕES — vêm da planilha (API_URL) só as marcadas "aprovado = sim".
+   DEPOIMENTOS (acima) continua valendo como lista manual de reserva.
+   =================================================================== */
+function estrelasHTML(n){ n=Math.max(1,Math.min(5,Math.round(n||5))); return '★'.repeat(n)+`<s>${'★'.repeat(5-n)}</s>`; }
+function escapa(t){ return String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+let AVALIACOES = DEPOIMENTOS.map(d=>({nome:d.quem, cidade:'', produto:'', nota:5, texto:d.texto, data:''}));
+let avMostrar = 6;
+function renderAvaliacoes(){
+  const grid = document.getElementById('reviews'), vazio = document.getElementById('av-vazio'),
+        mais = document.getElementById('av-mais'), res = document.getElementById('av-resumo');
+  if (!AVALIACOES.length){ grid.innerHTML=''; vazio.hidden=false; mais.hidden=true; res.hidden=true;
+    document.getElementById('count-av').textContent='seja o primeiro a avaliar'; return; }
+  vazio.hidden = true; res.hidden = false;
+  const media = AVALIACOES.reduce((a,b)=>a+(Number(b.nota)||5),0)/AVALIACOES.length;
+  document.getElementById('av-nota').textContent = media.toFixed(1).replace('.',',');
+  document.getElementById('av-stars').innerHTML = estrelasHTML(media);
+  document.getElementById('av-qtd').textContent = `${AVALIACOES.length} avaliaç${AVALIACOES.length>1?'ões':'ão'} de compradores`;
+  document.getElementById('count-av').textContent = `${AVALIACOES.length} publicada${AVALIACOES.length>1?'s':''}`;
+  grid.innerHTML = AVALIACOES.slice(0, avMostrar).map(a=>`
+    <div class="rev">
+      <div class="stars">${estrelasHTML(a.nota)}</div>
+      ${a.produto?`<div class="prd">${escapa(a.produto)}</div>`:''}
+      <p>"${escapa(a.texto)}"</p>
+      <div class="who">— ${escapa(a.nome)}${a.cidade?' · '+escapa(a.cidade):''}${a.data?' · '+escapa(a.data):''}</div>
+      <div class="verif">✅ Compra verificada</div>
+    </div>`).join('');
+  mais.hidden = AVALIACOES.length <= avMostrar;
 }
+document.getElementById('av-mais').addEventListener('click', ()=>{ avMostrar += 6; renderAvaliacoes(); });
+renderAvaliacoes();
+if (API_URL) {
+  fetch(API_URL + '?tipo=avaliacoes', {cache:'no-store'}).then(r=>r.json()).then(lista=>{
+    if (Array.isArray(lista) && lista.length) { AVALIACOES = lista; renderAvaliacoes(); }
+  }).catch(()=>{});
+}
+/* select de produtos do formulário */
+(function(){
+  const sel = document.getElementById('av-produto');
+  const grupos = [['Camisas','camisas'],['Livros','livros'],['Acessórios','acessorios']];
+  grupos.forEach(([rot,cat])=>{
+    const og = document.createElement('optgroup'); og.label = rot;
+    PRODUTOS.filter(p=>p.cat===cat).forEach(p=>{ const o=document.createElement('option'); o.value=p.nome; o.textContent=p.nome; og.appendChild(o); });
+    sel.appendChild(og);
+  });
+  const oga = document.createElement('optgroup'); oga.label='Aulas';
+  AULAS.forEach(a=>{ const o=document.createElement('option'); o.value=`Aula ${a.n} — ${a.caso}`; o.textContent=`Aula ${a.n} — ${a.caso}`; oga.appendChild(o); });
+  const ac = document.createElement('option'); ac.value='Acesso Total'; ac.textContent='Acesso Total (assinatura)'; oga.appendChild(ac);
+  sel.appendChild(oga);
+  const ou = document.createElement('option'); ou.value='Outro'; ou.textContent='Outro'; sel.appendChild(ou);
+})();
+/* envio para a planilha (Apps Script): text/plain evita o preflight CORS */
+async function enviarAPI(dados){
+  if (!API_URL) return false;
+  try {
+    await fetch(API_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(dados)});
+    return true;
+  } catch(e){ return false; }
+}
+document.getElementById('av-form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const f = e.target, msg = document.getElementById('av-msg'), btn = document.getElementById('av-enviar');
+  const d = Object.fromEntries(new FormData(f).entries());
+  if (!d.nome || !d.produto || !d.texto || !d.nota || !d.consent) { msg.innerHTML = '<div class="f-err">Preencha nome, produto, nota, texto e marque a autorização.</div>'; return; }
+  btn.disabled = true; btn.textContent = 'Enviando…';
+  const ok = await enviarAPI({tipo:'avaliacao', nome:d.nome, cidade:d.cidade||'', produto:d.produto, nota:Number(d.nota), texto:d.texto, consent:true, pagina:location.href});
+  if (ok) {
+    f.querySelector('.f-grid').innerHTML = '<div class="f-ok full">✅ Recebemos sua avaliação. Obrigado! Ela aparece aqui depois de uma conferência rápida.</div>';
+    fbq && fbq('trackCustom','AvaliacaoEnviada',{produto:d.produto, nota:Number(d.nota)});
+  } else {
+    /* sem API: manda pelo WhatsApp com texto pronto */
+    const txt = encodeURIComponent(`Avaliação Loja CSI\nNome: ${d.nome}\nCidade: ${d.cidade||'-'}\nProduto: ${d.produto}\nNota: ${'★'.repeat(Number(d.nota))}\n${d.texto}\nAutorizo publicar com meu primeiro nome e cidade.`);
+    window.open(`https://wa.me/5587991016004?text=${txt}`, '_blank', 'noopener');
+    msg.innerHTML = '<div class="f-ok">Abri o WhatsApp com sua avaliação pronta — é só enviar. Obrigado!</div>';
+    btn.disabled = false; btn.textContent = 'Enviar avaliação →';
+  }
+});
+
+/* ===================================================================
+   CUPOM + POP-UP DE SAÍDA (captura de lead para remarketing)
+   - aparece 1x a cada 7 dias, só para quem ainda não deixou contato
+   - desktop: mouse sai pelo topo da janela; celular: 45 s na página
+     ou rolagem rápida para cima depois de ter descido bastante
+   - com o contato salvo, todos os botões de compra ganham ?coupon=
+   =================================================================== */
+function cupomAtivo(){ try { return localStorage.getItem('csi_cupom') === CUPOM.codigo; } catch(e){ return false; } }
+function cupomQS(){ return cupomAtivo() ? `&coupon=${CUPOM.codigo}` : ''; }
+function ativarCupom(){
+  try { localStorage.setItem('csi_cupom', CUPOM.codigo); localStorage.setItem('csi_lead', '1'); } catch(e){}
+  renderCatalogo();
+  const u = document.getElementById('urgency');
+  if (u && !u.querySelector('.cupom-on')) u.insertAdjacentHTML('beforeend', ` <span class="cupom-on">· 🎁 CUPOM ${CUPOM.codigo} (${CUPOM.pct}% OFF) APLICADO</span>`);
+}
+if (cupomAtivo()) ativarCupom();
+(function(){
+  const xo = document.getElementById('xo'); if (!xo) return;
+  let mostrado = false;
+  function podeMostrar(){
+    if (!CUPOM.ativo) return false;
+    try {
+      if (localStorage.getItem('csi_lead')) return false;
+      const t = Number(localStorage.getItem('csi_xo_visto')||0);
+      return Date.now() - t > 7*864e5;
+    } catch(e){ return true; }
+  }
+  function mostrar(origem){
+    if (mostrado || !podeMostrar()) return;
+    mostrado = true; xo.classList.add('on');
+    try { localStorage.setItem('csi_xo_visto', String(Date.now())); } catch(e){}
+    fbq && fbq('trackCustom','ExitPopupShown',{origem});
+  }
+  function fechar(){ xo.classList.remove('on'); }
+  document.addEventListener('mouseout', e=>{ if (!e.relatedTarget && e.clientY <= 0) mostrar('mouse'); });
+  /* celular */
+  const celular = matchMedia('(pointer:coarse)').matches;
+  let maxY = 0, ultY = 0;
+  if (celular) window.addEventListener('scroll', ()=>{
+    const y = window.scrollY, h = document.body.scrollHeight - innerHeight;
+    maxY = Math.max(maxY, y);
+    if (h > 0 && maxY / h > 0.35 && ultY - y > 140) mostrar('scroll');
+    ultY = y;
+  }, {passive:true});
+  setTimeout(()=>{ if (celular) mostrar('tempo'); }, 45000);
+  document.getElementById('xo-x').addEventListener('click', fechar);
+  document.getElementById('xo-nao').addEventListener('click', fechar);
+  xo.addEventListener('click', e=>{ if (e.target === xo) fechar(); });
+  document.getElementById('xo-form').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const f = e.target, msg = document.getElementById('xo-msg');
+    const d = Object.fromEntries(new FormData(f).entries());
+    const tel = (d.whatsapp||'').replace(/\D/g,'');
+    if (!d.nome || tel.length < 10 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email||'') || !d.consent) {
+      msg.innerHTML = '<div class="f-err">Confira nome, WhatsApp (com DDD), e-mail e marque a autorização.</div>'; return;
+    }
+    const b = f.querySelector('button[type=submit]'); b.disabled = true; b.textContent = 'Liberando…';
+    await enviarAPI({tipo:'lead', nome:d.nome, whatsapp:tel, email:d.email, consent:true, origem:'popup-saida', pagina:location.href});
+    fbq && fbq('track','Lead',{content_name:'cupom '+CUPOM.codigo});
+    ativarCupom();
+    document.getElementById('xo-p1').hidden = true; document.getElementById('xo-p2').hidden = false;
+  });
+  document.getElementById('xo-copiar').addEventListener('click', e=>{
+    navigator.clipboard && navigator.clipboard.writeText(CUPOM.codigo).then(()=>{ e.target.textContent='Copiado ✓'; });
+  });
+  document.getElementById('xo-continuar').addEventListener('click', ()=>{ fechar(); location.hash = '#camisas'; });
+})();
 function cardAulaHTML(a){
   const preco = a.preco ? `<span class="por">R$ ${a.preco}</span>` : `<span class="por" style="font-size:.95rem;color:var(--mut)">Em breve</span>`;
   const parc  = a.preco ? `<div class="parcela">Pix à vista · acesso imediato</div>` : '';
@@ -797,11 +1079,11 @@ function cardAulaHTML(a){
         onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'Aula ${a.n}'})">Comprar aula ⚡ <small>na página</small></a>`
     : `<button class="buy soon">Em breve</button>`;
   return `<div class="aula">
-    <div class="capa"><span class="num">AULA ${a.n}</span><img src="${a.img}" alt="Aula ${a.n} — ${a.caso}" loading="lazy"></div>
+    <div class="capa"><span class="num">AULA ${a.n}</span><span class="horas-tag">4H</span><img src="${a.img}" alt="Aula ${a.n} — ${a.caso}" loading="lazy"></div>
     <div class="body">
       <div class="caso">${a.caso}</div>
       <div class="tema">${a.tema}</div>
-      <div class="cert">🎓 Certificado de 4h incluso</div>
+      <div class="cert">🎓 Certificado de 4h — vale como horas complementares</div>
       <div class="priceline">${preco}</div>${parc}
       ${btn}
     </div></div>`;
