@@ -667,12 +667,12 @@ footer a:hover{color:var(--amarelo)}
    API_URL : URL do app da planilha Google (Apps Script) que recebe
              avaliações e leads e devolve as avaliações aprovadas.
              Vazio => avaliação vai pelo WhatsApp e o pop-up só mostra o cupom.
-   CUPOM   : código criado na Hotmart (10%). O site acrescenta ?coupon=
+   CUPOM   : código criado na Hotmart (10%). O site acrescenta &offDiscount=
              nos links de checkout depois que a pessoa deixa o contato.
    =================================================================== */
 const API_URL = "https://script.google.com/macros/s/AKfycbxKKAkqC4vebcsBQZxjavpObA7xICFw57oI7h0aueuZmQW8Bh73dL0UpOl0UKdnAiF1Dw/exec";
-const CUPOM = {codigo:"VOLTA10", pct:10, ativo:false};  // ativo:true só depois de criar o cupom na Hotmart
-const KIT_LEITOR_CHECKOUT = "";  // link pay.hotmart.com do Kit Leitor (quando criado)
+const CUPOM = {codigo:"VOLTA10", pct:10, ativo:true};  // cupom criado na Hotmart em 30/09 nos 22 produtos físicos
+const KIT_LEITOR_CHECKOUT = "https://pay.hotmart.com/H107815220Q";  // Kit Leitor (Hotmart ID 8619957)
 
 const PRODUTOS = [
   /* ------------- CAMISAS (11) — todas De 79,90 Por 59,90 ------------- */
@@ -1047,10 +1047,10 @@ document.getElementById('av-form').addEventListener('submit', async e=>{
    - aparece 1x a cada 7 dias, só para quem ainda não deixou contato
    - desktop: mouse sai pelo topo da janela; celular: 45 s na página
      ou rolagem rápida para cima depois de ter descido bastante
-   - com o contato salvo, todos os botões de compra ganham ?coupon=
+   - com o contato salvo, todos os botões de compra ganham &offDiscount=
    =================================================================== */
 function cupomAtivo(){ try { return localStorage.getItem('csi_cupom') === CUPOM.codigo; } catch(e){ return false; } }
-function cupomQS(){ return cupomAtivo() ? `&coupon=${CUPOM.codigo}` : ''; }
+function cupomQS(){ return cupomAtivo() ? `&offDiscount=${CUPOM.codigo}` : ''; }  // offDiscount = parâmetro que a Hotmart aplica sozinha
 function ativarCupom(){
   try { localStorage.setItem('csi_cupom', CUPOM.codigo); localStorage.setItem('csi_lead', '1'); } catch(e){}
   renderCatalogo();
