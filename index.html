@@ -833,7 +833,7 @@ function cardHTML(p){
   const deLine = (p.preco && p.precoDe && !semEstoque)
     ? `<div class="de-line">De <s>R$ ${p.precoDe}</s> por</div>` : '';
   const preco = p.preco ? `<span class="por">R$ ${p.preco}</span>` : `<span class="por" style="font-size:.95rem;color:var(--mut)">Em breve</span>`;
-  const parc  = p.preco ? `<div class="parcela">ou 12x de R$ ${(parseFloat(p.preco.replace('.','').replace(',','.'))/12).toFixed(2).replace('.',',')} no cartão · Pix à vista</div>` : '';
+  const parc  = p.preco ? `<div class="parcela">ou em até 12x no cartão · Pix à vista</div>` : '';
   /* babylook: aviso informativo — a versão já está definida neste produto,
      no checkout o cliente só escolhe o TAMANHO */
   const babylook = /babylook/i.test(p.nome)
