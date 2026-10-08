@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troca, devolução, entrega e privacidade — Loja CSI</title>
+<meta name="description" content="Como funcionam a entrega, o pagamento, a troca, a devolução e o uso dos seus dados na Loja CSI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--amarelo:#FFD400;--preto:#0a0a0a;--bg:#0d0d0d;--card:#161616;--line:#262626;--txt:#f5f5f2;--mut:#a3a39b;
+  --hazard:repeating-linear-gradient(-45deg,var(--amarelo),var(--amarelo) 16px,var(--preto) 16px,var(--preto) 32px)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;line-height:1.6}
+a{color:var(--amarelo)}
+.hazard-bar{height:12px;background:var(--hazard)}
+.wrap{max-width:820px;margin:0 auto;padding:28px 18px 60px}
+h1{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(1.5rem,5vw,2.2rem);line-height:1.05;margin-bottom:6px}
+.sub{color:var(--mut);margin-bottom:26px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+nav a{background:var(--card);border:1px solid var(--line);border-radius:30px;padding:7px 13px;font-size:.8rem;font-weight:700;text-decoration:none;color:var(--txt)}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+h2{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;font-size:1.1rem;margin-bottom:10px;color:var(--amarelo)}
+p,li{color:#d8d8d2;font-size:.93rem;margin-bottom:8px}
+ul,ol{margin-left:20px}
+b{color:var(--txt)}
+.dado{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;font-size:.9rem}
+.dado span:first-child{color:var(--mut)}
+.volta{display:inline-block;margin-top:18px;background:var(--amarelo);color:var(--preto);font-weight:900;padding:12px 18px;border-radius:11px;text-decoration:none}
+.aviso{background:#2a2000;border:1px dashed var(--amarelo);border-radius:10px;padding:10px 12px;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="hazard-bar"></div>
+<div class="wrap">
+  <h1>Como funciona a Loja CSI</h1>
+  <p class="sub">Entrega, pagamento, troca, devolução e o que fazemos com os seus dados. Escrito em português claro, do jeito que a lei pede.</p>
+  <nav>
+    <a href="#empresa">Quem somos</a><a href="#entrega">Entrega</a><a href="#pagamento">Pagamento</a>
+    <a href="#arrependimento">Desistir em 7 dias</a><a href="#troca">Troca e defeito</a><a href="#privacidade">Seus dados</a><a href="#atendimento">Atendimento</a>
+  </nav>
+
+  <section id="empresa">
+    <h2>Quem somos</h2>
+    <div class="dado">
+      <span>Nome</span><span id="e-nome"></span>
+      <span>CNPJ</span><span id="e-cnpj"></span>
+      <span>Endereço</span><span id="e-end"></span>
+      <span>E-mail</span><span id="e-email"></span>
+      <span>WhatsApp</span><span id="e-zap"></span>
+    </div>
+  </section>
+
+  <section id="entrega">
+    <h2>Entrega</h2>
+    <p>Enviamos para todo o Brasil pelos Correios ou transportadora. O valor e o prazo do frete aparecem na tela de finalização, antes de você pagar, e são calculados pelo CEP:</p>
+    <ul id="tabela-frete"></ul>
+    <p>Os prazos acima contam a partir da postagem, em dias úteis. Postamos em até <b>3 dias úteis</b> depois da confirmação do pagamento e mandamos o código de rastreio por e-mail e WhatsApp.</p>
+    <p>Se o pedido voltar por endereço errado ou ausência do destinatário, combinamos um novo envio; o novo frete fica por conta do comprador.</p>
+  </section>
+
+  <section id="pagamento">
+    <h2>Pagamento</h2>
+    <p>O pagamento é feito na página segura do <b>Mercado Pago</b>, por Pix, cartão de crédito (em até 12 vezes, com os juros informados na hora) ou boleto. Produtos e frete saem numa cobrança só. Nós não vemos nem guardamos os dados do seu cartão.</p>
+    <p>Antes de pagar, você vê o resumo com cada item, o tamanho, o preço de cada um, o frete, o prazo e o total. Depois do pagamento, você recebe um e-mail de confirmação com o número do pedido.</p>
+    <p>Preços e promoções valem enquanto estiverem publicados no site. Se houver erro evidente de digitação no preço, avisamos antes de enviar e você pode cancelar com devolução integral.</p>
+  </section>
+
+  <section id="arrependimento">
+    <h2>Desistir da compra em 7 dias</h2>
+    <p>Comprou e se arrependeu? Pelo artigo 49 do Código de Defesa do Consumidor, você pode desistir em até <b>7 dias corridos depois de receber</b> o produto, sem precisar explicar o motivo.</p>
+    <ol>
+      <li>Mande uma mensagem no WhatsApp ou e-mail com o número do pedido e a frase "quero desistir".</li>
+      <li>A gente responde em até 2 dias úteis com a etiqueta de devolução, sem custo para você.</li>
+      <li>Poste o produto sem uso, com a etiqueta e na embalagem original.</li>
+      <li>Quando chegar aqui, devolvemos o valor total (produto e frete) pelo mesmo meio que você pagou, em até 10 dias. No cartão, o estorno aparece na fatura seguinte, conforme o prazo do banco.</li>
+    </ol>
+  </section>
+
+  <section id="troca">
+    <h2>Troca de tamanho e defeito</h2>
+    <p><b>Não serviu?</b> Você pode trocar o tamanho em até <b>7 dias depois de receber</b>, desde que a peça esteja sem uso, sem lavagem e com a etiqueta. Fale com a gente pelo WhatsApp, mande o número do pedido e o tamanho desejado. O frete de ida é por sua conta e o de volta por nossa conta. Se o tamanho desejado tiver acabado, devolvemos o dinheiro.</p>
+    <p><b>Veio com defeito ou errado?</b> Avise em até <b>30 dias</b> (artigo 26 do CDC), com uma foto. A gente paga todo o frete e manda outra peça, ou devolve o dinheiro, como você preferir.</p>
+    <p>Antes de comprar, confira a <a href="index.html#camisas">tabela de medidas</a> de cada camisa.</p>
+  </section>
+
+  <section id="privacidade">
+    <h2>Seus dados (privacidade)</h2>
+    <p>Para entregar o pedido e emitir a nota fiscal, pedimos: <b>nome, e-mail, celular, CPF e endereço</b>. Esses dados são usados só para isso e para falar com você sobre o pedido.</p>
+    <ul>
+      <li>Compartilhamos os dados com o <b>Mercado Pago</b> (para processar o pagamento) e com os <b>Correios ou transportadora</b> (para a entrega). Com mais ninguém.</li>
+      <li>Não vendemos nem cedemos seus dados. Só mandamos ofertas se você pediu para receber e pode sair da lista quando quiser.</li>
+      <li>Os dados do cartão são digitados e guardados apenas pelo Mercado Pago.</li>
+      <li>Guardamos o registro do pedido pelo prazo que a lei fiscal exige (5 anos).</li>
+      <li>Você pode pedir para ver, corrigir ou apagar seus dados pelo e-mail ou WhatsApp abaixo, como prevê a LGPD (Lei 13.709/2018).</li>
+      <li>O site usa o Pixel da Meta para medir anúncios. Dá para bloquear nas configurações do seu navegador.</li>
+    </ul>
+  </section>
+
+  <section id="atendimento">
+    <h2>Atendimento</h2>
+    <p>Dúvida, troca, devolução ou problema com a entrega: fale pelo WhatsApp <b id="a-zap"></b> ou pelo e-mail <b id="a-email"></b>. Respondemos em até <b>2 dias úteis</b> (a lei dá 5).</p>
+    <p class="aviso">Pagamentos processados pelo Mercado Pago. Esta página vale como o resumo do contrato de compra, conforme o Decreto 7.962/2013.</p>
+  </section>
+
+  <a class="volta" href="index.html">← Voltar à loja</a>
+</div>
+<script src="catalogo.js?v=1"></script>
+<script>
+(function(){
+  const g = id => document.getElementById(id);
+  g('e-nome').textContent = EMPRESA.nome; g('e-cnpj').textContent = EMPRESA.cnpj;
+  g('e-end').textContent = EMPRESA.endereco; g('e-email').textContent = EMPRESA.email;
+  g('e-zap').innerHTML = `<a href="https://wa.me/${EMPRESA.whatsapp}" target="_blank" rel="noopener">${EMPRESA.whatsappBonito}</a>`;
+  g('a-zap').textContent = EMPRESA.whatsappBonito; g('a-email').textContent = EMPRESA.email;
+  const nomes = {PE:'Pernambuco', NE:'Demais estados do Nordeste', SE:'Sudeste', S:'Sul', CO:'Centro-Oeste', N:'Norte'};
+  g('tabela-frete').innerHTML = Object.entries(TABELA_FRETE).map(([k,f]) => `<li><b>${nomes[k]||k}:</b> R$ ${f.valor.toFixed(2).replace('.',',')} · ${f.prazo}</li>`).join('')
+    + (FRETE_GRATIS_ACIMA > 0 ? `<li><b>Frete grátis</b> em pedidos a partir de R$ ${FRETE_GRATIS_ACIMA.toFixed(2).replace('.',',')}.</li>` : '');
+})();
+</script>
+</body>
+</html>

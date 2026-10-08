@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loja CSI — Camisas, Livros e Acessórios de Perícia Criminal | Checkout na página</title>
-<meta name="description" content="Loja CSI: a loja oficial de quem ama perícia criminal. Camisas, livros e acessórios com pagamento seguro Hotmart (Pix e cartão) sem sair da página. Envio para todo o Brasil.">
+<meta name="description" content="Loja CSI: a loja oficial de quem ama perícia criminal. Camisas, livros e acessórios. Pix, cartão em até 12x ou boleto, com envio para todo o Brasil.">
 <meta property="og:title" content="Loja CSI — Vista a Perícia">
 <meta property="og:description" content="Camisas, livros e acessórios de perícia criminal. Pague com Pix ou cartão sem sair da página.">
 
@@ -343,6 +343,79 @@ section.cat{padding:52px 0 8px}
 .xo .cupom button{background:var(--amarelo);color:var(--preto);border:none;border-radius:10px;padding:10px 14px;font-weight:900;cursor:pointer}
 .xo .nao{display:block;margin:12px auto 0;background:none;border:none;color:var(--mut);font-size:.8rem;cursor:pointer;text-decoration:underline}
 
+/* ---------- carrinho ---------- */
+.addcart{margin-top:8px;background:transparent;border:1px solid #3a3a3a;color:var(--txt);font-weight:800;padding:10px;border-radius:11px;cursor:pointer;font-size:.82rem;display:flex;align-items:center;justify-content:center;gap:6px;transition:.2s}
+.addcart:hover{border-color:var(--amarelo);color:var(--amarelo)}
+.addcart.ok{border-color:var(--verde);color:var(--verde)}
+.cart-fab{position:fixed;left:14px;bottom:76px;z-index:60;background:var(--amarelo);color:var(--preto);border:none;border-radius:40px;padding:0 16px 0 12px;height:52px;display:flex;align-items:center;gap:8px;font-weight:900;font-size:.9rem;cursor:pointer;box-shadow:0 10px 24px -8px rgba(255,212,0,.7)}
+.cart-fab .n{background:var(--preto);color:var(--amarelo);border-radius:20px;min-width:24px;height:24px;display:grid;place-items:center;font-size:.8rem;padding:0 6px}
+.cart-fab.vazio{display:none}
+.cart-fab.pulse{animation:cartpulse .5s ease}
+@keyframes cartpulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+@media(min-width:741px){.cart-fab{bottom:18px}}
+.cart{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.72);backdrop-filter:blur(3px);display:none;justify-content:flex-end}
+.cart.on{display:flex}
+.cart .painel{width:100%;max-width:440px;height:100%;background:var(--card);border-left:1px solid var(--amarelo);display:flex;flex-direction:column;overflow:hidden;position:relative}
+.cart .painel::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;background:var(--hazard)}
+.cart .topo{display:flex;align-items:center;justify-content:space-between;padding:26px 20px 12px;border-bottom:1px solid var(--line)}
+.cart .topo h3{font-size:1.3rem}
+.cart .fechar{background:#191919;border:1px solid var(--line);color:var(--mut);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+.cart .lista{flex:1;overflow-y:auto;padding:12px 20px}
+.cart .item{display:grid;grid-template-columns:54px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.cart .item img{width:54px;height:54px;object-fit:cover;border-radius:8px;background:#000}
+.cart .item .nm{font-weight:800;font-size:.9rem;line-height:1.25}
+.cart .item .tam{display:inline-block;margin-top:4px;font-size:.7rem;font-weight:800;border:1px solid var(--amarelo);color:var(--amarelo);border-radius:6px;padding:1px 7px}
+.cart .item .pr{font-size:.85rem;color:var(--mut);margin-top:4px}
+.cart .qtd{display:flex;align-items:center;gap:6px}
+.cart .qtd button{width:28px;height:28px;border-radius:8px;border:1px solid #3a3a3a;background:#1c1c1c;color:var(--txt);cursor:pointer;font-weight:900}
+.cart .qtd span{min-width:18px;text-align:center;font-weight:800}
+.cart .rm{grid-column:2/4;justify-self:start;background:none;border:none;color:var(--mut);font-size:.72rem;text-decoration:underline;cursor:pointer;margin-top:-4px}
+.cart .vazio-msg{text-align:center;color:var(--mut);padding:40px 10px;font-size:.92rem}
+.cart .rodape{padding:14px 20px 18px;border-top:1px solid var(--line);background:#121212}
+.cart .tot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.cart .tot b{font-family:'Archivo Black';font-size:1.4rem;color:var(--amarelo)}
+.cart .cupom-ok{font-size:.75rem;color:var(--verde);font-weight:700;margin-bottom:8px}
+.cart .plano{background:#0f0f0f;border:1px dashed #3a3a3a;border-radius:10px;padding:10px 12px;font-size:.8rem;color:var(--mut);line-height:1.45;margin:8px 0 12px}
+.cart .plano b{color:var(--txt)}
+.cart .plano.ok{border-color:var(--verde)}
+.cart .plano.aviso{border-color:var(--amarelo)}
+.cart .plano ul{margin:6px 0 0 16px}
+.cart .plano li{margin:2px 0}
+.cart .acoes{display:flex;flex-direction:column;gap:8px}
+.cart .pagar{background:var(--amarelo);color:var(--preto);border:none;font-weight:900;padding:14px;border-radius:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:.95rem}
+.cart .pagar:hover{background:var(--amarelo2)}
+.cart .zap{background:#25d366;color:#0a3d24;border:none;font-weight:900;padding:12px;border-radius:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:.88rem}
+.cart .limpar{background:none;border:none;color:var(--mut);font-size:.75rem;text-decoration:underline;cursor:pointer;margin-top:2px}
+.cart .toast{background:#1a2a1a;border:1px solid var(--verde);color:var(--txt);border-radius:10px;padding:10px 12px;font-size:.8rem;margin-bottom:10px;line-height:1.4}
+.tm{position:fixed;inset:0;z-index:96;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:18px}
+.tm.on{display:flex}
+.tm .box{position:relative;width:100%;max-width:420px;background:var(--card);border:1px solid var(--amarelo);border-radius:16px;padding:26px 22px 22px;overflow:hidden}
+.tm .box::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--hazard)}
+.tm .fechar{position:absolute;top:14px;right:14px;background:#191919;border:1px solid var(--line);color:var(--mut);width:32px;height:32px;border-radius:50%;cursor:pointer}
+.tm h3{font-size:1.2rem;margin:8px 0 4px}
+.tm .sub{color:var(--mut);font-size:.85rem;margin-bottom:14px}
+.tm .tams{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tm .tams button{min-width:56px;padding:12px 10px;border-radius:10px;border:1px solid #3a3a3a;background:#1c1c1c;color:var(--txt);font-weight:900;cursor:pointer;font-size:.95rem}
+.tm .tams button:hover{border-color:var(--amarelo);color:var(--amarelo)}
+.tm .tams button small{display:block;font-size:.62rem;color:var(--amarelo);font-weight:700}
+.tm .tams button:disabled{opacity:.35;text-decoration:line-through;cursor:not-allowed}
+
+.ck h4{font-size:.95rem;margin:14px 0 8px;letter-spacing:.5px}
+.ck .ck-voltar{background:none;border:none;color:var(--mut);font-size:.8rem;text-decoration:underline;cursor:pointer;padding:0;margin:4px 0 2px}
+.ck .f-grid{gap:10px}
+.ck .f-grid label small{font-weight:500;text-transform:none;letter-spacing:0;color:var(--mut)}
+.ck .f-grid input{background:#101010;border:1px solid #333;border-radius:9px;padding:10px 12px;color:var(--txt);font-size:.92rem;width:100%}
+.ck .f-grid input:focus{border-color:var(--amarelo);outline:none}
+.ck-resumo table{width:100%;border-collapse:collapse;font-size:.86rem}
+.ck-resumo td{padding:6px 0;border-bottom:1px solid var(--line)}
+.ck-resumo td:last-child{text-align:right;white-space:nowrap;font-weight:700}
+.ck-resumo tr.desc td{color:var(--verde)}
+.ck-resumo tr.tt td{border-bottom:none;font-family:'Archivo Black';font-size:1rem;color:var(--amarelo);padding-top:10px}
+.ck-dica{font-size:.75rem;color:var(--mut);margin-top:8px;line-height:1.4}
+.ck .consent{margin-top:14px}
+.ck-seguro{font-size:.72rem;color:var(--mut);text-align:center;line-height:1.4}
+#ck-msg{margin-top:10px}
+
 /* ---------- faq ---------- */
 .faq{padding:10px 0 60px}
 .faq h2{font-size:1.7rem;text-align:center;margin-bottom:22px}
@@ -405,7 +478,7 @@ footer a:hover{color:var(--amarelo)}
       <div class="stats">
         <div><b>+450</b><span>na comunidade</span></div>
         <div><b>17 anos</b><span>de perícia real</span></div>
-        <div><b>Pix ou 12x</b><span>pagamento Hotmart</span></div>
+        <div><b>Pix ou 12x</b><span class="txt-pag">pagamento Hotmart</span></div>
       </div>
     </div>
     <div class="hero-card">
@@ -423,7 +496,7 @@ footer a:hover{color:var(--amarelo)}
 
 <!-- TRUST -->
 <div class="trust"><div class="wrap row">
-  <div class="it"><div class="ic">🔒</div><div>Pagamento <b>seguro via Hotmart</b></div></div>
+  <div class="it"><div class="ic">🔒</div><div>Pagamento <b class="txt-pag2">seguro via Hotmart</b></div></div>
   <div class="it"><div class="ic">⚡</div><div>Checkout <b>sem sair da página</b></div></div>
   <div class="it"><div class="ic">🚚</div><div>Envio para <b>todo o Brasil</b></div></div>
   <div class="it"><div class="ic">↩️</div><div>Troca <b>em até 7 dias</b></div></div>
@@ -474,7 +547,7 @@ footer a:hover{color:var(--amarelo)}
   <div class="wrap inner">
     <div>
       <h3>📦 Simule o frete antes de comprar</h3>
-      <p>Digite seu CEP para estimar prazo e valor de envio. O valor final é confirmado no checkout seguro da Hotmart.</p>
+      <p>Digite seu CEP para ver prazo e valor de envio. <span class="txt-frete">O valor final é confirmado no checkout seguro da Hotmart.</span></p>
     </div>
     <div>
       <form class="frete-form" id="frete-form" autocomplete="postal-code">
@@ -588,7 +661,7 @@ footer a:hover{color:var(--amarelo)}
 <!-- ============================ FAQ ============================ -->
 <section class="faq"><div class="wrap" style="max-width:780px">
   <h2>Perguntas frequentes</h2>
-  <details><summary>Como funciona o pagamento?</summary><p>Ao clicar em "Comprar agora", o checkout seguro da Hotmart abre aqui mesmo na página. Você paga com Pix, cartão (até 12x) ou boleto, sem ser redirecionado.</p></details>
+  <details><summary>Como funciona o pagamento?</summary><p class="txt-faq-pag">Ao clicar em "Comprar agora", o checkout seguro da Hotmart abre aqui mesmo na página. Você paga com Pix, cartão (até 12x) ou boleto, sem ser redirecionado.</p></details>
   <details><summary>Como funciona a entrega?</summary><p>Produtos físicos são enviados para todo o Brasil com código de rastreio. Os digitais liberam acesso na hora, direto no seu e-mail.</p></details>
   <details><summary>Posso trocar se não servir?</summary><p>Sim. Você tem 7 dias para solicitar troca ou devolução, conforme o Código de Defesa do Consumidor.</p></details>
   <details><summary>As edições são limitadas?</summary><p>Sim — várias peças são produzidas em lotes pequenos. Quando esgota, pode não voltar.</p></details>
@@ -605,9 +678,9 @@ footer a:hover{color:var(--amarelo)}
       <p>A loja oficial de quem ama investigação, ciência forense e perícia criminal.</p>
     </div>
     <div><b>Categorias</b><br><br><a href="#camisas">Camisas</a><br><a href="#livros">Livros</a><br><a href="#acessorios">Acessórios</a><br><a href="#aulas">Aulas das Lives</a></div>
-    <div><b>Atendimento</b><br><br><a href="https://wa.me/5581991016004" target="_blank" rel="noopener">WhatsApp</a><br><a href="https://www.instagram.com/loja_csi" target="_blank" rel="noopener">@loja_csi</a><br><a href="https://lives.peritohenriquetabosa.com.br" target="_blank" rel="noopener">Lives semanais</a></div>
+    <div><b>Atendimento</b><br><br><a href="https://wa.me/5581991016004" target="_blank" rel="noopener">WhatsApp</a><br><a href="politicas.html">Trocas e devoluções</a><br><a href="https://www.instagram.com/loja_csi" target="_blank" rel="noopener">@loja_csi</a><br><a href="https://lives.peritohenriquetabosa.com.br" target="_blank" rel="noopener">Lives semanais</a></div>
   </div>
-  <div class="fineprint">© <span id="yr"></span> Loja CSI — Cena de Crime · CNPJ 30.605.812/0001-21 · Pagamentos processados pela Hotmart. Todos os direitos reservados.</div>
+  <div class="fineprint">© <span id="yr"></span> <span id="foot-empresa">Loja CSI — Cena de Crime · CNPJ 30.605.812/0001-21</span> · <a href="politicas.html">Troca, devolução e privacidade</a> · <span id="foot-pag">Pagamentos processados pela Hotmart</span>. Todos os direitos reservados.</div>
 </div></footer>
 
 <!-- ============================ TABELA DE MEDIDAS (modal) ============================ -->
@@ -630,7 +703,7 @@ footer a:hover{color:var(--amarelo)}
       <form id="xo-form" novalidate>
         <div class="f-grid">
           <label class="full">Nome<input name="nome" required maxlength="60" placeholder="Seu nome"></label>
-          <label>WhatsApp<input name="whatsapp" required inputmode="tel" maxlength="20" placeholder="(87) 9 9999-9999"></label>
+          <label>WhatsApp<input name="whatsapp" required inputmode="tel" maxlength="20" placeholder="(81) 9 9999-9999"></label>
           <label>E-mail<input name="email" type="email" required maxlength="80" placeholder="voce@email.com"></label>
           <label class="full consent"><input type="checkbox" name="consent" required><span>Concordo em receber novidades e ofertas da Loja CSI por WhatsApp e e-mail. Sem spam — dá para sair quando quiser.</span></label>
           <div class="full" id="xo-msg"></div>
@@ -651,17 +724,28 @@ footer a:hover{color:var(--amarelo)}
 <a class="whats" href="https://wa.me/5581991016004" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
 <a class="sticky-cta" href="#camisas">🛒 VER PRODUTOS — PIX OU 12X</a>
 
+<!-- ============================ CARRINHO ============================ -->
+<button class="cart-fab vazio" id="cart-fab" type="button" onclick="abrirCarrinho()" aria-label="Abrir carrinho">🛒 Carrinho <span class="n" id="cart-n">0</span></button>
+<div class="cart" id="cart" role="dialog" aria-modal="true" aria-label="Seu carrinho">
+  <div class="painel">
+    <div class="topo"><h3 id="cart-titulo">🛒 Seu carrinho</h3><button class="fechar" type="button" onclick="fecharCarrinho()" aria-label="Fechar">✕</button></div>
+    <div class="lista" id="cart-lista"></div>
+    <div class="rodape" id="cart-rodape"></div>
+  </div>
+</div>
+<div class="tm" id="tm" role="dialog" aria-modal="true" aria-label="Escolha o tamanho">
+  <div class="box">
+    <button class="fechar" type="button" onclick="fecharTamanho()" aria-label="Fechar">✕</button>
+    <h3 id="tm-nome">Qual tamanho?</h3>
+    <p class="sub" id="tm-sub">Escolha o tamanho para colocar no carrinho. Na hora de pagar, a Hotmart pede o tamanho de novo — é só repetir.</p>
+    <div class="tams" id="tm-tams"></div>
+    <button type="button" class="medidas-link" onclick="abrirMedidas('carrinho')">📏 Tabela de medidas</button>
+  </div>
+</div>
+
+<!-- catalogo.js = produtos, preços, frete e dados da empresa (fonte única; edite lá) -->
+<script src="catalogo.js?v=1"></script>
 <script>
-/* ===================================================================
-   CATÁLOGO LOJA CSI — fonte única de dados.
-   checkout: link real pay.hotmart.com (o código adiciona ?checkoutMode=2
-             para abrir o POPUP Hotmart em cima desta página).
-   img     : foto principal. imgs: ["a.webp","b.webp"] ativa o CARROSSEL
-             (setas + bolinhas + arrastar no celular) — a 1ª é a capa.
-   precoDe : preço "De" riscado acima do preço atual (deixe "" para ocultar).
-   Itens sem 'checkout' aparecem como "Em breve".
-   Preços atualizados em 26/08/2026 conforme o Henrique.
-   =================================================================== */
 /* ===================================================================
    INTEGRAÇÕES — preencher aqui:
    API_URL : URL do app da planilha Google (Apps Script) que recebe
@@ -671,39 +755,6 @@ footer a:hover{color:var(--amarelo)}
              nos links de checkout depois que a pessoa deixa o contato.
    =================================================================== */
 const API_URL = "https://script.google.com/macros/s/AKfycbxKKAkqC4vebcsBQZxjavpObA7xICFw57oI7h0aueuZmQW8Bh73dL0UpOl0UKdnAiF1Dw/exec";
-const CUPOM = {codigo:"VOLTA10", pct:10, ativo:true};  // cupom criado na Hotmart em 30/09 nos 22 produtos físicos
-const KIT_LEITOR_CHECKOUT = "https://pay.hotmart.com/H107815220Q";  // Kit Leitor (Hotmart ID 8619957)
-
-const PRODUTOS = [
-  /* ------------- CAMISAS (11) — todas De 79,90 Por 59,90 ------------- */
-  {cat:"camisas", nome:"Camisa Criminal (babylook)",  precoDe:"79,90", preco:"59,90", badge:"hot", img:"img/camisa-criminal-babylook.webp", imgs:["img/foto-criminal-babylook-1.webp","img/foto-criminal-babylook-2.webp","img/camisa-criminal-babylook.webp","img/estampa-criminal-babylook.webp"], checkout:"https://pay.hotmart.com/N100131638T"},
-  {cat:"camisas", nome:"Camisa Criminal (normal)",    precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-criminal-normal.webp", imgs:["img/foto-criminal-normal-1.webp","img/foto-criminal-normal-2.webp","img/camisa-criminal-normal.webp","img/estampa-criminal-normal.webp"], checkout:"https://pay.hotmart.com/D100131643C"},
-  {cat:"camisas", nome:"Camisa Forense (babylook)",   precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-forense-babylook.webp", imgs:["img/foto-forense-babylook-1.webp","img/foto-forense-babylook-2.webp","img/camisa-forense-babylook.webp","img/estampa-forense-babylook.webp"], checkout:"https://pay.hotmart.com/A100131618K"},
-  {cat:"camisas", nome:"Camisa Forense (normal)",     precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-forense-normal.webp", imgs:["img/foto-forense-normal-1.webp","img/foto-forense-normal-2.webp","img/camisa-forense-normal.webp","img/estampa-forense-normal.webp"], checkout:"https://pay.hotmart.com/T100232782E"},
-  {cat:"camisas", nome:"Camisa Elementos (babylook)", precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-elementos-babylook.webp", imgs:["img/foto-elementos-babylook-1.webp","img/foto-elementos-babylook-2.webp","img/camisa-elementos-babylook.webp","img/estampa-elementos-babylook.webp"], checkout:"https://pay.hotmart.com/M100131589H"},
-  {cat:"camisas", nome:"Camisa Elementos (normal)",   precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-elementos-normal.webp", imgs:["img/foto-elementos-normal-1.webp","img/foto-elementos-normal-2.webp","img/camisa-elementos-normal.webp","img/estampa-elementos-normal.webp"], checkout:"https://pay.hotmart.com/Q100131648O"},
-  {cat:"camisas", nome:"Camisa Perícia& (babylook)",  precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-pericia-babylook.webp", imgs:["img/foto-pericia-babylook-1.webp","img/foto-pericia-babylook-2.webp","img/camisa-pericia-babylook.webp","img/estampa-pericia-babylook.webp"], checkout:"https://pay.hotmart.com/M100131605O"},
-  {cat:"camisas", nome:"Camisa Perícia& (normal)",    precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-pericia-normal.webp", imgs:["img/foto-pericia-normal-1.webp","img/foto-pericia-normal-2.webp","img/camisa-pericia-normal.webp","img/estampa-pericia-normal.webp"], checkout:"https://pay.hotmart.com/V100131770O"},
-  {cat:"camisas", nome:"Camisa Brasão (normal)",      precoDe:"79,90", preco:"59,90", badge:"",    img:"img/camisa-brasao-normal.webp", imgs:["img/foto-brasao-normal-1.webp","img/foto-brasao-normal-2.webp","img/foto-brasao-normal-3.webp","img/camisa-brasao-normal.webp","img/estampa-brasao-normal.webp"], checkout:"https://pay.hotmart.com/U100131655I"},
-  {cat:"camisas", nome:"Camisa Crime Scene (normal)", precoDe:"79,90", preco:"59,90", badge:"limitada", img:"img/camisa-crime-scene-normal.webp", imgs:["img/foto-crime-scene-normal-1.webp","img/foto-crime-scene-normal-2.webp","img/foto-crime-scene-normal-3.webp","img/camisa-crime-scene-normal.webp","img/estampa-crime-scene-normal.webp"], checkout:"https://pay.hotmart.com/H100131793V"},
-  {cat:"camisas", nome:"Camisa Vintage (normal)",     precoDe:"79,90", preco:"59,90", badge:"limitada",    img:"img/camisa-vintage-normal.webp", imgs:["img/foto-vintage-normal-1.webp","img/foto-vintage-normal-2.webp","img/camisa-vintage-normal.webp","img/estampa-vintage-normal.webp"], checkout:"https://pay.hotmart.com/V100131872J"},
-
-  /* ------------- LIVROS (2) ------------- */
-  {cat:"livros", nome:"O Caso dos Canibais de Pernambuco", precoDe:"99,90", preco:"64,90", badge:"hot", img:"img/livro-canibais-pernambuco.webp", checkout:"https://pay.hotmart.com/A98478536U"},
-  {cat:"livros", nome:"O Caso do Marchante Suicida",       precoDe:"89,90", preco:"59,90", badge:"",    img:"img/livro-marchante-suicida.webp", checkout:"https://pay.hotmart.com/R98459917C"},
-  {cat:"livros", nome:"Kit Leitor — os 2 livros", precoDe:"124,80", preco:"99,90", badge:"kit", slug:"kit-leitor", img:"img/kit-leitor.webp", checkout:KIT_LEITOR_CHECKOUT,
-   detalhes:["Canibais de Pernambuco + Marchante Suicida","Economia de R$ 24,90 em relação a comprar separado","Um envio só, com rastreio"]},
-
-  /* ------------- ACESSÓRIOS (8) ------------- */
-  {cat:"acessorios", nome:"Calça CSI",                 precoDe:"79,90", preco:"59,90", badge:"",    img:"img/calca-csi.webp", imgs:["img/foto-calca-csi-1.webp","img/foto-calca-csi-2.webp","img/foto-calca-csi-3.webp","img/foto-calca-csi-4.webp","img/calca-csi.webp","img/calca-csi-detalhe.webp"], checkout:"https://pay.hotmart.com/G100131782A"},
-  {cat:"acessorios", nome:"Carteira CSI — Faixas",     precoDe:"24,90", preco:"19,90", badge:"",    img:"img/carteira-csi-faixas.webp", checkout:"https://pay.hotmart.com/M100814965J"},
-  {cat:"acessorios", nome:"Carteira CSI — Sangue",     precoDe:"24,90", preco:"19,90", badge:"",    img:"img/carteira-csi-sangue.webp", checkout:"https://pay.hotmart.com/A100814990C"},
-  {cat:"acessorios", nome:"Estojo de Evidências",      precoDe:"37,90", preco:"29,90", badge:"hot", img:"img/estojo-evidencias.webp", checkout:"https://pay.hotmart.com/H100814875S"},
-  {cat:"acessorios", nome:"Cordão Perícia",            precoDe:"24,90", preco:"19,90", badge:"",    img:"img/cordao-pericia.webp", checkout:"https://pay.hotmart.com/P100815122S"},
-  {cat:"acessorios", nome:"Bottons Perícia Criminal",  precoDe:"9,90",  preco:"6,90",  badge:"new", img:"img/bottons-pericia-criminal.webp", checkout:"https://pay.hotmart.com/T100815045V"},
-  {cat:"acessorios", nome:"Brincos CSI",               precoDe:"36,70", preco:"26,90", badge:"",    img:"img/brincos-csi.webp", checkout:"https://pay.hotmart.com/T100814601J"},
-  {cat:"acessorios", nome:"Pulseira Perícia",          precoDe:"19,90", preco:"14,90", badge:"",    img:"img/pulseira-pericia.webp", checkout:"https://pay.hotmart.com/M100131610M"}
-];
 
 /* ===================================================================
    ESTOQUE — fonte: arquivo estoque.json (mesma pasta do site).
@@ -885,10 +936,15 @@ function cardHTML(p){
     const msg = encodeURIComponent(`Oi! Quero ser avisado(a) quando a ${p.nome} voltar ao estoque.`);
     btn = `<a class="buy off" href="https://wa.me/5581991016004?text=${msg}" target="_blank" rel="noopener"
              onclick="fbq&&fbq('trackCustom','AviseMe',{content_name:'${nomeSeguro}'})">🔔 Avise-me quando voltar</a>`;
+  } else if (PAGAMENTO === 'mercadopago' && p.preco) {
+    /* Mercado Pago: tudo passa pelo carrinho do site; o pagamento é na página segura do MP */
+    btn = `<button type="button" class="buy" onclick="comprarAgora('${slugDe(p)}', this)">Comprar agora ⚡ <small>pix ou 12x</small></button>
+          <button type="button" class="addcart" onclick="addCarrinho('${slugDe(p)}', this)">➕ Adicionar ao carrinho</button>`;
   } else if (p.checkout) {
     btn = `<a class="buy hotmart-fb hotmart__button-checkout" href="${p.checkout}?checkoutMode=2${cupomQS()}"
           onclick="fbq&&fbq('track','InitiateCheckout',{content_name:'${nomeSeguro}'})">
-          Comprar agora ⚡ <small>na página</small></a>`;
+          Comprar agora ⚡ <small>na página</small></a>
+          <button type="button" class="addcart" onclick="addCarrinho('${slugDe(p)}', this)">➕ Adicionar ao carrinho</button>`;
   } else {
     btn = `<button class="buy soon">Em breve</button>`;
   }
@@ -1043,6 +1099,315 @@ document.getElementById('av-form').addEventListener('submit', async e=>{
 });
 
 /* ===================================================================
+   CARRINHO — várias peças, um pagamento só (Order Bump da Hotmart)
+   Como funciona: a Hotmart não tem carrinho. O que ela tem é o
+   "Order Bump": no checkout de um produto aparecem até 9 produtos
+   extras ("Aproveite e compre junto") que o cliente marca e paga
+   junto, numa cobrança só. Cada produto tem a sua lista de bumps,
+   configurada em custom-checkout.hotmart.com/<id do produto>.
+   BUMPS abaixo = cópia dessa configuração (código do checkout do
+   produto principal -> códigos dos produtos que aparecem como extra).
+   >>> Se mudar os bumps na Hotmart, atualize aqui também. <<<
+   O site escolhe como "principal" o item do carrinho cuja lista cobre
+   mais itens; o que sobrar vai para um 2º pagamento ou pro WhatsApp.
+   =================================================================== */
+function codigoDe(p){ const m = /pay\.hotmart\.com\/([A-Za-z0-9]+)/.exec(p.checkout||''); return m ? m[1] : null; }
+function precoNum(s){ return Number(String(s||'0').replace(/\./g,'').replace(',','.')) || 0; }
+function brl(n){ return 'R$ ' + n.toFixed(2).replace('.',','); }
+function produtoPorSlug(slug){ return PRODUTOS.find(p => slugDe(p) === slug); }
+
+let CARRINHO = [];
+try { CARRINHO = JSON.parse(localStorage.getItem('csi_cart')||'[]'); if(!Array.isArray(CARRINHO)) CARRINHO = []; } catch(e){ CARRINHO = []; }
+function salvarCarrinho(){ try { localStorage.setItem('csi_cart', JSON.stringify(CARRINHO)); } catch(e){} renderCarrinho(); }
+function qtdCarrinho(){ return CARRINHO.reduce((a,i)=>a+i.q, 0); }
+
+/* adicionar: camisa => pergunta o tamanho primeiro */
+let _tmSlug = null, _tmBtn = null, _abrirDepois = false;
+function addCarrinho(slug, btn){
+  const p = produtoPorSlug(slug); if (!p || !p.preco || (PAGAMENTO !== 'mercadopago' && !p.checkout)) return;
+  if (p.cat === 'camisas') { _tmSlug = slug; _tmBtn = btn; abrirTamanho(p); return; }
+  colocarNoCarrinho(p, null, btn);
+}
+/* "Comprar agora": põe no carrinho e já abre o carrinho */
+function comprarAgora(slug, btn){ _abrirDepois = true; addCarrinho(slug, btn); }
+function colocarNoCarrinho(p, tam, btn){
+  const slug = slugDe(p);
+  const ex = CARRINHO.find(i => i.slug === slug && i.tam === tam);
+  if (ex) ex.q += 1; else CARRINHO.push({slug, tam, q:1});
+  salvarCarrinho();
+  const fab = document.getElementById('cart-fab'); fab.classList.remove('pulse'); void fab.offsetWidth; fab.classList.add('pulse');
+  if (btn && btn.classList.contains('addcart')) { btn.classList.add('ok'); btn.textContent = '✅ No carrinho — ver'; btn.onclick = abrirCarrinho; }
+  try { fbq && fbq('track','AddToCart',{content_name:p.nome, value:precoNum(p.preco), currency:'BRL'}); } catch(e){}
+  if (_abrirDepois) { _abrirDepois = false; abrirCarrinho(); }
+}
+function abrirTamanho(p){
+  const est = infoEstoque(p);
+  document.getElementById('tm-nome').textContent = p.nome;
+  document.getElementById('tm-tams').innerHTML = TAMANHOS.map(t=>{
+    const q = (est && est.porTam) ? est.porTam[t] : null;
+    const off = q !== null && q <= 0;
+    return `<button type="button" ${off?'disabled':''} onclick="escolherTamanho('${t}')">${t}${(q!==null && q>0 && q<=2)?`<small>só ${q}</small>`:''}</button>`;
+  }).join('');
+  document.getElementById('tm').classList.add('on');
+}
+function fecharTamanho(){ document.getElementById('tm').classList.remove('on'); _abrirDepois = false; }
+function escolherTamanho(t){
+  const p = produtoPorSlug(_tmSlug); const abrir = _abrirDepois; fecharTamanho(); _abrirDepois = abrir;
+  if (p) colocarNoCarrinho(p, t, _tmBtn); else _abrirDepois = false;
+}
+document.addEventListener('click', e=>{ if (e.target && e.target.id === 'tm') fecharTamanho(); });
+
+function abrirCarrinho(){ renderCarrinho(); document.getElementById('cart').classList.add('on'); try { fbq && fbq('trackCustom','VerCarrinho',{itens:qtdCarrinho()}); } catch(e){} }
+function fecharCarrinho(){ document.getElementById('cart').classList.remove('on'); }
+document.addEventListener('click', e=>{ if (e.target && e.target.id === 'cart') fecharCarrinho(); });
+document.addEventListener('keydown', e=>{ if (e.key === 'Escape') { fecharCarrinho(); fecharTamanho(); } });
+function mudarQtd(idx, d){ const i = CARRINHO[idx]; if(!i) return; i.q += d; if (i.q <= 0) CARRINHO.splice(idx,1); salvarCarrinho(); }
+function removerItem(idx){ CARRINHO.splice(idx,1); salvarCarrinho(); }
+function limparCarrinho(){ CARRINHO = []; salvarCarrinho(); }
+
+/* unidades (1 linha por peça) com os dados do produto */
+function unidades(){
+  const u = [];
+  CARRINHO.forEach((i, idx)=>{ const p = produtoPorSlug(i.slug); if(!p) return;
+    for (let k=0;k<i.q;k++) u.push({idx, slug:i.slug, tam:i.tam, nome:p.nome, preco:precoNum(p.preco), cod:codigoDe(p), checkout:p.checkout, img:p.img}); });
+  return u;
+}
+/* plano de pagamento: principal + extras que cabem no mesmo checkout + o que sobra */
+function planoCarrinho(){
+  const un = unidades(); if (!un.length) return null;
+  let melhor = null;
+  un.forEach((u, i)=>{
+    const lista = BUMPS[u.cod]; if (!lista) return;
+    const usados = new Set(); const cobertos = [], fora = [];
+    un.forEach((o, j)=>{ if (j===i) return; if (lista.includes(o.cod) && !usados.has(o.cod)) { cobertos.push(o); usados.add(o.cod); } else fora.push(o); });
+    const cand = {principal:u, cobertos, fora};
+    if (!melhor || cobertos.length > melhor.cobertos.length || (cobertos.length === melhor.cobertos.length && u.preco > melhor.principal.preco)) melhor = cand;
+  });
+  if (!melhor) { const ord = un.slice().sort((a,b)=>b.preco-a.preco); melhor = {principal:ord[0], cobertos:[], fora:ord.slice(1)}; }
+  return melhor;
+}
+function nomeTam(u){ return u.nome + (u.tam ? ` (tam. ${u.tam})` : ''); }
+function renderCarrinho(){
+  const tt = document.getElementById('cart-titulo'); if (tt) tt.textContent = '🛒 Seu carrinho';
+  const n = qtdCarrinho();
+  const fab = document.getElementById('cart-fab'); document.getElementById('cart-n').textContent = n; fab.classList.toggle('vazio', n === 0);
+  const lista = document.getElementById('cart-lista'), rod = document.getElementById('cart-rodape');
+  if (!n) { lista.innerHTML = `<div class="vazio-msg">Seu carrinho está vazio.<br><br>Use o botão <b>➕ Adicionar ao carrinho</b> nos produtos para juntar várias peças e pagar de uma vez.</div>`; rod.innerHTML = ''; return; }
+  lista.innerHTML = CARRINHO.map((i, idx)=>{ const p = produtoPorSlug(i.slug); if(!p) return '';
+    return `<div class="item">
+      <img src="${p.img}" alt="">
+      <div><div class="nm">${p.nome}</div>${i.tam?`<span class="tam">Tam. ${i.tam}</span>`:''}<div class="pr">${brl(precoNum(p.preco))} cada</div></div>
+      <div class="qtd"><button type="button" onclick="mudarQtd(${idx},-1)" aria-label="Menos">−</button><span>${i.q}</span><button type="button" onclick="mudarQtd(${idx},1)" aria-label="Mais">+</button></div>
+      <button class="rm" type="button" onclick="removerItem(${idx})">remover</button>
+    </div>`; }).join('');
+  const un = unidades(); const total = un.reduce((a,u)=>a+u.preco,0);
+  const pl = planoCarrinho();
+  let plano = '';
+  if (un.length === 1) {
+    plano = `<div class="plano ok">Um item só: o botão abaixo abre o pagamento direto.</div>`;
+  } else if (pl.fora.length === 0) {
+    plano = `<div class="plano ok"><b>✅ Tudo em um pagamento só.</b> Vamos abrir o pagamento de <b>${nomeTam(pl.principal)}</b>. Lá, na parte <b>"Aproveite e compre junto"</b>, marque também:
+      <ul>${pl.cobertos.map(u=>`<li>${nomeTam(u)}${u.tam?' — toque em "Ver opções" e escolha o tamanho':''}</li>`).join('')}</ul>Marcou? É só pagar: sai tudo em uma cobrança só.</div>`;
+  } else {
+    plano = `<div class="plano aviso"><b>Vai em 2 etapas.</b> Primeiro abrimos o pagamento de <b>${nomeTam(pl.principal)}</b>${pl.cobertos.length?`. Lá, em <b>"Aproveite e compre junto"</b>, marque: <ul>${pl.cobertos.map(u=>`<li>${nomeTam(u)}${u.tam?' — toque em "Ver opções" e escolha o tamanho':''}</li>`).join('')}</ul>`:'.'}
+      <br>⚠️ A Hotmart não deixa juntar no mesmo pagamento: <ul>${pl.fora.map(u=>`<li>${nomeTam(u)}</li>`).join('')}</ul>Depois de pagar, volte aqui: esses itens continuam no carrinho para o 2º pagamento. Ou feche tudo pelo WhatsApp, que a gente manda um link único.</div>`;
+  }
+  if (PAGAMENTO === 'mercadopago') {
+    rod.innerHTML = `<div id="cart-toast"></div>
+      <div class="tot"><span>${un.length} ${un.length>1?'itens':'item'}</span><b>${brl(total)}</b></div>
+      ${cupomAtivo()?`<div class="cupom-ok">🎁 Cupom ${CUPOM.codigo} (${CUPOM.pct}% off) entra na próxima etapa</div>`:''}
+      <div class="plano ok">Na próxima tela você informa o endereço, vê o <b>frete e o total</b> e paga tudo de uma vez no <b>Mercado Pago</b>: Pix, cartão em até 12x ou boleto.</div>
+      <div class="acoes">
+        <button class="pagar" type="button" onclick="abrirFinalizacao()">Finalizar compra →</button>
+        <button class="zap" type="button" onclick="pedidoWhats()">💬 Prefiro fechar pelo WhatsApp</button>
+        <button class="limpar" type="button" onclick="limparCarrinho()">esvaziar carrinho</button>
+      </div>`;
+    return;
+  }
+  const href = `${pl.principal.checkout}?checkoutMode=2${cupomQS()}`;
+  rod.innerHTML = `<div id="cart-toast"></div>
+    <div class="tot"><span>${un.length} ${un.length>1?'itens':'item'}</span><b>${brl(total)}</b></div>
+    ${cupomAtivo()?`<div class="cupom-ok">🎁 Cupom ${CUPOM.codigo} (${CUPOM.pct}% off) vai aplicado no pagamento</div>`:''}
+    ${plano}
+    <div class="acoes">
+      <a class="pagar hotmart-fb hotmart__button-checkout" href="${href}" target="_blank" rel="noopener" onclick="aoPagar()">Pagar na Hotmart ⚡ <small>pix ou cartão</small></a>
+      <button class="zap" type="button" onclick="pedidoWhats()">💬 Fechar pelo WhatsApp (81) 99101-6004</button>
+      <button class="limpar" type="button" onclick="limparCarrinho()">esvaziar carrinho</button>
+    </div>`;
+}
+/* ao abrir o pagamento: tira do carrinho o que foi para o checkout e deixa o resto para a 2ª etapa */
+function aoPagar(){
+  const pl = planoCarrinho(); if (!pl) return;
+  try { fbq && fbq('track','InitiateCheckout',{content_name:'Carrinho', num_items:1+pl.cobertos.length, value:[pl.principal,...pl.cobertos].reduce((a,u)=>a+u.preco,0), currency:'BRL'}); } catch(e){}
+  const foraIdx = {}; pl.fora.forEach(u=>{ foraIdx[u.idx+'|'+u.tam] = (foraIdx[u.idx+'|'+u.tam]||0)+1; });
+  setTimeout(()=>{
+    const novo = [];
+    CARRINHO.forEach((i, idx)=>{ const q = foraIdx[idx+'|'+i.tam]||0; if (q>0) novo.push({slug:i.slug, tam:i.tam, q}); });
+    CARRINHO = novo; salvarCarrinho();
+    const t = document.getElementById('cart-toast');
+    if (t) t.innerHTML = novo.length
+      ? `<div class="toast">✅ Abrimos o pagamento da 1ª etapa. Ficou no carrinho o que vai no 2º pagamento — quando terminar, toque em <b>Pagar na Hotmart</b> de novo.</div>`
+      : '';
+    if (!novo.length) fecharCarrinho();
+  }, 1500);
+}
+/* fechar pelo WhatsApp: manda a lista com tamanhos para o Henrique confirmar e enviar um link único */
+function pedidoWhats(){
+  const un = unidades(); if (!un.length) return;
+  const linhas = {}; un.forEach(u=>{ const k = nomeTam(u); linhas[k] = linhas[k] ? {q:linhas[k].q+1, preco:u.preco} : {q:1, preco:u.preco}; });
+  const total = un.reduce((a,u)=>a+u.preco,0);
+  const txt = `Oi! Quero fechar este pedido da Loja CSI em um pagamento só:\n` +
+    Object.entries(linhas).map(([k,v])=>`• ${v.q}x ${k} — ${brl(v.preco*v.q)}`).join('\n') +
+    `\nTotal: ${brl(total)}${cupomAtivo()?` (tenho o cupom ${CUPOM.codigo})`:''}\nPode me mandar o link de pagamento e confirmar os tamanhos?`;
+  try { fbq && fbq('trackCustom','PedidoWhatsApp',{itens:un.length, value:total, currency:'BRL'}); } catch(e){}
+  window.open(`https://wa.me/${WHATS_LOJA}?text=${encodeURIComponent(txt)}`, '_blank', 'noopener');
+}
+renderCarrinho();
+(function(){ /* rodapé com os dados da empresa (catalogo.js) */
+  const fe = document.getElementById('foot-empresa'), fp = document.getElementById('foot-pag');
+  if (fe) fe.innerHTML = `${escapa(EMPRESA.nome)} · CNPJ ${escapa(EMPRESA.cnpj)}${EMPRESA.endereco && !/PREENCHER/.test(EMPRESA.endereco) ? ' · ' + escapa(EMPRESA.endereco) : ''}`;
+  if (fp) fp.textContent = PAGAMENTO === 'mercadopago' ? 'Pagamentos processados pelo Mercado Pago' : 'Pagamentos processados pela Hotmart';
+  if (PAGAMENTO === 'mercadopago') { /* textos da página que citavam a Hotmart */
+    const T = (sel, txt) => document.querySelectorAll(sel).forEach(el => { el.textContent = txt; });
+    T('.txt-pag', 'pagamento Mercado Pago');
+    T('.txt-pag2', 'seguro via Mercado Pago');
+    T('.txt-frete', 'É esse o valor cobrado no pedido, junto com os produtos.');
+    T('.txt-faq-pag', 'Você monta o carrinho aqui, informa o endereço, vê o frete e o total, e paga tudo de uma vez na página segura do Mercado Pago: Pix, cartão em até 12x ou boleto. Depois, recebe a confirmação por e-mail.');
+    T('#tm-sub', 'Escolha o tamanho para colocar no carrinho.');
+  }
+})();
+
+/* ===================================================================
+   FINALIZAÇÃO (Mercado Pago): dados do comprador + endereço + resumo
+   O servidor (api/checkout.js) recalcula tudo pelo catalogo.js e cria
+   o pedido no Mercado Pago. O site só leva o cliente até lá.
+   =================================================================== */
+let FRETE_ATUAL = null;   // {valor, prazo, uf} depois que o CEP é consultado
+function lerComprador(){ try { return JSON.parse(localStorage.getItem('csi_comprador')||'{}'); } catch(e){ return {}; } }
+function guardarComprador(d){ try { const c = {...d}; delete c.cpf; localStorage.setItem('csi_comprador', JSON.stringify(c)); } catch(e){} }
+function mask(el, fn){ el.addEventListener('input', ()=>{ el.value = fn(el.value); }); }
+function mCPF(v){ v = v.replace(/\D/g,'').slice(0,11); return v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2'); }
+function mTel(v){ v = v.replace(/\D/g,'').slice(0,11); return v.length>6 ? `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}` : v.length>2 ? `(${v.slice(0,2)}) ${v.slice(2)}` : v; }
+function mCEP(v){ v = v.replace(/\D/g,'').slice(0,8); return v.length>5 ? v.slice(0,5)+'-'+v.slice(5) : v; }
+
+function abrirFinalizacao(){
+  if (!qtdCarrinho()) return;
+  const d = lerComprador();
+  document.getElementById('cart-titulo').textContent = '📦 Entrega e pagamento';
+  const lista = document.getElementById('cart-lista');
+  lista.innerHTML = `
+    <form id="ck-form" class="ck" novalidate>
+      <button type="button" class="ck-voltar" onclick="renderCarrinho()">← voltar ao carrinho</button>
+      <h4>Quem recebe</h4>
+      <div class="f-grid">
+        <label class="full">Nome completo<input id="ck-nome" required maxlength="80" value="${escapa(d.nome||'')}" autocomplete="name"></label>
+        <label>E-mail<input id="ck-email" type="email" required maxlength="80" value="${escapa(d.email||'')}" autocomplete="email"></label>
+        <label>Celular (DDD + número)<input id="ck-tel" required inputmode="tel" value="${escapa(d.telefone||'')}" autocomplete="tel"></label>
+        <label class="full">CPF <small>(pedido pela lei para emitir a nota)</small><input id="ck-cpf" required inputmode="numeric" placeholder="000.000.000-00"></label>
+      </div>
+      <h4>Endereço de entrega</h4>
+      <div class="f-grid">
+        <label>CEP<input id="ck-cep" required inputmode="numeric" value="${escapa(d.cep||'')}" placeholder="00000-000" autocomplete="postal-code"></label>
+        <label>Número<input id="ck-num" required maxlength="20" value="${escapa(d.numero||'')}"></label>
+        <label class="full">Rua / Avenida<input id="ck-rua" required maxlength="120" value="${escapa(d.logradouro||'')}" autocomplete="address-line1"></label>
+        <label class="full">Complemento <small>(apto, bloco, ponto de referência)</small><input id="ck-comp" maxlength="60" value="${escapa(d.complemento||'')}"></label>
+        <label>Bairro<input id="ck-bairro" required maxlength="80" value="${escapa(d.bairro||'')}"></label>
+        <label>Cidade<input id="ck-cidade" required maxlength="80" value="${escapa(d.cidade||'')}"></label>
+        <label>UF<input id="ck-uf" required maxlength="2" value="${escapa(d.uf||'')}" style="text-transform:uppercase"></label>
+        <div class="full" id="ck-cep-msg"></div>
+      </div>
+      <h4>Resumo do pedido</h4>
+      <div id="ck-resumo" class="ck-resumo"></div>
+      <label class="consent"><input type="checkbox" id="ck-ok" required><span>Li e concordo com a <a href="politicas.html" target="_blank" rel="noopener">política de troca, devolução e privacidade</a>. Posso desistir da compra em até 7 dias após receber.</span></label>
+      <div id="ck-msg"></div>
+    </form>`;
+  document.getElementById('cart-rodape').innerHTML = `
+    <div class="tot"><span>Total com frete</span><b id="ck-total">—</b></div>
+    <div class="acoes">
+      <button class="pagar" type="button" id="ck-pagar" onclick="pagarMP()">Pagar com Mercado Pago →</button>
+      <div class="ck-seguro">🔒 Pagamento na página segura do Mercado Pago · Pix, cartão em até 12x ou boleto</div>
+    </div>`;
+  mask(document.getElementById('ck-cpf'), mCPF);
+  mask(document.getElementById('ck-tel'), mTel);
+  const cep = document.getElementById('ck-cep'); mask(cep, mCEP);
+  cep.addEventListener('input', ()=>{ if (cep.value.replace(/\D/g,'').length === 8) consultarCEP(); });
+  document.getElementById('ck-uf').addEventListener('change', renderResumoCK);
+  FRETE_ATUAL = null;
+  if (cep.value.replace(/\D/g,'').length === 8) consultarCEP(); else renderResumoCK();
+  lista.scrollTop = 0;
+  try { fbq && fbq('track','InitiateCheckout',{content_name:'Carrinho', num_items:qtdCarrinho(), value:unidades().reduce((a,u)=>a+u.preco,0), currency:'BRL'}); } catch(e){}
+}
+async function consultarCEP(){
+  const cep = document.getElementById('ck-cep').value.replace(/\D/g,'');
+  const msg = document.getElementById('ck-cep-msg'); msg.innerHTML = '<span class="ck-dica">Consultando o CEP…</span>';
+  try {
+    const d = await fetch(`https://viacep.com.br/ws/${cep}/json/`).then(r=>r.json());
+    if (d.erro) { msg.innerHTML = '<div class="f-err">CEP não encontrado. Confira os números.</div>'; FRETE_ATUAL = null; renderResumoCK(); return; }
+    const set = (id, v) => { const el = document.getElementById(id); if (el && v && !el.value) el.value = v; };
+    set('ck-rua', d.logradouro); set('ck-bairro', d.bairro);
+    document.getElementById('ck-cidade').value = d.localidade || ''; document.getElementById('ck-uf').value = d.uf || '';
+    msg.innerHTML = '';
+    renderResumoCK();
+    if (!document.getElementById('ck-num').value) document.getElementById('ck-num').focus();
+  } catch(e) { msg.innerHTML = '<div class="f-err">Não consegui consultar o CEP agora. Preencha o endereço à mão.</div>'; renderResumoCK(); }
+}
+function freteUF(uf, subtotal){
+  if (!uf || !REGIOES[uf]) return null;
+  if (FRETE_GRATIS_ACIMA > 0 && subtotal >= FRETE_GRATIS_ACIMA) return {valor:0, prazo:TABELA_FRETE[REGIOES[uf]].prazo, gratis:true};
+  const f = TABELA_FRETE[REGIOES[uf]]; return {valor:f.valor, prazo:f.prazo, gratis:false};
+}
+function renderResumoCK(){
+  const un = unidades(); const box = document.getElementById('ck-resumo'); if (!box) return;
+  const pct = cupomAtivo() ? CUPOM.pct : 0;
+  const linhas = {}; un.forEach(u=>{ const k = nomeTam(u); if (!linhas[k]) linhas[k] = {q:0, unit:Math.round(u.preco*(1-pct/100)*100)/100}; linhas[k].q++; });
+  const subtotal = Object.values(linhas).reduce((a,l)=>a+l.unit*l.q,0);
+  const cheio = un.reduce((a,u)=>a+u.preco,0);
+  const uf = (document.getElementById('ck-uf').value||'').toUpperCase();
+  FRETE_ATUAL = freteUF(uf, subtotal); if (FRETE_ATUAL) FRETE_ATUAL.uf = uf;
+  const total = subtotal + (FRETE_ATUAL ? FRETE_ATUAL.valor : 0);
+  box.innerHTML = `<table>
+    ${Object.entries(linhas).map(([k,l])=>`<tr><td>${l.q}x ${escapa(k)}</td><td>${brl(l.unit*l.q)}</td></tr>`).join('')}
+    ${pct?`<tr class="desc"><td>Cupom ${CUPOM.codigo} (${pct}% off)</td><td>− ${brl(cheio-subtotal)}</td></tr>`:''}
+    <tr><td>Frete${FRETE_ATUAL?` · ${escapa(FRETE_ATUAL.prazo)} após a postagem`:''}</td><td>${FRETE_ATUAL ? (FRETE_ATUAL.gratis?'grátis':brl(FRETE_ATUAL.valor)) : '<i>informe o CEP</i>'}</td></tr>
+    <tr class="tt"><td>Total</td><td>${FRETE_ATUAL?brl(total):'—'}</td></tr>
+  </table>
+  <div class="ck-dica">Produtos e frete saem numa cobrança só. Depois do pagamento você recebe a confirmação por e-mail e o código de rastreio quando o pedido for postado.</div>`;
+  const t = document.getElementById('ck-total'); if (t) t.textContent = FRETE_ATUAL ? brl(total) : '—';
+}
+async function pagarMP(){
+  const g = id => (document.getElementById(id)||{}).value || '';
+  const msg = document.getElementById('ck-msg'); const btn = document.getElementById('ck-pagar');
+  const dados = {
+    itens: CARRINHO.map(i=>({slug:i.slug, tam:i.tam, q:i.q})),
+    comprador: {nome:g('ck-nome'), email:g('ck-email'), cpf:g('ck-cpf'), telefone:g('ck-tel')},
+    endereco: {cep:g('ck-cep'), logradouro:g('ck-rua'), numero:g('ck-num'), complemento:g('ck-comp'), bairro:g('ck-bairro'), cidade:g('ck-cidade'), uf:g('ck-uf').toUpperCase()},
+    cupom: cupomAtivo() ? CUPOM.codigo : ''
+  };
+  const falta = [];
+  if (dados.comprador.nome.trim().split(/\s+/).length < 2) falta.push('nome completo');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dados.comprador.email)) falta.push('e-mail');
+  if (dados.comprador.cpf.replace(/\D/g,'').length !== 11) falta.push('CPF');
+  if (dados.comprador.telefone.replace(/\D/g,'').length < 10) falta.push('celular');
+  if (dados.endereco.cep.replace(/\D/g,'').length !== 8) falta.push('CEP');
+  ['logradouro','numero','bairro','cidade','uf'].forEach(k=>{ if (!dados.endereco[k].trim()) falta.push({logradouro:'rua',numero:'número',bairro:'bairro',cidade:'cidade',uf:'UF'}[k]); });
+  if (!document.getElementById('ck-ok').checked) falta.push('aceite da política');
+  if (falta.length) { msg.innerHTML = `<div class="f-err">Falta preencher: ${falta.join(', ')}.</div>`; return; }
+  guardarComprador({...dados.comprador, ...dados.endereco});
+  btn.disabled = true; btn.textContent = 'Montando seu pedido…'; msg.innerHTML = '';
+  try {
+    const r = await fetch('/api/checkout', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(dados)});
+    const j = await r.json();
+    if (!r.ok || !j.url) throw new Error(j.erro || 'Não deu certo. Tente de novo.');
+    try { localStorage.setItem('csi_pedido', JSON.stringify({ref:j.ref, quando:Date.now(), resumo:j.resumo})); } catch(e){}
+    msg.innerHTML = `<div class="f-ok">Pedido <b>${j.ref}</b> montado. Levando você ao Mercado Pago…</div>`;
+    location.href = j.url;
+  } catch(e) {
+    msg.innerHTML = `<div class="f-err">${escapa(e.message)}</div>`;
+    btn.disabled = false; btn.textContent = 'Pagar com Mercado Pago →';
+  }
+}
+
+/* ===================================================================
    CUPOM + POP-UP DE SAÍDA (captura de lead para remarketing)
    - aparece 1x a cada 7 dias, só para quem ainda não deixou contato
    - desktop: mouse sai pelo topo da janela; celular: 45 s na página
@@ -1153,17 +1518,6 @@ const PROMO_FIM = "";
 /* ---------- simulador de frete por CEP (ViaCEP + tabela por região) ----------
    Ajuste a TABELA_FRETE com os valores reais que vocês praticam.
    O valor final cobrado é o configurado no produto dentro da Hotmart. */
-const TABELA_FRETE = {
-  "PE": {valor: 12.90, prazo: "2 a 4 dias úteis"},
-  "NE": {valor: 16.90, prazo: "3 a 6 dias úteis"},   // demais estados do Nordeste
-  "SE": {valor: 19.90, prazo: "4 a 7 dias úteis"},   // Sudeste
-  "S":  {valor: 21.90, prazo: "5 a 8 dias úteis"},   // Sul
-  "CO": {valor: 22.90, prazo: "5 a 9 dias úteis"},   // Centro-Oeste
-  "N":  {valor: 26.90, prazo: "6 a 12 dias úteis"}   // Norte
-};
-const REGIOES = {PE:"PE",AL:"NE",BA:"NE",CE:"NE",MA:"NE",PB:"NE",PI:"NE",RN:"NE",SE:"NE",
-  ES:"SE",MG:"SE",RJ:"SE",SP:"SE",PR:"S",RS:"S",SC:"S",DF:"CO",GO:"CO",MT:"CO",MS:"CO",
-  AC:"N",AP:"N",AM:"N",PA:"N",RO:"N",RR:"N",TO:"N"};
 
 const cepInput = document.getElementById('cep');
 cepInput.addEventListener('input', e=>{

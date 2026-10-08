@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu pedido — Loja CSI</title>
+<meta name="robots" content="noindex">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','984093961206190');fbq('track','PageView');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--amarelo:#FFD400;--preto:#0a0a0a;--bg:#0d0d0d;--card:#161616;--line:#262626;--txt:#f5f5f2;--mut:#a3a39b;--verde:#35c26f;
+  --hazard:repeating-linear-gradient(-45deg,var(--amarelo),var(--amarelo) 16px,var(--preto) 16px,var(--preto) 32px)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;line-height:1.5;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--amarelo)}
+.hazard-bar{height:12px;background:var(--hazard)}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:28px 18px}
+.box{width:100%;max-width:560px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;position:relative;overflow:hidden}
+.box.ok{border-color:var(--verde)} .box.pend{border-color:var(--amarelo)} .box.erro{border-color:#e05a5a}
+.box::before{content:"";position:absolute;top:0;left:0;right:0;height:8px;background:var(--hazard)}
+.ico{font-size:2.6rem;margin:6px 0 8px}
+h1{font-family:'Archivo Black',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(1.4rem,5vw,1.9rem);line-height:1.05;margin-bottom:10px}
+p{color:var(--mut);font-size:.95rem;margin-bottom:12px}
+p b{color:var(--txt)}
+.ref{display:inline-block;background:#101010;border:1px dashed var(--amarelo);border-radius:10px;padding:8px 14px;font-weight:900;letter-spacing:1px;color:var(--amarelo);margin:4px 0 14px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--amarelo);color:var(--preto);font-weight:900;padding:13px 18px;border-radius:11px;text-decoration:none;margin:6px 8px 6px 0}
+.btn.zap{background:#25d366;color:#0a3d24}
+.btn.sec{background:#1c1c1c;color:var(--txt);border:1px solid #3a3a3a}
+ul{margin:0 0 14px 18px;color:var(--mut);font-size:.9rem}
+li{margin:4px 0}
+footer{text-align:center;color:var(--mut);font-size:.75rem;padding:18px}
+</style>
+</head>
+<body>
+<div class="hazard-bar"></div>
+<main><div class="box" id="box">
+  <div class="ico" id="ico">⏳</div>
+  <h1 id="tit">Conferindo seu pedido…</h1>
+  <div id="corpo"></div>
+</div></main>
+<footer id="foot"></footer>
+<script src="catalogo.js?v=1"></script>
+<script>
+(function(){
+  const q = new URLSearchParams(location.search);
+  const s = q.get('s') || '';
+  const st = (q.get('status') || q.get('collection_status') || '').toLowerCase();
+  const ref = q.get('external_reference') || (function(){ try { return JSON.parse(localStorage.getItem('csi_pedido')||'{}').ref; } catch(e){ return ''; } })() || '';
+  const pagId = q.get('payment_id') || q.get('collection_id') || '';
+  const tipo = q.get('payment_type') || '';
+  const zap = `https://wa.me/${EMPRESA.whatsapp}?text=${encodeURIComponent('Oi! Sobre o meu pedido ' + (ref||'') + ' na Loja CSI: ')}`;
+  const box = document.getElementById('box'), ico = document.getElementById('ico'), tit = document.getElementById('tit'), corpo = document.getElementById('corpo');
+  const refHTML = ref ? `<div class="ref">Pedido ${ref}</div><br>` : '';
+  const aprovado = s === 'ok' || st === 'approved';
+  const pendente = s === 'pendente' || st === 'pending' || st === 'in_process';
+  if (aprovado) {
+    box.className = 'box ok'; ico.textContent = '✅'; tit.textContent = 'Pagamento aprovado. Obrigado!';
+    corpo.innerHTML = `${refHTML}
+      <p>Recebemos o seu pedido e o pagamento foi confirmado pelo Mercado Pago. Guarde o número acima.</p>
+      <p><b>O que acontece agora</b></p>
+      <ul>
+        <li>Você recebe um e-mail de confirmação com os itens e o endereço de entrega.</li>
+        <li>Separamos e postamos o pedido em até 3 dias úteis. O código de rastreio vai por e-mail e WhatsApp.</li>
+        <li>Não gostou ou não serviu? Você tem 7 dias depois de receber para pedir troca ou devolução. <a href="politicas.html">Veja como</a>.</li>
+      </ul>
+      <a class="btn zap" href="${zap}" target="_blank" rel="noopener">💬 Falar com a gente</a>
+      <a class="btn sec" href="index.html">Voltar à loja</a>`;
+    try { localStorage.removeItem('csi_cart'); } catch(e){}
+    try { fbq && fbq('track','Purchase',{currency:'BRL', value: Number((JSON.parse(localStorage.getItem('csi_pedido')||'{}').resumo||{}).total)||0}); } catch(e){}
+  } else if (pendente) {
+    box.className = 'box pend'; ico.textContent = '⏳'; tit.textContent = 'Falta só o pagamento cair';
+    corpo.innerHTML = `${refHTML}
+      <p>Seu pedido está registrado e aguardando a confirmação do pagamento.</p>
+      <ul>
+        <li><b>Pix:</b> a confirmação costuma levar poucos minutos. Se fechou a tela sem pagar, abra o e-mail do Mercado Pago e use o código de novo.</li>
+        <li><b>Boleto:</b> a compensação leva até 2 dias úteis depois do pagamento.</li>
+        <li><b>Cartão:</b> às vezes o banco demora alguns minutos para aprovar.</li>
+      </ul>
+      <p>Assim que confirmar, você recebe o e-mail e a gente separa o pedido. Guardamos seu carrinho por enquanto.</p>
+      <a class="btn zap" href="${zap}" target="_blank" rel="noopener">💬 Tirar dúvida no WhatsApp</a>
+      <a class="btn sec" href="index.html">Voltar à loja</a>`;
+  } else {
+    box.className = 'box erro'; ico.textContent = '✖'; tit.textContent = 'O pagamento não foi concluído';
+    corpo.innerHTML = `${refHTML}
+      <p>Nada foi cobrado. Pode ter sido recusa do cartão, dados digitados errado ou a tela fechou antes da hora.</p>
+      <p>Seu carrinho continua salvo: é só voltar e tentar de novo, com outro cartão ou Pix.</p>
+      <a class="btn" href="index.html#camisas">Tentar de novo</a>
+      <a class="btn zap" href="${zap}" target="_blank" rel="noopener">💬 Pedir ajuda</a>`;
+  }
+  document.getElementById('foot').textContent = `${EMPRESA.nome} · CNPJ ${EMPRESA.cnpj} · Pagamentos processados pelo Mercado Pago`;
+})();
+</script>
+</body>
+</html>
