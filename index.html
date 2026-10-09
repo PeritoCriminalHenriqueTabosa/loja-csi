@@ -101,13 +101,29 @@ header{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.94);backdrop-f
 .mosaic a{display:block;border-radius:10px;overflow:hidden;border:1px solid #232323}
 .mosaic img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:transform .35s}
 .mosaic a:hover img{transform:scale(1.05)}
-.yt{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000;cursor:pointer}
+.yt{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
 .yt img{width:100%;height:100%;object-fit:cover;display:block;opacity:.88;transition:opacity .2s}
 .yt:hover img{opacity:1}
 .yt .play{position:absolute;inset:0;margin:auto;width:72px;height:72px;border-radius:50%;background:var(--amarelo);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.6);transition:transform .15s}
 .yt .play::after{content:"";margin-left:6px;border-style:solid;border-width:14px 0 14px 23px;border-color:transparent transparent transparent var(--preto)}
 .yt:hover .play{transform:scale(1.08)}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* vídeo: começa sozinho sem som; o clique liga o som e volta ao início (igual às páginas de venda) */
+.yt.sem-som iframe{pointer-events:none}
+.som{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;background:linear-gradient(transparent 40%,rgba(0,0,0,.55));border:0;padding:0;cursor:pointer;color:var(--preto);font:inherit}
+.som span{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--amarelo);border-radius:16px;padding:14px 22px;box-shadow:0 0 0 0 rgba(255,212,0,.7);animation:pulsa 1.6s infinite;text-align:center;max-width:86%}
+.som b{font-size:clamp(1rem,2.6vw,1.2rem);font-weight:900;line-height:1.15}
+.som small{font-size:.8rem;opacity:.85;line-height:1.2;font-weight:700}
+.som:focus-visible span{outline:3px solid #fff;outline-offset:3px}
+@keyframes pulsa{0%{box-shadow:0 0 0 0 rgba(255,212,0,.65)}70%{box-shadow:0 0 0 18px rgba(255,212,0,0)}100%{box-shadow:0 0 0 0 rgba(255,212,0,0)}}
+@media(prefers-reduced-motion:reduce){.som span{animation:none}}
+/* no celular, com vídeo, ele fica logo depois do título (igual à página de venda) */
+@media(max-width:820px){
+  .hero .grid.vsl>div:first-child{display:contents}
+  .hero .grid.vsl .kick{order:1;justify-self:start}.hero .grid.vsl h1{order:2}
+  .hero .grid.vsl .hero-card{order:3;margin:4px auto 18px}
+  .hero .grid.vsl p.sub{order:4}.hero .grid.vsl .cta-row{order:5}.hero .grid.vsl .stats{order:6}
+}
 .hero-caption{margin-top:10px;text-align:center;font-size:.72rem;letter-spacing:2px;color:var(--mut);font-weight:700}
 .hero-caption span{color:var(--amarelo)}
 .stats{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap}
@@ -491,7 +507,7 @@ footer a:hover{color:var(--amarelo)}
     <div class="hero-card">
       <div class="hero-strip" aria-hidden="true"></div>
       <!-- VÍDEO DA LOJA: o código do YouTube fica em VIDEO_YT (no fim da página). Vazio = volta o mosaico de fotos -->
-      <div class="yt" id="yt" role="button" tabindex="0" aria-label="Assistir ao vídeo da Loja CSI" hidden></div>
+      <div class="yt" id="yt" hidden></div>
       <div class="mosaic" id="mosaico">
         <a href="#camisas"><img src="img/camisa-criminal-normal.webp" alt="Camisa Criminal"></a>
         <a href="#camisas"><img src="img/camisa-pericia-babylook.webp" alt="Camisa Perícia babylook"></a>
@@ -1553,22 +1569,32 @@ document.getElementById('frete-form').addEventListener('submit', async e=>{
   }
 });
 
-/* ---------- vídeo da loja no topo: mostra a capa e só carrega o YouTube no clique ---------- */
-const VIDEO_YT = "s9rC6IFNVrA";   // código do vídeo (o que vem depois de youtu.be/). Vazio = mosaico de fotos
+/* ---------- VÍDEO (loja) — igual às páginas de venda ----------
+   Ao abrir a página o vídeo começa sozinho, SEM SOM, com o aviso
+   "Seu vídeo já começou — clique para ouvir". O clique liga o som e
+   volta para o começo. Para trocar: cole o link do YouTube em VIDEO_YT. */
+const VIDEO_YT = "https://youtu.be/s9rC6IFNVrA";
 (function(){
-  if (!VIDEO_YT) return;
   const box = document.getElementById('yt');
+  const m = String(VIDEO_YT).match(/(?:youtu\.be\/|[?&]v=|shorts\/|embed\/)([\w-]{11})/);
+  const yt = m ? m[1] : (/^[\w-]{11}$/.test(VIDEO_YT) ? VIDEO_YT : "");
+  if (!yt) {  return; }
   document.getElementById('mosaico').hidden = true;
   document.getElementById('hero-cap').innerHTML = '▶ <span>ASSISTA</span> · CONHEÇA A LOJA CSI';
+  document.querySelector('.hero .grid').classList.add('vsl');
   box.hidden = false;
-  box.innerHTML = `<img src="https://i.ytimg.com/vi/${VIDEO_YT}/hqdefault.jpg" alt="Vídeo da Loja CSI"><span class="play" aria-hidden="true"></span>`;
-  function tocar(){
-    if (box.querySelector('iframe')) return;
-    box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${VIDEO_YT}?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Loja CSI" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-    try { fbq && fbq('trackCustom','VideoPlay',{pagina:'loja'}); } catch(e){}
-  }
-  box.addEventListener('click', tocar);
-  box.addEventListener('keydown', e=>{ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); tocar(); } });
+  const src = `https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${yt}&controls=1&rel=0&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
+  box.classList.add('sem-som');
+  box.innerHTML = `<iframe id="pvyt" src="${src}" title="Loja CSI" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>` +
+    `<button type="button" class="som" id="som" aria-label="Ligar o som e assistir do começo"><span><b>🔊 Seu vídeo já começou</b><small>Clique para ouvir</small></span></button>`;
+  const f = document.getElementById('pvyt'), b = document.getElementById('som');
+  const cmd = (func, args=[]) => { try{ f.contentWindow.postMessage(JSON.stringify({event:'command', func, args}), '*'); }catch(e){} };
+  f.addEventListener('load', () => { try{ f.contentWindow.postMessage(JSON.stringify({event:'listening'}), '*'); }catch(e){} });
+  b.addEventListener('click', () => {
+    cmd('unMute'); cmd('setVolume',[100]); cmd('seekTo',[0,true]); cmd('setLoop',[false]); cmd('playVideo');
+    b.remove(); box.classList.remove('sem-som');
+    try{ fbq && fbq('trackCustom','VideoSom',{pagina:'loja'}); }catch(e){}
+  });
 })();
 </script>
 </body>
