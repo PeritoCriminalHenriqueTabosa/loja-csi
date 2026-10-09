@@ -608,7 +608,7 @@ footer a:hover{color:var(--amarelo)}
     <div class="digi-card acesso-total">
       <span class="at-badge">⭐ MELHOR CUSTO-BENEFÍCIO</span>
       <div>
-        <h3>Cena de Crime com o Tabosa<br><em>— Acesso Total —</em></h3>
+        <h3>Perícia Forense com o Tabosa<br><em>— Fundamentos da Investigação Criminal —</em></h3>
         <p style="color:var(--mut)">Todas as aulas do Live Semanal da Perícia num acesso só: as 10 já disponíveis abaixo + as novas de cada semana, com o Perito Henrique Tabosa.</p>
         <ul>
           <li>✅ <b>Todas as aulas</b> do semestre (caso real + técnica pericial)</li>
@@ -1092,7 +1092,7 @@ if (API_URL) {
   });
   const oga = document.createElement('optgroup'); oga.label='Aulas';
   AULAS.forEach(a=>{ const o=document.createElement('option'); o.value=`Aula ${a.n} — ${a.caso}`; o.textContent=`Aula ${a.n} — ${a.caso}`; oga.appendChild(o); });
-  const ac = document.createElement('option'); ac.value='Acesso Total'; ac.textContent='Acesso Total (assinatura)'; oga.appendChild(ac);
+  const ac = document.createElement('option'); ac.value='Acesso Total'; ac.textContent='Perícia Forense com o Tabosa (curso completo)'; oga.appendChild(ac);
   sel.appendChild(oga);
   const ou = document.createElement('option'); ou.value='Outro'; ou.textContent='Outro'; sel.appendChild(ou);
 })();
@@ -1517,7 +1517,7 @@ function cardAulaHTML(a){
     </div></div>`;
 }
 document.getElementById('grid-aulas').innerHTML = AULAS.map(cardAulaHTML).join('');
-document.getElementById('count-aulas').textContent = AULAS.length + ' aulas avulsas + Acesso Total';
+document.getElementById('count-aulas').textContent = AULAS.length + ' aulas avulsas + curso completo';
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
