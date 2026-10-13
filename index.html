@@ -402,6 +402,19 @@ section.cat{padding:52px 0 8px}
 .cart .plano b{color:var(--txt)}
 .cart .plano.ok{border-color:var(--verde)}
 .cart .plano.aviso{border-color:var(--amarelo)}
+.cart .guardar{margin:14px 0 4px;background:#101010;border:1px dashed #3a3a3a;border-radius:12px;padding:12px 14px}
+.cart .guardar summary{cursor:pointer;font-weight:800;font-size:.86rem;list-style:none;color:var(--txt)}
+.cart .guardar summary::-webkit-details-marker{display:none}
+.cart .guardar summary small{display:block;font-weight:500;color:var(--mut);font-size:.74rem;margin-top:2px}
+.cart .guardar form{display:grid;gap:8px;margin-top:10px}
+.cart .guardar input[type=text],.cart .guardar input[type=tel]{width:100%;background:#0a0a0a;border:1px solid #333;border-radius:9px;color:var(--txt);padding:10px 12px;font:inherit;font-size:.88rem}
+.cart .guardar label.ok{display:flex;gap:8px;align-items:flex-start;font-size:.72rem;color:var(--mut);line-height:1.4}
+.cart .guardar label.ok input{margin-top:2px;accent-color:var(--amarelo);flex:none}
+.cart .guardar label.ok a{color:var(--amarelo)}
+.cart .guardar button{background:var(--amarelo);color:var(--preto);border:none;border-radius:9px;padding:10px;font-weight:900;cursor:pointer}
+.cart .guardar .msg{font-size:.76rem;color:#e05a5a;min-height:1em}
+.cart .guardar .salvo{font-size:.8rem;color:var(--verde);font-weight:700}
+.cart .guardar .salvo button{background:none;color:var(--mut);padding:0 0 0 6px;font-weight:600;text-decoration:underline;font-size:.74rem}
 .cart .plano ul{margin:6px 0 0 16px}
 .cart .plano li{margin:2px 0}
 .cart .acoes{display:flex;flex-direction:column;gap:8px}
@@ -1143,8 +1156,95 @@ function produtoPorSlug(slug){ return PRODUTOS.find(p => slugDe(p) === slug); }
 
 let CARRINHO = [];
 try { CARRINHO = JSON.parse(localStorage.getItem('csi_cart')||'[]'); if(!Array.isArray(CARRINHO)) CARRINHO = []; } catch(e){ CARRINHO = []; }
-function salvarCarrinho(){ try { localStorage.setItem('csi_cart', JSON.stringify(CARRINHO)); } catch(e){} renderCarrinho(); }
+function salvarCarrinho(){ try { localStorage.setItem('csi_cart', JSON.stringify(CARRINHO)); } catch(e){} renderCarrinho(); agendarEnvioCarrinho(); }
 function qtdCarrinho(){ return CARRINHO.reduce((a,i)=>a+i.q, 0); }
+
+/* ===================================================================
+   CARRINHOS NA PLANILHA (aba "carrinhos" de "Loja CSI — Avaliações e Leads")
+   Cada carrinho tem um código aleatório (csi_cart_id) e vira UMA linha,
+   atualizada a cada mudança. Sem contato = anônimo. Nome e WhatsApp só
+   vão se a pessoa preencher o campo opcional e marcar a autorização.
+   =================================================================== */
+function idCarrinho(novo){
+  try {
+    let id = localStorage.getItem('csi_cart_id');
+    if (!id || novo) { id = 'C' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,6).toUpperCase(); localStorage.setItem('csi_cart_id', id); }
+    return id;
+  } catch(e){ return ''; }
+}
+function lerContatoCarrinho(){ try { return JSON.parse(localStorage.getItem('csi_cart_contato')||'null'); } catch(e){ return null; } }
+function origemVisita(){
+  try {
+    const q = new URLSearchParams(location.search);
+    const o = q.get('utm_source') || q.get('src') || sessionStorage.getItem('csi_origem') || (document.referrer ? new URL(document.referrer).hostname.replace(/^www\./,'') : 'direto');
+    sessionStorage.setItem('csi_origem', o); return o;
+  } catch(e){ return ''; }
+}
+origemVisita();
+function resumoItens(){
+  return CARRINHO.map(i=>{ const p = produtoPorSlug(i.slug); return p ? `${i.q}x ${p.nome}${i.tam?` (${i.tam})`:''}` : ''; }).filter(Boolean).join('; ');
+}
+function enviarCarrinho(status){
+  if (!API_URL) return;
+  const id = idCarrinho(); if (!id) return;
+  const c = lerContatoCarrinho() || {};
+  const un = unidades();
+  const dados = {tipo:'carrinho', id, status, itens:resumoItens(), qtd:un.length, valor:Number(un.reduce((a,u)=>a+u.preco,0).toFixed(2)),
+    nome:c.nome||'', whatsapp:c.whatsapp||'', consent:!!c.consent, origem:origemVisita(), pagina:location.href.split('#')[0]};
+  try { fetch(API_URL, {method:'POST', mode:'no-cors', keepalive:true, headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(dados)}); } catch(e){}
+}
+let _envioCarrinhoT = null, _carrinhoJaFoi = false, _semEnvioVazio = false;
+function agendarEnvioCarrinho(){
+  clearTimeout(_envioCarrinhoT);
+  if (!qtdCarrinho()) {
+    if (_carrinhoJaFoi && !_semEnvioVazio) enviarCarrinho('esvaziado');
+    _semEnvioVazio = false; _carrinhoJaFoi = false;
+    try { localStorage.removeItem('csi_cart_id'); } catch(e){}
+    return;
+  }
+  _envioCarrinhoT = setTimeout(()=>{ enviarCarrinho('montando'); _carrinhoJaFoi = true; }, 3000);
+}
+if (qtdCarrinho()) _carrinhoJaFoi = true;
+/* se a pessoa sair da página com envio pendente, manda na hora */
+document.addEventListener('visibilitychange', ()=>{ if (document.visibilityState === 'hidden' && _envioCarrinhoT && qtdCarrinho()) { clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null; enviarCarrinho('montando'); _carrinhoJaFoi = true; } });
+
+/* campo opcional de contato dentro do carrinho */
+function blocoGuardar(){
+  const c = lerContatoCarrinho();
+  if (c && c.consent) {
+    return `<div class="guardar"><div class="salvo">✅ Carrinho guardado para ${escapa(c.nome||'você')} · ${escapa(c.whatsapp||'')}<button type="button" onclick="esquecerContatoCarrinho()">não quero mais</button></div></div>`;
+  }
+  return `<details class="guardar" id="guardar">
+    <summary>📩 Quer que a gente guarde seu carrinho? <small>Opcional. Deixe nome e WhatsApp e a gente te ajuda com tamanho, frete ou se der algum problema no pagamento.</small></summary>
+    <form onsubmit="return salvarContatoCarrinho(event)" novalidate>
+      <input type="text" id="gc-nome" placeholder="Seu nome" autocomplete="name" maxlength="80">
+      <input type="tel" id="gc-zap" placeholder="WhatsApp com DDD" autocomplete="tel" inputmode="tel" maxlength="16">
+      <label class="ok"><input type="checkbox" id="gc-ok"><span>Autorizo a Loja CSI a guardar este carrinho com meu nome e WhatsApp e a falar comigo sobre este pedido. Posso pedir para apagar quando quiser. <a href="politicas.html#privacidade" target="_blank" rel="noopener">Como usamos seus dados</a></span></label>
+      <div class="msg" id="gc-msg"></div>
+      <button type="submit">Guardar meu carrinho</button>
+    </form>
+  </details>`;
+}
+function salvarContatoCarrinho(ev){
+  ev.preventDefault();
+  const nome = document.getElementById('gc-nome').value.trim();
+  const zap = document.getElementById('gc-zap').value.replace(/\D/g,'');
+  const ok = document.getElementById('gc-ok').checked;
+  const msg = document.getElementById('gc-msg');
+  if (nome.length < 2) { msg.textContent = 'Escreva seu nome.'; return false; }
+  if (zap.length < 10 || zap.length > 11) { msg.textContent = 'Confira o WhatsApp com DDD (só números).'; return false; }
+  if (!ok) { msg.textContent = 'Marque a autorização para a gente guardar seu contato.'; return false; }
+  try { localStorage.setItem('csi_cart_contato', JSON.stringify({nome, whatsapp:zap, consent:true})); } catch(e){}
+  clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null;
+  enviarCarrinho('contato deixado'); _carrinhoJaFoi = true;
+  try { fbq && fbq('track','Lead',{content_name:'Carrinho guardado', value:unidades().reduce((a,u)=>a+u.preco,0), currency:'BRL'}); } catch(e){}
+  renderCarrinho();
+  return false;
+}
+function esquecerContatoCarrinho(){
+  try { localStorage.removeItem('csi_cart_contato'); } catch(e){}
+  renderCarrinho();
+}
 
 /* adicionar: camisa => pergunta o tamanho primeiro */
 let _tmSlug = null, _tmBtn = null, _abrirDepois = false;
@@ -1224,7 +1324,7 @@ function renderCarrinho(){
       <div><div class="nm">${p.nome}</div>${i.tam?`<span class="tam">Tam. ${i.tam}</span>`:''}<div class="pr">${brl(precoNum(p.preco))} cada</div></div>
       <div class="qtd"><button type="button" onclick="mudarQtd(${idx},-1)" aria-label="Menos">−</button><span>${i.q}</span><button type="button" onclick="mudarQtd(${idx},1)" aria-label="Mais">+</button></div>
       <button class="rm" type="button" onclick="removerItem(${idx})">remover</button>
-    </div>`; }).join('');
+    </div>`; }).join('') + blocoGuardar();
   const un = unidades(); const total = un.reduce((a,u)=>a+u.preco,0);
   const pl = planoCarrinho();
   let plano = '';
@@ -1263,6 +1363,9 @@ function renderCarrinho(){
 /* ao abrir o pagamento: tira do carrinho o que foi para o checkout e deixa o resto para a 2ª etapa */
 function aoPagar(){
   const pl = planoCarrinho(); if (!pl) return;
+  clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null;
+  enviarCarrinho('foi para pagamento'); _semEnvioVazio = true;
+  try { localStorage.removeItem('csi_cart_id'); } catch(e){}
   try { fbq && fbq('track','InitiateCheckout',{content_name:'Carrinho', num_items:1+pl.cobertos.length, value:[pl.principal,...pl.cobertos].reduce((a,u)=>a+u.preco,0), currency:'BRL'}); } catch(e){}
   const foraIdx = {}; pl.fora.forEach(u=>{ foraIdx[u.idx+'|'+u.tam] = (foraIdx[u.idx+'|'+u.tam]||0)+1; });
   setTimeout(()=>{
@@ -1285,6 +1388,7 @@ function pedidoWhats(){
     Object.entries(linhas).map(([k,v])=>`• ${v.q}x ${k} — ${brl(v.preco*v.q)}`).join('\n') +
     `\nTotal: ${brl(total)}${cupomAtivo()?` (tenho o cupom ${CUPOM.codigo})`:''}\nPode me mandar o link de pagamento e confirmar os tamanhos?`;
   try { fbq && fbq('trackCustom','PedidoWhatsApp',{itens:un.length, value:total, currency:'BRL'}); } catch(e){}
+  clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null; enviarCarrinho('pedido pelo WhatsApp'); _carrinhoJaFoi = true;
   window.open(`https://wa.me/${WHATS_LOJA}?text=${encodeURIComponent(txt)}`, '_blank', 'noopener');
 }
 renderCarrinho();
