@@ -613,20 +613,20 @@ footer a:hover{color:var(--amarelo)}
       <div class="big">4h<small>POR AULA</small></div>
       <div>
         <h3>🎓 Horas complementares para a sua graduação</h3>
-        <p>Cada aula gravada dá <b style="color:var(--txt)">certificado de 4 horas</b> (curso livre/extensão), com seu nome e CPF. A maioria das graduações aceita como atividade complementar — confira a regra da sua instituição. As 10 aulas do Bloco A somam <b style="color:var(--txt)">40 horas</b>.</p>
+        <p>Cada aula gravada dá <b style="color:var(--txt)">certificado de 4 horas</b> (curso livre/extensão), com seu nome e CPF. A maioria das graduações aceita como atividade complementar — confira a regra da sua instituição. As <b style="color:var(--txt)">20 aulas</b> (Bloco A + Bloco B) somam <b style="color:var(--txt)">80 horas</b>.</p>
       </div>
-      <span class="chip">10 AULAS = 40H</span>
+      <span class="chip">20 AULAS = 80H</span>
     </div>
     <!-- ===== CURSO COMPLETO: ACESSO TOTAL (destaque antes das aulas avulsas) ===== -->
     <div class="digi-card acesso-total">
       <span class="at-badge">⭐ MELHOR CUSTO-BENEFÍCIO</span>
       <div>
         <h3>Perícia Forense com Tabosa<br><em>— Investigação Criminal 2026.2 —</em></h3>
-        <p style="color:var(--mut)">Todas as aulas do Live Semanal da Perícia num acesso só: as 10 já disponíveis abaixo + as novas de cada semana, com o Perito Henrique Tabosa.</p>
+        <p style="color:var(--mut)">As 20 aulas do Live Semanal da Perícia num acesso só: as 10 do Bloco A já gravadas + as 10 do Bloco B, que entram gravadas logo depois de cada live de quarta, com o Perito Henrique Tabosa.</p>
         <ul>
-          <li>✅ <b>Todas as aulas</b> do semestre (caso real + técnica pericial)</li>
+          <li>✅ <b>20 aulas</b>: Bloco A (01–10) e Bloco B (11–20)</li>
           <li>✅ <b>Novas aulas toda semana</b>, já incluídas no plano</li>
-          <li>✅ <b>Certificado de 4h</b> por aula — <b>até 40h de horas complementares</b> com o Bloco A</li>
+          <li>✅ <b>Certificado de 4h</b> por aula — <b>até 80h de horas complementares</b> nas 20 aulas</li>
           <li>✅ Gravação completa: <b>vídeo + slides + resumo</b></li>
         </ul>
         <div class="planos">
@@ -651,14 +651,14 @@ footer a:hover{color:var(--amarelo)}
       </div>
     </div>
 
-    <div class="sub-head"><span class="tag mono">// OU COMPRE AVULSA</span><h3 class="sub-titulo">Aulas avulsas — R$ 29,90 cada</h3></div>
-    <div class="grid-aulas" id="grid-aulas"></div>
-
     <div id="bloco-b" hidden>
-    <div class="sub-head" style="margin-top:34px"><span class="tag mono">// BLOCO B · 07/10 A 09/12</span><h3 class="sub-titulo">Aulas 11 a 20 — ao vivo toda quarta, 21h</h3></div>
+    <div class="sub-head"><span class="tag mono">// BLOCO B · EM ANDAMENTO · 07/10 A 09/12</span><h3 class="sub-titulo">Aulas 11 a 20 — ao vivo toda quarta, 21h</h3></div>
     <p style="color:var(--mut);max-width:680px;margin:-6px 0 18px;font-size:.92rem">A live é <b style="color:var(--txt)">gratuita no YouTube</b>. Depois de cada quarta, a aula entra <b style="color:var(--txt)">gravada no curso completo</b> (vídeo + slides + materiais + certificado de 4h).</p>
     <div class="grid-aulas" id="grid-aulas-b"></div>
     </div>
+
+    <div class="sub-head" style="margin-top:34px"><span class="tag mono">// BLOCO A · OU COMPRE AVULSA</span><h3 class="sub-titulo">Aulas 01 a 10 — avulsas por R$ 29,90 cada</h3></div>
+    <div class="grid-aulas" id="grid-aulas"></div>
   </div>
 </section>
 
@@ -899,9 +899,9 @@ const AULAS = [
 /* AULAS DO BLOCO B (11 a 20) — sem produto avulso na Hotmart por enquanto.
    Antes da data: "ao vivo e grátis em dd/mm"; depois da live (quarta 23h30): "gravada · no curso completo".
    Quando existir checkout avulso de uma aula, é só pôr checkout:"https://pay.hotmart.com/XXXX" e preco:"29,90" nela. */
-/* >>> BLOCO B NA LOJA: false = escondido (pedido do Henrique em 15/10/2026); true = mostra as Aulas 11–20.
-   Ao voltar para true, trocar também os textos "10 AULAS = 40H" etc. (ver STATUS_ATUAL.md 15/10). <<< */
-const MOSTRAR_BLOCO_B = false;
+/* >>> BLOCO B NA LOJA: true = mostra as Aulas 11–20 (de volta e no topo das aulas a pedido do Henrique em 20/10/2026); false = esconde.
+   Ao trocar, ajustar também os textos "10 AULAS = 40H" etc. (ver STATUS_ATUAL.md 15/10). <<< */
+const MOSTRAR_BLOCO_B = true;
 const AULAS_B = [
   {n:"11", data:"2026-10-07", caso:"O Caso Tatiane Spitzner (PR)", tema:"Como acontecem os principais quadros de asfixia em humanos", img:"img/aula-11-tatiane-spitzner.webp"},
   {n:"12", data:"2026-10-14", caso:"O Caso do Jogador Daniel Corrêa (PR)", tema:"Como fazer o uso de luminol em cenas de crime", img:"img/aula-12-daniel-correa.webp"},
