@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loja CSI — Camisas, Livros e Acessórios de Perícia Criminal | Checkout na página</title>
+<link rel="canonical" href="https://loja.peritohenriquetabosa.com.br/">
 <meta name="description" content="Loja CSI: a loja oficial de quem ama perícia criminal. Camisas, livros e acessórios. Pix, cartão em até 12x ou boleto, com envio para todo o Brasil.">
+<meta property="og:url" content="https://loja.peritohenriquetabosa.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://loja.peritohenriquetabosa.com.br/img/loja-compartilhar.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:title" content="Loja CSI — Vista a Perícia">
 <meta property="og:description" content="Camisas, livros e acessórios de perícia criminal. Pague com Pix ou cartão sem sair da página.">
 
@@ -407,6 +414,11 @@ section.cat{padding:52px 0 8px}
 .cart .guardar summary::-webkit-details-marker{display:none}
 .cart .guardar summary small{display:block;font-weight:500;color:var(--mut);font-size:.74rem;margin-top:2px}
 .cart .guardar form{display:grid;gap:8px;margin-top:10px}
+.cart .guardar .gc-tit{font-weight:800;font-size:.86rem;color:var(--txt)}
+.cart .guardar .gc-tit small{display:block;font-weight:500;color:var(--mut);font-size:.74rem;margin-top:2px}
+.cart .guardar .gc-campos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 8px}
+@media(max-width:480px){.cart .guardar .gc-campos{grid-template-columns:1fr}}
+.cart .guardar .msg{font-size:.78rem;color:var(--amarelo);min-height:1em;margin-top:4px}
 .cart .guardar input[type=text],.cart .guardar input[type=tel]{width:100%;background:#0a0a0a;border:1px solid #333;border-radius:9px;color:var(--txt);padding:10px 12px;font:inherit;font-size:.88rem}
 .cart .guardar label.ok{display:flex;gap:8px;align-items:flex-start;font-size:.72rem;color:var(--mut);line-height:1.4}
 .cart .guardar label.ok input{margin-top:2px;accent-color:var(--amarelo);flex:none}
@@ -477,6 +489,12 @@ footer a:hover{color:var(--amarelo)}
 .whats{position:fixed;right:14px;bottom:76px;z-index:60;background:#25d366;color:#0a3d24;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:1.5rem;box-shadow:0 10px 24px -8px rgba(37,211,102,.7)}
 @media(min-width:741px){.whats{bottom:18px}}
 </style>
+<!-- Contador de visitas (Vercel Web Analytics): só aparece no painel da Vercel -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"OnlineStore","name":"Loja CSI — Perito Henrique Tabosa","url":"https://loja.peritohenriquetabosa.com.br/","image":"https://loja.peritohenriquetabosa.com.br/img/loja-compartilhar.jpg","description":"Loja oficial do perito criminal Henrique Tabosa: camisas, calça, acessórios e livros de perícia criminal. Pix, cartão em até 12x ou boleto, envio para todo o Brasil.","currenciesAccepted":"BRL","paymentAccepted":"Pix, cartão de crédito, boleto","areaServed":"BR","founder":{"@type":"Person","name":"Henrique Tabosa","url":"https://peritohenriquetabosa.com.br/"},"sameAs":["https://www.instagram.com/loja_csi","https://www.instagram.com/peritocriminalhenriquetabosa/"]}
+</script>
 </head>
 <body>
 
@@ -1237,34 +1255,32 @@ document.addEventListener('visibilitychange', ()=>{ if (document.visibilityState
 function blocoGuardar(){
   const c = lerContatoCarrinho();
   if (c && c.consent) {
-    return `<div class="guardar"><div class="salvo">✅ Carrinho guardado para ${escapa(c.nome||'você')} · ${escapa(c.whatsapp||'')}<button type="button" onclick="esquecerContatoCarrinho()">não quero mais</button></div></div>`;
+    return `<div class="guardar"><div class="salvo">✅ Se der algum problema no pagamento, a gente te chama: ${escapa(c.nome||'você')} · ${escapa(c.whatsapp||'')}<button type="button" onclick="esquecerContatoCarrinho()">não quero mais</button></div></div>`;
   }
-  return `<details class="guardar" id="guardar">
-    <summary>📩 Quer que a gente guarde seu carrinho? <small>Opcional. Deixe nome e WhatsApp e a gente te ajuda com tamanho, frete ou se der algum problema no pagamento.</small></summary>
-    <form onsubmit="return salvarContatoCarrinho(event)" novalidate>
-      <input type="text" id="gc-nome" placeholder="Seu nome" autocomplete="name" maxlength="80">
-      <input type="tel" id="gc-zap" placeholder="WhatsApp com DDD" autocomplete="tel" inputmode="tel" maxlength="16">
-      <label class="ok"><input type="checkbox" id="gc-ok"><span>Autorizo a Loja CSI a guardar este carrinho com meu nome e WhatsApp e a falar comigo sobre este pedido. Posso pedir para apagar quando quiser. <a href="politicas.html#privacidade" target="_blank" rel="noopener">Como usamos seus dados</a></span></label>
-      <div class="msg" id="gc-msg"></div>
-      <button type="submit">Guardar meu carrinho</button>
-    </form>
-  </details>`;
+  return `<div class="guardar aberto" id="guardar">
+    <div class="gc-tit">📩 Seu WhatsApp, caso o pagamento trave <small>Opcional. Se o Pix não aparecer ou o cartão recusar, a gente te chama e resolve. Nunca mandamos propaganda.</small></div>
+    <div class="gc-campos">
+      <input type="text" id="gc-nome" placeholder="Seu nome" autocomplete="name" maxlength="80" oninput="contatoDigitado()">
+      <input type="tel" id="gc-zap" placeholder="WhatsApp com DDD" autocomplete="tel" inputmode="tel" maxlength="16" oninput="contatoDigitado()">
+    </div>
+    <label class="ok"><input type="checkbox" id="gc-ok" checked><span>Autorizo a Loja CSI a guardar este carrinho com meu nome e WhatsApp e a falar comigo só sobre este pedido. <a href="politicas.html#privacidade" target="_blank" rel="noopener">Como usamos seus dados</a></span></label>
+    <div class="msg" id="gc-msg"></div>
+  </div>`;
 }
-function salvarContatoCarrinho(ev){
-  ev.preventDefault();
-  const nome = document.getElementById('gc-nome').value.trim();
-  const zap = document.getElementById('gc-zap').value.replace(/\D/g,'');
-  const ok = document.getElementById('gc-ok').checked;
-  const msg = document.getElementById('gc-msg');
-  if (nome.length < 2) { msg.textContent = 'Escreva seu nome.'; return false; }
-  if (zap.length < 10 || zap.length > 11) { msg.textContent = 'Confira o WhatsApp com DDD (só números).'; return false; }
-  if (!ok) { msg.textContent = 'Marque a autorização para a gente guardar seu contato.'; return false; }
+/* salva o contato (se válido) sem recarregar o carrinho — usado ao clicar em Pagar / WhatsApp */
+function guardarContatoSeDeu(){
+  const n = document.getElementById('gc-nome'), z = document.getElementById('gc-zap'), ok = document.getElementById('gc-ok');
+  if (!n || !z) return false;
+  const nome = n.value.trim(), zap = z.value.replace(/\D/g,'');
+  if (nome.length < 2 || zap.length < 10 || zap.length > 11 || !(ok && ok.checked)) return false;
   try { localStorage.setItem('csi_cart_contato', JSON.stringify({nome, whatsapp:zap, consent:true})); } catch(e){}
-  clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null;
-  enviarCarrinho('contato deixado'); _carrinhoJaFoi = true;
   try { fbq && fbq('track','Lead',{content_name:'Carrinho guardado', value:unidades().reduce((a,u)=>a+u.preco,0), currency:'BRL'}); } catch(e){}
-  renderCarrinho();
-  return false;
+  return true;
+}
+let _contatoT = null;
+function contatoDigitado(){
+  clearTimeout(_contatoT);
+  _contatoT = setTimeout(()=>{ if (guardarContatoSeDeu()) { clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null; enviarCarrinho('contato deixado'); _carrinhoJaFoi = true; const m = document.getElementById('gc-msg'); if (m) m.textContent = '✅ Guardado. Pode pagar.'; } }, 1200);
 }
 function esquecerContatoCarrinho(){
   try { localStorage.removeItem('csi_cart_contato'); } catch(e){}
@@ -1349,7 +1365,7 @@ function renderCarrinho(){
       <div><div class="nm">${p.nome}</div>${i.tam?`<span class="tam">Tam. ${i.tam}</span>`:''}<div class="pr">${brl(precoNum(p.preco))} cada</div></div>
       <div class="qtd"><button type="button" onclick="mudarQtd(${idx},-1)" aria-label="Menos">−</button><span>${i.q}</span><button type="button" onclick="mudarQtd(${idx},1)" aria-label="Mais">+</button></div>
       <button class="rm" type="button" onclick="removerItem(${idx})">remover</button>
-    </div>`; }).join('') + blocoGuardar();
+    </div>`; }).join('');
   const un = unidades(); const total = un.reduce((a,u)=>a+u.preco,0);
   const pl = planoCarrinho();
   let plano = '';
@@ -1367,6 +1383,7 @@ function renderCarrinho(){
       <div class="tot"><span>${un.length} ${un.length>1?'itens':'item'}</span><b>${brl(total)}</b></div>
       ${cupomAtivo()?`<div class="cupom-ok">🎁 Cupom ${CUPOM.codigo} (${CUPOM.pct}% off) entra na próxima etapa</div>`:''}
       <div class="plano ok">Na próxima tela você informa o endereço, vê o <b>frete e o total</b> e paga tudo de uma vez no <b>Mercado Pago</b>: Pix, cartão em até 12x ou boleto.</div>
+      ${blocoGuardar()}
       <div class="acoes">
         <button class="pagar" type="button" onclick="abrirFinalizacao()">Finalizar compra →</button>
         <button class="zap" type="button" onclick="pedidoWhats()">💬 Prefiro fechar pelo WhatsApp</button>
@@ -1379,6 +1396,7 @@ function renderCarrinho(){
     <div class="tot"><span>${un.length} ${un.length>1?'itens':'item'}</span><b>${brl(total)}</b></div>
     ${cupomAtivo()?`<div class="cupom-ok">🎁 Cupom ${CUPOM.codigo} (${CUPOM.pct}% off) vai aplicado no pagamento</div>`:''}
     ${plano}
+    ${blocoGuardar()}
     <div class="acoes">
       <a class="pagar hotmart-fb hotmart__button-checkout" href="${href}" target="_blank" rel="noopener" onclick="aoPagar()">Pagar na Hotmart ⚡ <small>pix ou cartão</small></a>
       <button class="zap" type="button" onclick="pedidoWhats()">💬 Fechar pelo WhatsApp (81) 99101-6004</button>
@@ -1388,6 +1406,7 @@ function renderCarrinho(){
 /* ao abrir o pagamento: tira do carrinho o que foi para o checkout e deixa o resto para a 2ª etapa */
 function aoPagar(){
   const pl = planoCarrinho(); if (!pl) return;
+  guardarContatoSeDeu();
   clearTimeout(_envioCarrinhoT); _envioCarrinhoT = null;
   enviarCarrinho('foi para pagamento'); _semEnvioVazio = true;
   try { localStorage.removeItem('csi_cart_id'); } catch(e){}
@@ -1407,6 +1426,7 @@ function aoPagar(){
 /* fechar pelo WhatsApp: manda a lista com tamanhos para o Henrique confirmar e enviar um link único */
 function pedidoWhats(){
   const un = unidades(); if (!un.length) return;
+  guardarContatoSeDeu();
   const linhas = {}; un.forEach(u=>{ const k = nomeTam(u); linhas[k] = linhas[k] ? {q:linhas[k].q+1, preco:u.preco} : {q:1, preco:u.preco}; });
   const total = un.reduce((a,u)=>a+u.preco,0);
   const txt = `Oi! Quero fechar este pedido da Loja CSI em um pagamento só:\n` +
