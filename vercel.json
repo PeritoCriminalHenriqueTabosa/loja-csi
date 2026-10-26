@@ -1,5 +1,5 @@
 {
-  "rewrites": [ { "source": "/", "has": [ { "type": "query", "key": "o" } ], "destination": "/link-antigo-removido-404" } ],
+    "redirects": [ { "source": "/", "has": [ { "type": "query", "key": "o" } ], "destination": "/link-antigo-removido", "permanent": true } ],
   "headers": [
     {
       "source": "/(.*)",
