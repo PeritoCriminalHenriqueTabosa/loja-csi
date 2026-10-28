@@ -1353,6 +1353,8 @@ function planoCarrinho(){
   return melhor;
 }
 function nomeTam(u){ return u.nome + (u.tam ? ` (tam. ${u.tam})` : ''); }
+/* mais de 1 unidade do mesmo produto: a Hotmart só cobra 1 por pagamento, então o pedido vai para o WhatsApp */
+function repetidos(un){ const c = {}; un.forEach(u=>{ const k = u.cod || u.slug; c[k] = c[k] || {nome:u.nome, q:0}; c[k].q++; }); return Object.values(c).filter(r=>r.q>1); }
 function renderCarrinho(){
   const tt = document.getElementById('cart-titulo'); if (tt) tt.textContent = '🛒 Seu carrinho';
   const n = qtdCarrinho();
@@ -1389,6 +1391,19 @@ function renderCarrinho(){
         <button class="zap" type="button" onclick="pedidoWhats()">💬 Prefiro fechar pelo WhatsApp</button>
         <button class="limpar" type="button" onclick="limparCarrinho()">esvaziar carrinho</button>
       </div>`;
+    return;
+  }
+  const rep = repetidos(un);
+  if (rep.length) {
+    rod.innerHTML = `<div id="cart-toast"></div>
+    <div class="tot"><span>${un.length} itens</span><b>${brl(total)}</b></div>
+    ${cupomAtivo()?`<div class="cupom-ok">🎁 Cupom ${CUPOM.codigo} (${CUPOM.pct}% off) vale no pedido</div>`:''}
+    <div class="plano aviso"><b>Este pedido fecha pelo WhatsApp.</b> Você colocou mais de 1 unidade de:<ul>${rep.map(r=>`<li>${r.q}x ${r.nome}</li>`).join('')}</ul>A Hotmart só cobra 1 unidade de cada produto por pagamento. Pelo WhatsApp a gente confirma os tamanhos e manda <b>um link só, com o total certo</b>.</div>
+    ${blocoGuardar()}
+    <div class="acoes">
+      <button class="zap" type="button" onclick="pedidoWhats()">💬 Fechar o pedido pelo WhatsApp (81) 99101-6004</button>
+      <button class="limpar" type="button" onclick="limparCarrinho()">esvaziar carrinho</button>
+    </div>`;
     return;
   }
   const href = `${pl.principal.checkout}?checkoutMode=2${cupomQS()}`;
